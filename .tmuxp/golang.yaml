@@ -1,0 +1,30 @@
+session_name: Golang
+start_directory: "~/code/go/src/github.com/ajaymahar/"
+windows:
+  - window_name: IDE
+    focus: True
+    layout: main-horizontal
+    options:
+      main-pane-height: 47
+    panes:
+      - shell_command:
+          - nvim main.go
+      - shell_command:
+          - ping -c 10 google.com
+          - clear
+      - shell_command:
+          - ping -c 10 google.com
+          - clear
+  - window_name: GIT
+    layout: main-horizontal
+    options:
+      main-pane-height: 47
+    start_directory: "~/GITHUB/nvim"
+    panes:
+      - shell_command:
+          - lazygit
+      - shell_command:
+          - ping -c 10 google.com
+          - clear
+      - shell_command:
+          - git status

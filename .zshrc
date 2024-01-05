@@ -103,12 +103,11 @@ source $ZSH/oh-my-zsh.sh
 alias vim=nvim
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 DEFAULT_USER=$(whoami)
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Golang Env Varialbes
-export GOPATH=$HOME/golib
-export PATH=$PATH:$GOPATH/bin
-export GOPATH=$GOPATH:$HOME/code/go
+# export GOPATH=$HOME/code/go
+export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 # The next line updates PATH for the Google Cloud SDK.
@@ -158,3 +157,4 @@ alias tpl='tmuxp load '
 
 # Added by serverless binary installer
 export PATH="$HOME/.serverless/bin:$PATH"
+eval "$(direnv hook zsh)"

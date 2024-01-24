@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/ajay/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -101,6 +101,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias vim=nvim
+alias v=nvim
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 DEFAULT_USER=$(whoami)
 # source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -158,3 +159,19 @@ alias tpl='tmuxp load '
 # Added by serverless binary installer
 export PATH="$HOME/.serverless/bin:$PATH"
 eval "$(direnv hook zsh)"
+
+# Set default Editor  as nvim
+export EDITOR=/usr/local/bin/nvim
+export PATH="/usr/local/opt/libpq/bin:$PATH"
+
+# zoxide
+#
+# export _ZO_ECHO=1 # Print the matched directory before navigating to it
+#
+## Specifies the direcotry in which the data is stored 
+# export _ZO_DATA_DIR='/Users/ajay/Library/Application Support/zoxide' # Defualt create db on '/Users/ajay/Library/Application Support/zoxide' location
+#
+# Exclude the specified dir from the database
+# export _ZO_EXCLUDE_DIRS='$HOME:$HOME/private/*'
+
+eval "$(zoxide init zsh)"

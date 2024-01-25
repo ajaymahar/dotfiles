@@ -152,10 +152,10 @@ codi() {
 # Set vi mode for bash/zsh shell
 # set -o vi
 
-# tmuxp settings
-export DISABLE_AUTO_TITLE='true'
-alias tpl='tmuxp load '
-
+# # tmuxp settings
+# export DISABLE_AUTO_TITLE='true'
+# alias tpl='tmuxp load '
+#
 # Added by serverless binary installer
 export PATH="$HOME/.serverless/bin:$PATH"
 eval "$(direnv hook zsh)"

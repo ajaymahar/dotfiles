@@ -174,4 +174,7 @@ export PATH="/usr/local/opt/libpq/bin:$PATH"
 # Exclude the specified dir from the database
 # export _ZO_EXCLUDE_DIRS='$HOME:$HOME/private/*'
 
+# Export tmux config file
+export TMUX_CONF=$HOME/.config/tmux/tmux.conf
+
 eval "$(zoxide init zsh)"

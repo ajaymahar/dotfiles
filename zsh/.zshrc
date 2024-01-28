@@ -101,7 +101,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias vim=nvim
-alias v=nvim
+# alias v=nvim
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 DEFAULT_USER=$(whoami)
 # source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -127,13 +127,29 @@ if [ -f '/Users/ajay/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ajay
 # export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'  --color fg:#ebdbb2,bg:#282828,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54'
 
 # Darcula color scheme
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
---color=dark
---color=fg:-1,bg:-1,hl:#5fff87,fg+:-1,bg+:-1,hl+:#ffaf5f
---color=info:#af87ff,prompt:#5fff87,pointer:#ff87d7,marker:#ff87d7,spinner:#ff87d7'
+# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+# --color=dark
+# --color=fg:-1,bg:-1,hl:#5fff87,fg+:-1,bg+:-1,hl+:#ffaf5f
+# --color=info:#af87ff,prompt:#5fff87,pointer:#ff87d7,marker:#ff87d7,spinner:#ff87d7'
 #source /usr/share/fzf/completion.zsh
 #source /usr/share/fzf/key-bindings.zsh
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS" \
+--reverse \
+--border rounded \
+--no-info \
+--pointer=' ' \
+--marker=' ' \
+--ansi \
+--color='16,bg+:-1,gutter:-1,prompt:5,pointer:5,marker:6,border:4,label:4,header:italic'"
+
+export FZF_CTRL_R_OPTS=$FZF_CTRL_R_OPTS"--border-label=' history ' \
+--prompt='  '"
+
+export FZF_CTRL_T_OPTS=$FZF_CTRL_T_OPTS"--border-label=' find files' \
+--prompt='  '"
+
 export PATH=$HOME/.local/bin:$PATH
+export PATH=$PATH:$HOME/.config/bin
 
 # codi for shell wrapper
 codi() {

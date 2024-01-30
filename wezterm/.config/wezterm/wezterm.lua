@@ -19,9 +19,9 @@ if wezterm.config_builder then config = wezterm.config_builder() end
 -- config.color_scheme = "Tokyo Night"
 config.color_scheme = "Catppuccin Mocha"
 config.font = wezterm.font_with_fallback({
-  -- { family = "Iosevka Nerd Font",  scale = 1.7, weight = "Medium", },
-  -- { family = "CaskaydiaCove Nerd Font",  scale = 1.7 },
   { family = "VictorMono Nerd Font",  scale = 1.9, weight = "Medium" },
+  { family = "Iosevka Nerd Font",  scale = 1.7, weight = "Medium", },
+  { family = "CaskaydiaCove Nerd Font",  scale = 1.7 },
 })
 config.window_background_opacity = 0.9
 config.window_decorations = "RESIZE"

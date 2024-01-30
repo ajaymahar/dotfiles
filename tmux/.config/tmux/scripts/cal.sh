@@ -1,9 +1,11 @@
 #!/bin/bash
 
-ALERT_IF_IN_NEXT_MINUTES=10
+ALERT_IF_IN_NEXT_MINUTES=5
 ALERT_POPUP_BEFORE_SECONDS=60
 NERD_FONT_FREE="󱁕 "
-NERD_FONT_MEETING="󰤙"
+# NERD_FONT_MEETING="󰤙"
+NERD_FONT_MEETING=" "
+# NERD_FONT_MEETING=" "
 
 get_attendees() {
 	attendees=$(
@@ -67,24 +69,32 @@ parse_result() {
 	for line in $1; do
 		array+=("$line")
 	done
-	time="${array[2]}"
+	time="${array[2]:0:5}"
 	end_time="${array[4]}"
 	title="${array[*]:5:30}"
+	# Debug log
+	# echo "arrayfull: " ${array[*]} >> $HOME/cal.log
+	# echo "array: " ${array[0]} >> $HOME/cal.log
+	# echo "array-1: " ${array[1]} >> $HOME/cal.log
+	# echo "array-2: " ${array[2]:0:5} >> $HOME/cal.log
+	# echo "array-3: " ${array[3]} >> $HOME/cal.log
+	# echo "array-4: " ${array[4]} >> $HOME/cal.log
+	# echo "array-5: " ${array[5]} >> $HOME/cal.log
 }
 
 calculate_times(){
-	# epoc_meeting=$(date -j -f "%T" "$time:00" +%s)
-	epoc_meeting=$(date -j -f "%H:%M:%S" "$time:00" "+%s" 2>/dev/null)
+	# epoc_meeting=$(date -jf "%T" "$time:00" +%s)
+	epoc_meeting=$(date -jf "%T" "$time:00" +%s)
 	epoc_now=$(date +%s)
 	epoc_diff=$((epoc_meeting - epoc_now))
 	minutes_till_meeting=$((epoc_diff/60))
 }
 
+		# -w50% \
+		# -h50% \
 display_popup() {
 	tmux display-popup \
 		-S "fg=#eba0ac" \
-		-w50% \
-		-h50% \
 		-d '#{pane_current_path}' \
 		-T meeting \
 		icalBuddy \
@@ -108,7 +118,7 @@ print_tmux_status() {
 		echo "$NERD_FONT_FREE"
 	fi
 
-	if [[ $epoc_diff -gt $ALERT_POPUP_BEFORE_SECONDS && epoc_diff -lt $ALERT_POPUP_BEFORE_SECONDS+10 ]]; then
+	if [[ $epoc_diff -gt $ALERT_POPUP_BEFORE_SECONDS && $epoc_diff -lt $ALERT_POPUP_BEFORE_SECONDS+10 ]]; then
 		display_popup
 	fi
 }
@@ -119,7 +129,7 @@ main() {
 	get_next_meeting
 	parse_result "$next_meeting"
 	calculate_times
-	if [[ "$next_meeting" != "" && $number_of_attendees -lt 2 ]]; then
+	if [[ "$next_meeting" != "" && $number_of_attendees -lt 1 ]]; then
 		get_next_next_meeting
 		parse_result "$next_next_meeting"
 		calculate_times

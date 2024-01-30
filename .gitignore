@@ -1,3 +1,4 @@
 tmux/.config/tmux/plugins
 */db_ui
 nvim/.config/nvim/lazy-lock.json
+nvim/.config/nvim/db_ui

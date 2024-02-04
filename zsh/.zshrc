@@ -71,7 +71,7 @@ CASE_SENSITIVE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git)
-plugins=(zsh-syntax-highlighting zsh-autosuggestions git golang python vi-mode)
+plugins=(zsh-syntax-highlighting zsh-autosuggestions git vi-mode)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -101,7 +101,10 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias vim=nvim
-# alias v=nvim
+alias ls=lsd
+alias j=z
+alias jj=zi
+
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 DEFAULT_USER=$(whoami)
 # source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -151,19 +154,19 @@ export FZF_CTRL_T_OPTS=$FZF_CTRL_T_OPTS"--border-label=' find files' \
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$PATH:$HOME/.config/bin
 
-# codi for shell wrapper
-codi() {
-   local syntax="${1:-python}"
-   shift
-   nvim -c \
-     "let g:startify_disable_at_vimenter = 1 |\
-     set bt=nofile ls=0 noru nonu nornu |\
-     hi CodiVirtualText guifg=red
-     hi ColorColumn ctermbg=NONE |\
-     hi VertSplit ctermbg=NONE |\
-     hi NonText ctermfg=0 |\
-     Codi $syntax" "$@"
-}
+# # codi for shell wrapper
+# codi() {
+#    local syntax="${1:-python}"
+#    shift
+#    nvim -c \
+#      "let g:startify_disable_at_vimenter = 1 |\
+#      set bt=nofile ls=0 noru nonu nornu |\
+#      hi CodiVirtualText guifg=red
+#      hi ColorColumn ctermbg=NONE |\
+#      hi VertSplit ctermbg=NONE |\
+#      hi NonText ctermfg=0 |\
+#      Codi $syntax" "$@"
+# }
 
 # Set vi mode for bash/zsh shell
 # set -o vi

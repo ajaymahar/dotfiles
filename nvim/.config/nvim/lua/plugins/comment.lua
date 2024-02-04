@@ -1,3 +1,4 @@
-require("todo-comments").setup() 
+require('nvim_comment').setup()
+require("todo-comments").setup()
 vim.api.nvim_set_keymap("n", ",", ":CommentToggle<CR>", {noremap=true, silent = true})
 vim.api.nvim_set_keymap("v", "/", ":CommentToggle<CR>", {noremap=true, silent = true})

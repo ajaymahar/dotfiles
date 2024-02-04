@@ -49,4 +49,4 @@ vim.api.nvim_set_keymap('n', '<C-t>', ':TagbarToggle<CR>', {noremap = true, sile
 vim.api.nvim_set_keymap('n', '<space>u', ':UndotreeToggle<CR>', {noremap = true, silent = true})
 
 -- oil keymaps
-vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+vim.keymap.set("n", "M", "<CMD>Oil<CR>", { desc = "Open parent directory" })

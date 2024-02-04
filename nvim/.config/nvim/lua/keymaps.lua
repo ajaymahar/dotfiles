@@ -15,8 +15,8 @@ vim.api.nvim_set_keymap('x', 'J', ':move \'>+1<CR>gv-gv', {noremap = true, silen
 -- files
 vim.api.nvim_set_keymap("n", "QQ", ":q!<enter>", {noremap=false})
 vim.api.nvim_set_keymap("n", "WW", ":w!<enter>", {noremap=false})
-vim.api.nvim_set_keymap("n", "E", "$", {noremap=false})
-vim.api.nvim_set_keymap("n", "B", "^", {noremap=false})
+vim.api.nvim_set_keymap("n", "L", "$", {noremap=false})
+vim.api.nvim_set_keymap("n", "H", "^", {noremap=false})
 vim.api.nvim_set_keymap("n", "TT", ":TransparentToggle<CR>", {noremap=true})
 vim.api.nvim_set_keymap("n", "st", ":TodoTelescope<CR>", {noremap=true})
 vim.api.nvim_set_keymap("n", "ss", ":noh<CR>", {noremap=true})
@@ -47,3 +47,6 @@ vim.api.nvim_set_keymap('n', '<C-t>', ':TagbarToggle<CR>', {noremap = true, sile
 
 -- Undotree
 vim.api.nvim_set_keymap('n', '<space>u', ':UndotreeToggle<CR>', {noremap = true, silent = true})
+
+-- oil keymaps
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })

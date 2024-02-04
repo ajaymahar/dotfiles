@@ -24,7 +24,7 @@ vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
 --vim.cmd [[colorscheme onedark]]
-vim.cmd.colorscheme "catppuccin"
+-- vim.cmd.colorscheme "catppuccin"
 -- vim.cmd.colorscheme "nordic"
 
 --vim.cmd()
@@ -102,5 +102,5 @@ vim.o.writebackup = false -- This is recommended by coc
 vim.wo.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
 vim.o.updatetime = 300 -- Faster completion
 vim.o.clipboard = "unnamedplus" -- Copy paste between vim and everything else
-vim.o.guifont = "JetBrainsMono\\ Nerd\\ Font\\ Mono:h18"
+-- vim.o.guifont = "JetBrainsMono\\ Nerd\\ Font\\ Mono:h18"
 vim.cmd('set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/tmp/*,*/.zip')

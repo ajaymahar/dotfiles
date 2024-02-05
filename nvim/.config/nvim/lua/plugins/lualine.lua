@@ -1,25 +1,3 @@
--- require('lualine').setup {
---   options = {
---     icons_enabled = true,
---     component_separators = '|',
---     section_separators = '',
---   },
---   sections = {
---     lualine_x = {
---       {
---         require("noice").api.statusline.mode.get,
---         cond = require("noice").api.statusline.mode.has,
---         color = { fg = "#ff9e64" },
---       }
---     },
---     lualine_a = {
---       {
---         'buffers',
---       }
---     }
---   }
--- }
-
 require('lualine').setup {
   options = {
     icons_enabled = true,
@@ -42,24 +20,25 @@ require('lualine').setup {
     }
   },
   sections = {
-    -- lualine_x = {
-    --   {
-    --     require("noice").api.statusline.mode.get,
-    --     cond = require("noice").api.statusline.mode.has,
-    --     color = { fg = "#ff9e64" },
-    --   }
-    -- },
-    lualine_a = {'mode'},
+    lualine_x = {
+      {
+        require("noice").api.status.command.get,
+        cond = require("noice").api.status.command.has,
+        color = { fg = "#ff9e64" },
+      },
+    },
+    -- lualine_a = {'mode'},
+    lualine_a = {},
     lualine_b = {'branch', 'diff', 'diagnostics'},
     -- lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'},
+    -- lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {},
+    lualine_z = {},
     lualine_c = {
     {
       'filename',
       file_status = true,      -- Displays file status (readonly status, modified status)
-      newfile_status = ture,  -- Display new file status (new file means no write after created)
+      newfile_status = true,  -- Display new file status (new file means no write after created)
       path = 1,                -- 0: Just the filename
                                -- 1: Relative path
                                -- 2: Absolute path

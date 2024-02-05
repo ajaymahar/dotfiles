@@ -12,10 +12,16 @@ integrations = {
 	mason = true,
 	native_lsp = { enabled = true },
 	notify = true,
+	noice = true,
 	symbols_outline = true,
 	telescope = true,
 	treesitter = true,
 	treesitter_context = true,
+	fidget = true,
+	markdown = true,
+	dap = true,
+	dap_ui = true,
+	lsp_trouble = true,
 	},
 })
 

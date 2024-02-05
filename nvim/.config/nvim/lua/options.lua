@@ -1,65 +1,73 @@
--- Set highlight on search
-vim.o.hlsearch = true
+-- Enable relative line numbers
+vim.opt.nu = true
+vim.opt.rnu = true
 
--- Make line numbers default
-vim.wo.number = true
-vim.o.relativenumber = true
+-- Set tabs to 2 spaces
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.expandtab = true
 
--- Enable break indent
-vim.o.breakindent = true
+-- Enable auto indenting and set it to spaces
+vim.opt.smartindent = true
+vim.opt.shiftwidth = 2
 
--- Save undo history
-vim.o.undofile = true
+-- Enable smart indenting (see https://stackoverflow.com/questions/1204149/smart-wrap-in-vim)
+vim.opt.breakindent = true
 
--- Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
+-- Enable incremental searching
+vim.opt.incsearch = true
+vim.opt.hlsearch = true
 
--- Decrease update time
-vim.o.updatetime = 250
-vim.wo.signcolumn = 'yes'
+-- Disable text wrap
+vim.opt.wrap = false
 
---vim.cmd()
-vim.opt.clipboard = 'unnamedplus'
+-- Set leader key to space
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+-- Better splitting
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
+-- Enable mouse mode
+vim.opt.mouse = "a"
+
+-- Enable ignorecase + smartcase for better searching
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+-- Decrease updatetime to 200ms
+vim.opt.updatetime = 50
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.opt.completeopt = { "menuone", "noselect" }
 
--- Concealer for Neorg
-vim.o.conceallevel=2
+-- Enable persistent undo history
+vim.opt.undofile = true
 
--- [[ Basic Keymaps ]]
--- Set <space> as the leader key
--- See `:help mapleader`
---  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+-- Enable 24-bit color
+vim.opt.termguicolors = true
 
--- old settings needs review delete which are not longer required
-vim.cmd('set iskeyword+=-') -- treat dash separated words as a word text object"
-vim.cmd('set shortmess+=c') -- Don't pass messages to |ins-completion-menu|.
-vim.o.hidden = true -- Required to keep multiple buffers open multiple buffers
-vim.wo.wrap = false -- Display long lines as just one line
-vim.cmd('set whichwrap+=<,>,[,],h,l') -- move to next line with theses keys
-vim.cmd('syntax on') -- move to next line with theses keys
-vim.o.pumheight = 10 -- Makes popup menu smaller
-vim.o.fileencoding = "utf-8" -- The encoding written to file
-vim.o.cmdheight = 2 -- More space for displaying messages
-vim.o.mouse = "a" -- Enable your mouse
-vim.o.splitbelow = true -- Horizontal splits will automatically be below
-vim.o.termguicolors = true -- set term giu colors most terminals support this
-vim.o.splitright = true -- Vertical splits will automatically be to the right
-vim.o.t_Co = "256" -- Support 256 colors
-vim.o.conceallevel = 0 -- So that I can see `` in markdown files
-vim.cmd('set ts=4') -- Insert 2 spaces for a tab
-vim.cmd('set sw=4') -- Change the number of space characters inserted for indentation
-vim.bo.expandtab = true -- Converts tabs to spaces
-vim.bo.smartindent = true -- Makes indenting smart
-vim.wo.number = true -- set numbered lines
-vim.wo.cursorline = true -- Enable highlighting of the current line
-vim.o.showmode = false -- We don't need to see things like -- INSERT -- anymore
-vim.o.backup = false -- This is recommended by coc
-vim.o.writebackup = false -- This is recommended by coc
-vim.wo.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
-vim.o.updatetime = 300 -- Faster completion
-vim.cmd('set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/tmp/*,*/.zip')
+-- Enable the sign column to prevent the screen from jumping
+vim.opt.signcolumn = "yes"
+
+-- Enable access to System Clipboard
+vim.opt.clipboard = "unnamed,unnamedplus"
+
+-- Enable cursor line highlight
+vim.opt.cursorline = true
+
+-- Always keep 8 lines above/below cursor unless at start/end of file
+vim.opt.scrolloff = 8
+
+-- Place a column line
+vim.opt.colorcolumn = "80"
+
+vim.opt.guicursor = {
+	"n-v-c:block", -- Normal, visual, command-line: block cursor
+	"i-ci-ve:ver25", -- Insert, command-line insert, visual-exclude: vertical bar cursor with 25% width
+	"r-cr:hor20", -- Replace, command-line replace: horizontal bar cursor with 20% height
+	"o:hor50", -- Operator-pending: horizontal bar cursor with 50% height
+	"a:blinkwait700-blinkoff400-blinkon250", -- All modes: blinking settings
+	"sm:block-blinkwait175-blinkoff150-blinkon175", -- Showmatch: block cursor with specific blinking settings
+}

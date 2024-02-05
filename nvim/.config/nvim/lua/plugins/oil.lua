@@ -1,3 +1,10 @@
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "oil",
+	callback = function()
+		vim.opt_local.colorcolumn = ""
+	end,
+})
+
 require("oil").setup({
   keymaps = {
     ["?"] = "actions.show_help",
@@ -21,5 +28,5 @@ require("oil").setup({
   use_default_keymaps = false,
 
 -- oil keymaps
-vim.keymap.set("n", "<C-m>", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+vim.keymap.set("n", "<C-m>", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
 })

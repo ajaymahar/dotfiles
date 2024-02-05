@@ -76,7 +76,13 @@ for _, lsp in ipairs(servers) do
 end
 
 -- Turn on lsp status information
-require('fidget').setup()
+require("fidget").setup {
+    notification = {
+        window = {
+            winblend = 0,
+        },
+    }
+}
 
 local kind_icons = {
   Text = "󰉿",
@@ -110,7 +116,6 @@ local kind_icons = {
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 
---
 require("luasnip.loaders.from_vscode").lazy_load()
 cmp.setup {
   snippet = {
@@ -170,7 +175,6 @@ cmp.setup {
     format = function(entry, vim_item)
       -- Kind icons
       vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-      -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
       vim_item.menu = ({
         nvim_lsp = "[LSP]",
         luasnip = "[Snippet]",
@@ -189,9 +193,5 @@ cmp.setup {
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
     select = false,
-  },
-  experimental = {
-    ghost_text = false,
-    native_menu = true,
   },
 }

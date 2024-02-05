@@ -104,6 +104,8 @@ alias vim=nvim
 alias ls=lsd
 alias j=z
 alias jj=zi
+alias lg=lazygit
+alias bt=btop
 
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 DEFAULT_USER=$(whoami)

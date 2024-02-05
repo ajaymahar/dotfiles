@@ -28,7 +28,7 @@ require('lazy').setup({
     opts = {},
   },
 
-  --
+------------------------
   -- Database Access
   {
     'kristijanhusak/vim-dadbod-ui',
@@ -38,7 +38,7 @@ require('lazy').setup({
     },
   },
 
-  --
+------------------------
   -- Smooth scroll
   'psliwka/vim-smoothie',
   --
@@ -110,6 +110,7 @@ require('lazy').setup({
     }
   },
 
+------------------------
   -- Go
   {
     "ray-x/go.nvim",
@@ -122,6 +123,7 @@ require('lazy').setup({
     ft = {"go", 'gomod'},
     build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
   },
+ ------------------------
   -- Debuger
   {
     'rcarriga/nvim-dap-ui',
@@ -131,6 +133,7 @@ require('lazy').setup({
   },
   'theHamsta/nvim-dap-virtual-text',
   'leoluz/nvim-dap-go',
+------------------------
 
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
@@ -143,6 +146,7 @@ require('lazy').setup({
     }
   },
 
+------------------------
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
     dependencies = {
@@ -154,6 +158,7 @@ require('lazy').setup({
      'L3MON4D3/LuaSnip',
      'saadparwaiz1/cmp_luasnip',
      'rafamadriz/friendly-snippets',
+	 'onsails/lspkind.nvim', -- for icon
     },
   },
 

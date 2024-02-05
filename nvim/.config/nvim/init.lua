@@ -19,6 +19,4 @@ require('plugins.windows')
 require('plugins.oil')
 require('plugins.noice')
 require('plugins.colorscheme')
-
--- vim: ts=8 sts=2 sw=2 et
--- this is a comment
+require('plugins.harpoon')

@@ -2,6 +2,7 @@
 vim.api.nvim_set_keymap('i', 'jk', '<ESC>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('i', 'kj', '<ESC>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('i', 'jj', '<ESC>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('i', 'kk', '<ESC>', {noremap = true, silent = true})
 --
 -- twilight
 vim.api.nvim_set_keymap("n", "tw", ":Twilight<enter>", {noremap=false})
@@ -48,5 +49,3 @@ vim.api.nvim_set_keymap('n', '<C-t>', ':TagbarToggle<CR>', {noremap = true, sile
 -- Undotree
 vim.api.nvim_set_keymap('n', '<space>u', ':UndotreeToggle<CR>', {noremap = true, silent = true})
 
--- oil keymaps
-vim.keymap.set("n", "M", "<CMD>Oil<CR>", { desc = "Open parent directory" })

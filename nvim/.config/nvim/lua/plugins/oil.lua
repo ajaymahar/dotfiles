@@ -19,4 +19,7 @@ require("oil").setup({
   },
   -- Set to false to disable all of the above keymaps
   use_default_keymaps = false,
+
+-- oil keymaps
+vim.keymap.set("n", "<C-m>", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 })

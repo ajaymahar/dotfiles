@@ -1,16 +1,20 @@
 return {
+  -- Git worktree
   {
-    -- Git worktree
     'ThePrimeagen/git-worktree.nvim',
-    -- Git related plugins
-    'tpope/vim-fugitive',
-    'lewis6991/gitsigns.nvim',
-
     config = function()
       -- worktree settings
       require('git-worktree').setup()
+    end
+  },
+  -- Git related plugins
+  { 'tpope/vim-fugitive' },
 
-      require('lua.plugins.git').setup {
+  {
+    'lewis6991/gitsigns.nvim',
+
+    config = function()
+      require('gitsigns').setup {
         -- signs = {
         --   add = { text = '+' },
         --   change = { text = '~' },

@@ -2,9 +2,10 @@ return {
   {
     -- nvim file finder or file manager
     'stevearc/oil.nvim',
-    opts = {},
     -- Optional dependencies
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
 
     config = function()
       vim.api.nvim_create_autocmd("FileType", {
@@ -36,8 +37,8 @@ return {
         -- Set to false to disable all of the above keymaps
         use_default_keymaps = false,
 
-        -- oil keymaps
-        vim.keymap.set("n", "<C-m>", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
+        -- -- oil keymaps now set from keymap file
+        -- vim.keymap.set("n", "<C-m>", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
       })
     end,
   },

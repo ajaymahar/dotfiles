@@ -14,6 +14,8 @@ vim.api.nvim_set_keymap("n", "QQ", ":q!<enter>", { noremap = false })
 vim.api.nvim_set_keymap("n", "WW", ":w!<enter>", { noremap = false })
 vim.api.nvim_set_keymap("n", "L", "$", { noremap = false })
 vim.api.nvim_set_keymap("n", "H", "^", { noremap = false })
+-- map 'U' to redo the changes 
+vim.api.nvim_set_keymap("n", "U", "<C-r>", { noremap = false })
 --
 vim.api.nvim_set_keymap("n", "ss", ":noh<CR>", { noremap = true })
 --
@@ -32,10 +34,18 @@ vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 --
+-- Save with CTRL + s key
+vim.api.nvim_set_keymap("n", "<C-s>", "<cmd>w<cr>", { silent = false })
+-- Quit with CTRL + c key
+vim.api.nvim_set_keymap("n", "<C-c>", "<cmd>q<cr>", { silent = false })
+-- Save and Quit with CTRL + q key
+vim.api.nvim_set_keymap("n", "<C-q>", "<cmd>wq<cr>", { silent = false })
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
+-- Press gx to open the link under the cursor
+vim.api.nvim_set_keymap("n", "gx", ":sil !open <cWORD><cr>", { silent = true })
+--
 -- twilight
 vim.api.nvim_set_keymap("n", "tw", ":Twilight<enter>", { noremap = false })
 --
@@ -63,6 +73,7 @@ vim.api.nvim_set_keymap("n", "<leader>dr", ":lua require('dapui').open({reset = 
 
 -- fzf
 local tele = require('telescope.builtin')
+
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
@@ -94,3 +105,10 @@ vim.keymap.set("n", "<Leader>sn", "<CMD>lua require('telescope').extensions.noti
 vim.keymap.set('n', '<leader>sd', tele.diagnostics, { desc = '[S]earch [D]iagnostics' })
 -- Options through Telescope
 vim.api.nvim_set_keymap("n", "<Leader><tab>", "<Cmd>lua tele.commands()<CR>",{ noremap = false })
+
+
+--oil
+-- Map Oil to <leader>e
+vim.keymap.set("n", "<C-m>", function()
+	require("oil").toggle_float()
+end)

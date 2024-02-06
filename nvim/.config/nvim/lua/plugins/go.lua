@@ -125,7 +125,7 @@ return {
           -- can also set to a list of colors to define colors to choose from
           -- e.g {'#D8DEE9', '#5E81AC', '#88C0D0', '#EBCB8B', '#A3BE8C', '#B48EAD'}
         },
-        trouble = false,                                                             -- true: use trouble to open quickfix
+        trouble = true,                                                             -- true: use trouble to open quickfix
         test_efm = false,                                                            -- errorfomat for quickfix, default mix mode, set to true will be efm only
         luasnip = false,                                                             -- enable included luasnip snippets. you can also disable while add lua/snips folder to luasnip load
         --  Do not enable this if you already added the path, that will duplicate the entries

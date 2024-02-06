@@ -8,11 +8,3 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
-
-
--- Options through Telescope
-vim.api.nvim_set_keymap("n", "<Leader><tab>", "<Cmd>lua require('telescope.builtin').commands()<CR>", {noremap=false})
-
--- Noice
-vim.api.nvim_set_keymap("n", "<leader>l", ":NoiceDismiss<CR>", {noremap=true})
-

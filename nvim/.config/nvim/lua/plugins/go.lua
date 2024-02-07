@@ -1,26 +1,16 @@
 return {
   {
     "ray-x/go.nvim",
-    dependencies = {   -- optional packages
+    dependencies = { -- optional packages
       "ray-x/guihua.lua",
       "neovim/nvim-lspconfig",
       "nvim-treesitter/nvim-treesitter",
     },
     event = { "CmdlineEnter" },
     ft = { "go", 'gomod' },
-    build = ':lua require("go.install").update_all_sync()',   -- if you need to install/update all binaries
+    build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
 
     config = function()
-      -- Go
-      local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        pattern = "*.go",
-        callback = function()
-          require('go.format').goimport()
-        end,
-        group = format_sync_grp,
-      })
-
       vim.keymap.set("n", "<leader>ee", "<cmd>GoIfErr<cr>", { silent = true, noremap = true })
 
       require('go').setup({
@@ -33,6 +23,7 @@ return {
         gofmt = 'gofumpt', --gofmt cmd,
         max_line_len = 128, -- max line length in golines format, Target maximum line length for golines tag_transform = 'camelcase', -- can be transform option("snakecase", "camelcase", etc) check gomodifytags for details and more options
         tag_options = 'json=omitempty', -- sets options sent to gomodifytags, i.e., json=omitempty
+        tag_transform = "camelcase",
         gotests_template = "", -- sets gotests -template parameter (check gotests for details)
         gotests_template_dir = "", -- sets gotests -template_dir parameter (check gotests for details)
         comment_placeholder = '', -- comment_placeholder your cool placeholder e.g. 󰟓       
@@ -42,7 +33,7 @@ return {
         -- false: do nothing
         -- if lsp_cfg is a table, merge table with with non-default gopls setup in go/lsp.lua, e.g.
         --   lsp_cfg = {settings={gopls={matcher='CaseInsensitive', ['local'] = 'your_local_module_path', gofumpt = true }}}
-        lsp_gofumpt = false,  -- true: set default gofmt in gopls format to gofumpt
+        lsp_gofumpt = true,   -- true: set default gofmt in gopls format to gofumpt
         lsp_on_attach = true, -- nil: use on_attach function defined in go/lsp.lua,
         --      when lsp_cfg is true
         -- if lsp_on_attach is a function: use this function as on_attach function for gopls
@@ -51,15 +42,6 @@ return {
         -- function(bufnr)
         --    vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>F", "<cmd>lua vim.lsp.buf.formatting()<CR>", {noremap=true, silent=true})
         -- end
-        -- to setup a table of codelens
-        diagnostic = {  -- set diagnostic to false to disable vim.diagnostic setup
-          hdlr = false, -- hook lsp diag handler and send diag to quickfix
-          underline = true,
-          -- virtual text setup
-          virtual_text = { spacing = 0, prefix = '■' },
-          signs = true,
-          update_in_insert = false,
-        },
         lsp_document_formatting = true,
         -- set to true: use gopls to format
         -- false if you want to use other formatter tool(e.g. efm, nulls)
@@ -70,7 +52,7 @@ return {
           style = 'inlay',
           -- Note: following setup only works for style = 'eol', you do not need to set it for 'inlay'
           -- Only show inlay hints for the current line
-          only_current_line = true,
+          only_current_line = false,
           -- Event which triggers a refersh of the inlay hints.
           -- You can make this "CursorMoved" or "CursorMoved,CursorMovedI" but
           -- not that this may cause higher CPU usage.
@@ -79,10 +61,10 @@ return {
           only_current_line_autocmd = "CursorHold",
           -- whether to show variable name before type hints with the inlay hints or not
           -- default: false
-          show_variable_name = true,
+          show_variable_name = false,
           -- prefix for parameter hints
           parameter_hints_prefix = "󰊕 ",
-          show_parameter_hints = true,
+          show_parameter_hints = false,
           -- prefix for all the other hints (type, chaining)
           other_hints_prefix = "=> ",
           -- whether to align to the lenght of the longest line in the file
@@ -110,30 +92,24 @@ return {
         dap_port = 38697,                                              -- can be set to a number, if set to -1 go.nvim will pick up a random port
         dap_timeout = 15,                                              --  see dap option initialize_timeout_sec = 15,
         dap_retries = 20,                                              -- see dap option max_retries
-        build_tags = "tag1,tag2",                                      -- set default build tags
+        -- build_tags = "tag1,tag2",                                      -- set default build tags
         textobjects = true,                                            -- enable default text objects through treesittter-text-objects
         test_runner = 'go',                                            -- one of {`go`, `richgo`, `dlv`, `ginkgo`, `gotestsum`}
         verbose_tests = true,                                          -- set to add verbose flag to tests deprecated, see '-v' option
         run_in_floaterm = false,                                       -- set to true to run in a float window. :GoTermClose closes the floatterm
         -- float term recommend if you use richgo/ginkgo with terminal color
 
-        floaterm = {             -- position
-          posititon = 'auto',    -- one of {`top`, `bottom`, `left`, `right`, `center`, `auto`}
-          width = 0.45,          -- width of float window if not auto
-          height = 0.98,         -- height of float window if not auto
-          title_colors = 'nord', -- default to nord, one of {'nord', 'tokyo', 'dracula', 'rainbow', 'solarized ', 'monokai'}
+        floaterm = {                   -- position
+          posititon = 'auto',          -- one of {`top`, `bottom`, `left`, `right`, `center`, `auto`}
+          width = 0.45,                -- width of float window if not auto
+          height = 0.98,               -- height of float window if not auto
+          title_colors = 'catpuccino', -- default to nord, one of {'nord', 'tokyo', 'dracula', 'rainbow', 'solarized ', 'monokai'}
           -- can also set to a list of colors to define colors to choose from
           -- e.g {'#D8DEE9', '#5E81AC', '#88C0D0', '#EBCB8B', '#A3BE8C', '#B48EAD'}
         },
-        trouble = true,                                                             -- true: use trouble to open quickfix
-        test_efm = false,                                                            -- errorfomat for quickfix, default mix mode, set to true will be efm only
-        luasnip = false,                                                             -- enable included luasnip snippets. you can also disable while add lua/snips folder to luasnip load
-        --  Do not enable this if you already added the path, that will duplicate the entries
-        on_jobstart = function(cmd) _ = cmd end,                                     -- callback for stdout
-        on_stdout = function(err, data) _, _ = err, data end,                        -- callback when job started
-        on_stderr = function(err, data) _, _ = err, data end,                        -- callback for stderr
-        on_exit = function(code, signal, output) _, _, _ = code, signal, output end, -- callback for jobexit, output : string
-        iferr_vertical_shift = 4                                                     -- defines where the cursor will end up vertically from the begining of if err statement
+        trouble = true,   -- true: use trouble to open quickfix
+        test_efm = false, -- errorfomat for quickfix, default mix mode, set to true will be efm only
+        luasnip = false,  -- enable included luasnip snippets. you can also disable while add lua/snips folder to luasnip load
       })
     end,
   },

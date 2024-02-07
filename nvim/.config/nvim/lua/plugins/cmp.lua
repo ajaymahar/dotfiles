@@ -11,7 +11,7 @@ return {
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
       'rafamadriz/friendly-snippets',
-      'onsails/lspkind.nvim',   -- for icon
+      'onsails/lspkind.nvim', -- for icon
     },
 
     config = function()
@@ -108,18 +108,18 @@ return {
             vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
             vim_item.menu = ({
               nvim_lsp = "[LSP]",
-              luasnip = "[Snippet]",
               buffer = "[Buffer]",
               path = "[Path]",
+              luasnip = "[Snippet]",
             })[entry.source.name]
             return vim_item
           end,
         },
         sources = {
           { name = "nvim_lsp" },
-          { name = "luasnip" },
           { name = "buffer" },
           { name = "path" },
+          { name = "luasnip" },
         },
         confirm_opts = {
           behavior = cmp.ConfirmBehavior.Replace,

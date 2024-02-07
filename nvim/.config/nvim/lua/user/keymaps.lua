@@ -14,7 +14,7 @@ vim.api.nvim_set_keymap("n", "QQ", ":q!<enter>", { noremap = false })
 vim.api.nvim_set_keymap("n", "WW", ":w!<enter>", { noremap = false })
 vim.api.nvim_set_keymap("n", "L", "$", { noremap = false })
 vim.api.nvim_set_keymap("n", "H", "^", { noremap = false })
--- map 'U' to redo the changes 
+-- map 'U' to redo the changes
 vim.api.nvim_set_keymap("n", "U", "<C-r>", { noremap = false })
 --
 vim.api.nvim_set_keymap("n", "ss", ":noh<CR>", { noremap = true })
@@ -104,11 +104,11 @@ vim.keymap.set("n", "<Leader>sR", "<CMD>lua require('telescope').extensions.git_
 vim.keymap.set("n", "<Leader>sn", "<CMD>lua require('telescope').extensions.notify.notify()<CR>", silent)
 vim.keymap.set('n', '<leader>sd', tele.diagnostics, { desc = '[S]earch [D]iagnostics' })
 -- Options through Telescope
-vim.api.nvim_set_keymap("n", "<Leader><tab>", "<Cmd>lua tele.commands()<CR>",{ noremap = false })
+vim.api.nvim_set_keymap("n", "<Leader><tab>", "<Cmd>lua tele.commands()<CR>", { noremap = false })
 
 
 --oil
 -- Map Oil to <leader>e
 vim.keymap.set("n", "<C-m>", function()
-	require("oil").toggle_float()
+  require("oil").toggle_float()
 end)

@@ -46,7 +46,7 @@ return {
         -- set to true: use gopls to format
         -- false if you want to use other formatter tool(e.g. efm, nulls)
         lsp_inlay_hints = {
-          enable = true,
+          enable = false,
           -- hint style, set to 'eol' for end-of-line hints, 'inlay' for inline hints
           -- inlay only avalible for 0.10.x
           style = 'inlay',

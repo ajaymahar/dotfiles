@@ -39,7 +39,7 @@ vim.api.nvim_set_keymap("n", "<C-s>", "<cmd>w<cr>", { silent = false })
 -- Quit with CTRL + c key
 vim.api.nvim_set_keymap("n", "<C-c>", "<cmd>q<cr>", { silent = false })
 -- Save and Quit with CTRL + q key
-vim.api.nvim_set_keymap("n", "<C-w>", "<cmd>wq<cr>", { silent = false })
+vim.api.nvim_set_keymap("n", "<C-q>", "<cmd>wq<cr>", { silent = false })
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })

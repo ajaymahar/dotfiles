@@ -39,7 +39,7 @@ vim.api.nvim_set_keymap("n", "<C-s>", "<cmd>w<cr>", { silent = false })
 -- Quit with CTRL + c key
 vim.api.nvim_set_keymap("n", "<C-c>", "<cmd>q<cr>", { silent = false })
 -- Save and Quit with CTRL + q key
-vim.api.nvim_set_keymap("n", "<C-q>", "<cmd>wq<cr>", { silent = false })
+vim.api.nvim_set_keymap("n", "<C-w>", "<cmd>wq<cr>", { silent = false })
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
@@ -111,4 +111,13 @@ vim.api.nvim_set_keymap("n", "<Leader><tab>", "<Cmd>lua tele.commands()<CR>", { 
 -- Map Oil to <leader>e
 vim.keymap.set("n", "<C-m>", function()
   require("oil").toggle_float()
+end)
+
+
+-- find and replace
+-- Press 'S' for quick find/replace for the word under the cursor
+vim.keymap.set("n", "S", function()
+  local cmd = ":%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>"
+  local keys = vim.api.nvim_replace_termcodes(cmd, true, false, true)
+  vim.api.nvim_feedkeys(keys, "n", false)
 end)

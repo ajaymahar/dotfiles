@@ -1,3 +1,6 @@
+--
+vim.opt.backup = false -- This is recommended by coc
+--
 -- Enable relative line numbers
 vim.opt.nu = true
 vim.opt.rnu = true
@@ -64,10 +67,27 @@ vim.opt.scrolloff = 8
 vim.opt.colorcolumn = "80"
 
 vim.opt.guicursor = {
-	"n-v-c:block", -- Normal, visual, command-line: block cursor
-	"i-ci-ve:ver25", -- Insert, command-line insert, visual-exclude: vertical bar cursor with 25% width
-	"r-cr:hor20", -- Replace, command-line replace: horizontal bar cursor with 20% height
-	"o:hor50", -- Operator-pending: horizontal bar cursor with 50% height
-	"a:blinkwait700-blinkoff400-blinkon250", -- All modes: blinking settings
-	"sm:block-blinkwait175-blinkoff150-blinkon175", -- Showmatch: block cursor with specific blinking settings
+  "n-v-c:block",                                  -- Normal, visual, command-line: block cursor
+  "i-ci-ve:ver25",                                -- Insert, command-line insert, visual-exclude: vertical bar cursor with 25% width
+  "r-cr:hor20",                                   -- Replace, command-line replace: horizontal bar cursor with 20% height
+  "o:hor50",                                      -- Operator-pending: horizontal bar cursor with 50% height
+  "a:blinkwait700-blinkoff400-blinkon250",        -- All modes: blinking settings
+  "sm:block-blinkwait175-blinkoff150-blinkon175", -- Showmatch: block cursor with specific blinking settings
 }
+-- old settings
+vim.opt.hidden = true                  -- Required to keep multiple buffers open multiple buffers
+vim.opt.pumheight = 10                 -- Makes popup menu smaller
+vim.opt.fileencoding = "utf-8"         -- The encoding written to file
+vim.opt.cmdheight = 2                  -- More space for displaying messages
+vim.opt.mouse = "a"                    -- Enable your mouse
+vim.opt.conceallevel = 0               -- So that I can see `` in markdown files
+vim.opt.number = true                  -- set numbered lines
+-- vim.opt.showtabline = 2                -- Always show tabs
+vim.opt.showmode = false               -- We don't need to see things like -- INSERT -- anymore
+vim.opt.writebackup = false            -- This is recommended by coc
+
+vim.cmd [[set colorcolumn=99999]]      -- fix indentline for now
+vim.cmd [[set iskeyword+=-]]           -- treat dash separated words as a word text object"
+vim.cmd [[set shortmess+=c]]           -- Don't pass messages to |ins-completion-menu|.
+vim.cmd [[set whichwrap+=<,>,[,],h,l]] -- move to next line with theses keys
+vim.cmd [[set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/tmp/*,*/.zip]]

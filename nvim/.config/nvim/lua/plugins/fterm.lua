@@ -15,8 +15,12 @@ return {
 
       -- Fterm
       -- vim.api.nvim_set_keymap("n", "<leader>tt", ":lua require('FTerm').toggle()<CR>", {noremap=true})
-      vim.api.nvim_set_keymap("n", "<C-N>", ":FTermToggle<CR>", { noremap = true })
-      vim.api.nvim_set_keymap("t", "<C-N>", '<C-\\><C-n>:FTermToggle<CR>', { noremap = true })
+      -- vim.api.nvim_set_keymap("n", "<C-N>", ":FTermToggle<CR>", { noremap = true })
+      -- vim.api.nvim_set_keymap("t", "<C-N>", '<C-\\><C-n>:FTermToggle<CR>', { noremap = true })
+
+      local opts = { noremap = true, silent = true }
+      vim.api.nvim_set_keymap("n", "<C-N>", ":lua require('FTerm').toggle()<CR>", opts)
+      vim.api.nvim_set_keymap("t", "<C-N>", "<C-\\><C-n>:lua require('FTerm').toggle()<CR>", opts)
       --
       -- Git
       -- Open Lazygit inside nvim keymap

@@ -26,6 +26,21 @@ return {
 
       -- vim.api.nvim_set_keymap("n", "<leader>m", ":lua require('harpoon.mark').add_file()<CR>", {noremap=true})
       -- vim.api.nvim_set_keymap("n", "<leader>ht", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", {noremap=true})
+      harpoon:extend({
+        UI_CREATE = function(cx)
+          vim.keymap.set("n", "v", function() -- open selected file from harpoon menu as vsplit
+            harpoon.ui:select_menu_item({ vsplit = true })
+          end, { buffer = cx.bufnr })
+
+          vim.keymap.set("n", "s", function() -- open selected file from harpoon2 menu as split
+            harpoon.ui:select_menu_item({ split = true })
+          end, { buffer = cx.bufnr })
+
+          vim.keymap.set("n", "t", function() -- open as new tab
+            harpoon.ui:select_menu_item({ tabedit = true })
+          end, { buffer = cx.bufnr })
+        end,
+      })
     end,
   },
 }

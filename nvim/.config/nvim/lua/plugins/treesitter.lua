@@ -7,7 +7,6 @@ return {
     },
 
     config = function()
-
       build = function()
         pcall(require('nvim-treesitter.install').update { with_sync = true })
       end
@@ -16,11 +15,12 @@ return {
       -- See `:help nvim-treesitter`
       require('nvim-treesitter.configs').setup {
         -- Add languages to be installed here that you want installed for treesitter
-        ensure_installed = {
-          'go', 'lua', 'python', 'rust', 'typescript', 'regex',
-          'bash', 'markdown', 'markdown_inline', 'kdl', 'sql', 'org',
-          'vim', 'vimdoc'
-        },
+        -- ensure_installed = {
+        --   'go', 'lua', 'python', 'rust', 'typescript', 'regex',
+        --   'bash', 'markdown', 'markdown_inline', 'kdl', 'sql', 'org',
+        --   'vim', 'vimdoc'
+        -- },
+        ensure_install = true,
 
         highlight = { enable = true },
         indent = { enable = true },

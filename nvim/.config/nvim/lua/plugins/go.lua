@@ -14,13 +14,12 @@ return {
       vim.keymap.set("n", "<leader>ee", "<cmd>GoIfErr<cr>", { silent = true, noremap = true })
 
       require('go').setup({
-
         disable_defaults = false, -- true|false when true set false to all boolean settings and replace all table
         -- settings with {}
         go = 'go', -- go command, can be go[default] or go1.18beta1
         goimport = 'gopls', -- goimport command, can be gopls[default] or either goimport or golines if need to split long lines
         fillstruct = 'gopls', -- default, can also use fillstruct
-        gofmt = 'gofumpt', --gofmt cmd,
+        -- gofmt = 'gofumpt', --gofmt cmd,
         max_line_len = 128, -- max line length in golines format, Target maximum line length for golines tag_transform = 'camelcase', -- can be transform option("snakecase", "camelcase", etc) check gomodifytags for details and more options
         tag_options = 'json=omitempty', -- sets options sent to gomodifytags, i.e., json=omitempty
         tag_transform = "camelcase",
@@ -33,7 +32,7 @@ return {
         -- false: do nothing
         -- if lsp_cfg is a table, merge table with with non-default gopls setup in go/lsp.lua, e.g.
         --   lsp_cfg = {settings={gopls={matcher='CaseInsensitive', ['local'] = 'your_local_module_path', gofumpt = true }}}
-        lsp_gofumpt = true,   -- true: set default gofmt in gopls format to gofumpt
+        -- lsp_gofumpt = true,   -- true: set default gofmt in gopls format to gofumpt
         lsp_on_attach = true, -- nil: use on_attach function defined in go/lsp.lua,
         --      when lsp_cfg is true
         -- if lsp_on_attach is a function: use this function as on_attach function for gopls
@@ -46,7 +45,7 @@ return {
         -- set to true: use gopls to format
         -- false if you want to use other formatter tool(e.g. efm, nulls)
         lsp_inlay_hints = {
-          enable = false,
+          enable = true,
           -- hint style, set to 'eol' for end-of-line hints, 'inlay' for inline hints
           -- inlay only avalible for 0.10.x
           style = 'inlay',
@@ -61,10 +60,10 @@ return {
           only_current_line_autocmd = "CursorHold",
           -- whether to show variable name before type hints with the inlay hints or not
           -- default: false
-          show_variable_name = false,
+          show_variable_name = true,
           -- prefix for parameter hints
           parameter_hints_prefix = "󰊕 ",
-          show_parameter_hints = false,
+          show_parameter_hints = true,
           -- prefix for all the other hints (type, chaining)
           other_hints_prefix = "=> ",
           -- whether to align to the lenght of the longest line in the file
@@ -96,7 +95,7 @@ return {
         textobjects = true,                                            -- enable default text objects through treesittter-text-objects
         test_runner = 'go',                                            -- one of {`go`, `richgo`, `dlv`, `ginkgo`, `gotestsum`}
         verbose_tests = true,                                          -- set to add verbose flag to tests deprecated, see '-v' option
-        run_in_floaterm = false,                                       -- set to true to run in a float window. :GoTermClose closes the floatterm
+        run_in_floaterm = true,                                        -- set to true to run in a float window. :GoTermClose closes the floatterm
         -- float term recommend if you use richgo/ginkgo with terminal color
 
         floaterm = {                   -- position
@@ -114,3 +113,73 @@ return {
     end,
   },
 }
+--
+-- return {
+--   "fatih/vim-go",
+--   config = function()
+--     vim.cmd("GoInstallBinaries")
+--     -- Set autowrite
+--     vim.cmd("set autowrite")
+--
+--     -- Move quickfix window with ctrl + n for next error
+--     -- Use Leader key + a to close the quickfix window
+--     -- Use ctrl + m to jump to previous error
+--     -- Use ctrl + c to run test coverage
+--     vim.cmd([[nnoremap <C-k> :cprevious<CR>]])
+--     vim.cmd([[nnoremap <C-j> :cnext<CR>]])
+--     vim.cmd([[nnoremap <C-c> :GoCoverage<CR>]])
+--     vim.cmd([[nnoremap <leader>a :cclose<CR>]])
+--
+--     -- Run :GoBuild or :GoTestCompile based on the go file
+--     function BuildGoFiles()
+--       local file = vim.fn.expand('%')
+--       if file:match('^%f+_test%.go$') then
+--         vim.cmd([[call go#test#Test(0, 1)]])
+--       elseif file:match('^%f+%.go$') then
+--         vim.cmd([[call go#cmd#Build(0)]])
+--       end
+--     end
+--
+--     vim.cmd([[autocmd FileType go nmap ,b :<C-u>lua BuildGoFiles()<CR>]])
+--     vim.cmd([[autocmd FileType go nmap ,r  <Plug>(go-run)]])
+--     vim.cmd([[autocmd FileType go nmap ,t  <Plug>(go-test)]])
+--
+--     -- Set 4 spaces for tab in golang files
+--     vim.cmd([[autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4]])
+--
+--     -- Set various options for golang syntax highlighting
+--     vim.g.go_highlight_types = 1
+--     vim.g.go_highlight_fields = 1
+--     vim.g.go_highlight_functions = 1
+--     vim.g.go_highlight_function_calls = 1
+--     vim.g.go_highlight_operators = 1
+--     vim.g.go_highlight_build_constraints = 1
+--
+--     -- Set up golang linting and metalinter
+--     vim.g.syntastic_go_checkers = { 'golangci-lint' }
+--     vim.g.go_metalinter_enabled = { 'revive', 'errchec' }
+--     vim.g.go_metalinter_deadline = "30s"
+--     vim.g.go_list_autoclose = 1
+--
+--     vim.g.go_debug_windows = {
+--       ['vars'] = 'leftabove 30vnew',
+--       ['stack'] = 'leftabove 20new',
+--       ['goroutines'] = 'botright 10new',
+--       ['out'] = 'botright 5new'
+--     }
+--     vim.cmd([[nnoremap dp :GoDebugBreakpoint<CR>]])
+--     vim.cmd([[nnoremap gs :GoDebugStart<CR>]])
+--     vim.cmd([[nnoremap gk :GoDebugStepOut<CR>]])
+--     vim.cmd([[nnoremap gq :GoDebugStop<CR>]])
+--
+--     -- Set up auto type info for golang
+--     -- vim.g.go_auto_type_info = 1
+--
+--     -- Set up folding for golang
+--     vim.g.go_fmt_experimental = 1
+--
+--     -- Set up SQL prettify
+--     vim.cmd(
+--       [[vnoremap <leader>p :s/\<update\>\\|\<select\>\\|\<from\>\\|\<where>\\|\<left join\>\\|\<inner join\>\\|\<group by\>\\|\<order by\>/\r\U&/ge<cr><esc>``]])
+--   end,
+-- }

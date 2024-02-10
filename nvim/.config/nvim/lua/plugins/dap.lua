@@ -1,16 +1,41 @@
 return {
-  { 'theHamsta/nvim-dap-virtual-text' },
-  { 'leoluz/nvim-dap-go' },
   {
-    'rcarriga/nvim-dap-ui',
+    'mfussenegger/nvim-dap',
     dependencies = {
-      'mfussenegger/nvim-dap'
+      'rcarriga/nvim-dap-ui',
+      'leoluz/nvim-dap-go',
     },
-
     config = function()
-      require('dapui').setup()
+      local dap, dapui = require("dap"), require("dapui")
       require('dap-go').setup()
+      dapui.setup()
 
+      -- dap.listeners.before.attach.dapui_config = function()
+      --   dapui.open()
+      -- end
+      -- dap.listeners.before.launch.dapui_config = function()
+      --   dapui.open()
+      -- end
+      -- dap.listeners.before.event_terminated.dapui_config = function()
+      --   dapui.close()
+      -- end
+      -- dap.listeners.before.event_exited.dapui_config = function()
+      --   dapui.close()
+      -- end
+      -- -- Debugger
+      -- vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, {})
+      -- -- vim.keymap.set("n", "<leader>dt", dapui.toggle, {})
+      -- vim.keymap.set("n", "<leader>dc", dap.continue, {})
+      -- vim.keymap.set("n", "<leader>dc", dap.continue, {})
+      -- vim.keymap.set("n", "<leader>dc", dap.continue, {})
+      -- -- vim.keymap.set("n", "<leader>db", ":DapToggleBreakpoint<CR>", { noremap = true })
+      -- -- vim.keymap.set("n", "<leader>dc", ":DapContinue<CR>", { noremap = true })
+      -- -- vim.keymap.set("n", "<leader>dr", ":lua require('dapui').open({reset = true})<CR>", { noremap = true })
+    end
+  },
+  {
+    'theHamsta/nvim-dap-virtual-text',
+    config = function()
       require("nvim-dap-virtual-text").setup {
         enabled = true,                     -- enable this plugin (the default)
         enabled_commands = true,            -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
@@ -50,7 +75,6 @@ return {
       sign("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
       sign("DapBreakpointCondition", { text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
       sign("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" })
-
     end,
   },
 }

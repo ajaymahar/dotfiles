@@ -24,6 +24,7 @@ return {
     config = function()
       -- autopaires
       require("nvim-autopairs").setup()
+      require("diffview").setup()
     end,
   },
 }

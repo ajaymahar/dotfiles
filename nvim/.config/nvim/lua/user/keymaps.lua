@@ -4,6 +4,7 @@ vim.api.nvim_set_keymap('i', 'jk', '<ESC>', opts)
 vim.api.nvim_set_keymap('i', 'kj', '<ESC>', opts)
 vim.api.nvim_set_keymap('i', 'jj', '<ESC>', opts)
 vim.api.nvim_set_keymap('i', 'kk', '<ESC>', opts)
+vim.api.nvim_set_keymap('i', '<C-c>', '<ESC>', opts)
 --
 -- Move selected line / block of text in visual mode
 vim.api.nvim_set_keymap('x', 'K', ':move \'<-2<CR>gv-gv', opts)
@@ -15,7 +16,7 @@ vim.api.nvim_set_keymap("n", "WW", ":w!<enter>", { noremap = false })
 vim.api.nvim_set_keymap("n", "L", "$", { noremap = false })
 vim.api.nvim_set_keymap("n", "H", "^", { noremap = false })
 -- map 'U' to redo the changes
-vim.api.nvim_set_keymap("n", "U", "<C-r>", { noremap = false })
+vim.api.nvim_set_keymap("n", "U", ":redo<CR>", { noremap = false })
 --
 vim.api.nvim_set_keymap("n", "ss", ":noh<CR>", { noremap = true })
 --
@@ -37,7 +38,7 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 -- Save with CTRL + s key
 vim.api.nvim_set_keymap("n", "<C-s>", "<cmd>w<cr>", { silent = false })
 -- Quit with CTRL + c key
-vim.api.nvim_set_keymap("n", "<C-c>", "<cmd>q<cr>", { silent = false })
+-- vim.api.nvim_set_keymap("n", "<C-c>", "<cmd>q<cr>", { silent = false })
 -- Save and Quit with CTRL + q key
 vim.api.nvim_set_keymap("n", "<C-q>", "<cmd>wq<cr>", { silent = false })
 -- Keymaps for better default experience
@@ -113,11 +114,12 @@ vim.keymap.set("n", "<C-m>", function()
   require("oil").toggle_float()
 end)
 
-
 -- find and replace
 -- Press 'S' for quick find/replace for the word under the cursor
-vim.keymap.set("n", "S", function()
+vim.keymap.set("n", "<C-r>", function()
   local cmd = ":%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>"
   local keys = vim.api.nvim_replace_termcodes(cmd, true, false, true)
   vim.api.nvim_feedkeys(keys, "n", false)
 end)
+
+vim.keymap.set("n", "<leader>f", "<CMD>Format<CR>", opts)

@@ -123,3 +123,9 @@ vim.keymap.set("n", "<C-r>", function()
 end)
 
 vim.keymap.set("n", "<leader>f", "<CMD>Format<CR>", opts)
+--
+-- diffview
+vim.api.nvim_set_keymap("n", "<C-c>", ":DiffviewClose <CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>gd", ":DiffviewOpen<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>gh", ":DiffviewFileHistory %<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>gf", ":DiffviewToggleFiles <CR>", { noremap = true })

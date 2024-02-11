@@ -20,7 +20,8 @@ return {
         --   'bash', 'markdown', 'markdown_inline', 'kdl', 'sql', 'org',
         --   'vim', 'vimdoc'
         -- },
-        ensure_install = true,
+        sync_install = true,
+        auto_install = true, -- automatically install parser when it find new file type
 
         highlight = { enable = true },
         indent = { enable = true },

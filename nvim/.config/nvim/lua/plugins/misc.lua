@@ -2,8 +2,8 @@ return {
   {
     -- Smooth scroll
     'psliwka/vim-smoothie',
-    -- Tagbar to show overall info
-    'preservim/tagbar',
+    -- -- Tagbar to show overall info
+    -- 'preservim/tagbar',
     -- UndoTree
     'mbbill/undotree',
     -- Diffvim

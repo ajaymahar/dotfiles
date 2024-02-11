@@ -1,4 +1,7 @@
 local opts = { noremap = true, silent = true }
+-- reselect the copied text
+vim.api.nvim_set_keymap('n', 'gp', "`[v`]", { noremap = true })
+--
 -- I hate escape
 vim.api.nvim_set_keymap('i', 'jk', '<ESC>', opts)
 vim.api.nvim_set_keymap('i', 'kj', '<ESC>', opts)
@@ -47,18 +50,16 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- Press gx to open the link under the cursor
 vim.api.nvim_set_keymap("n", "gx", ":sil !open <cWORD><cr>", { silent = true })
 --
+
+vim.api.nvim_set_keymap('n', '<Leader>s', ':lua SwapSplits()<CR>', { noremap = true, silent = true })
+--
 -- twilight
 vim.api.nvim_set_keymap("n", "tw", ":Twilight<enter>", { noremap = false })
 --
-
 --
 vim.api.nvim_set_keymap("n", "TT", ":TransparentToggle<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "st", ":TodoTelescope<CR>", { noremap = true })
-
-
--- tagbar
-vim.api.nvim_set_keymap('n', '<C-t>', ':TagbarToggle<CR>', opts)
-
+--
 -- Undotree
 vim.api.nvim_set_keymap('n', '<space>u', ':UndotreeToggle<CR>', opts)
 
@@ -97,16 +98,11 @@ vim.keymap.set('n', '<leader>sb', tele.buffers, { desc = '[ ] Find existing buff
 vim.keymap.set('n', '<leader>sm', ":Telescope harpoon marks<CR>", { desc = 'Harpoon [M]arks' })
 
 vim.keymap.set('n', '<leader>sS', tele.git_status, { desc = '' })
-vim.keymap.set("n", "<Leader>sr", "<CMD>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>",
-  silent)
-vim.keymap.set("n", "<Leader>sR", "<CMD>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>",
-  silent)
 
 vim.keymap.set("n", "<Leader>sn", "<CMD>lua require('telescope').extensions.notify.notify()<CR>", silent)
 vim.keymap.set('n', '<leader>sd', tele.diagnostics, { desc = '[S]earch [D]iagnostics' })
 -- Options through Telescope
 vim.api.nvim_set_keymap("n", "<Leader><tab>", "<Cmd>lua tele.commands()<CR>", { noremap = false })
-
 
 --oil
 -- Map Oil to <leader>e
@@ -129,3 +125,74 @@ vim.api.nvim_set_keymap("n", "<C-c>", ":DiffviewClose <CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>gd", ":DiffviewOpen<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>gh", ":DiffviewFileHistory %<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>gf", ":DiffviewToggleFiles <CR>", { noremap = true })
+
+
+-- swap split
+vim.api.nvim_set_keymap('n', '<Leader>s', '<C-W>x', { noremap = true, silent = true })
+
+function SplitSelectedText()
+  -- Get the selected text
+  local selected_text = vim.fn.getreg('"')
+
+  -- Split the text at commas and insert newlines
+  local split_text = vim.fn.split(selected_text, ',')
+
+  -- Join the split parts with newline character
+  local new_text = table.concat(split_text, ',\n')
+
+  -- Replace the selected text with the new one
+  vim.fn.setreg('', new_text)
+end
+
+vim.api.nvim_set_keymap('v', '<Leader>s', ':lua SplitSelectedText()<CR>', { noremap = true, silent = true })
+
+-- harpoon
+local harpoon_ui = require("harpoon.ui")
+local harpoon_mark = require("harpoon.mark")
+-- Harpoon keybinds --
+-- Open harpoon ui
+vim.keymap.set("n", "<S-e>", function()
+  harpoon_ui.toggle_quick_menu()
+end)
+
+-- Add current file to harpoon
+vim.keymap.set("n", "<S-m>", function()
+  harpoon_mark.add_file()
+end)
+
+-- Remove current file from harpoon
+vim.keymap.set("n", "<leader>hr", function()
+  harpoon_mark.rm_file()
+end)
+
+-- Remove all files from harpoon
+vim.keymap.set("n", "<leader>hc", function()
+  harpoon_mark.clear_all()
+end)
+
+-- move next harpoon cycle through
+vim.keymap.set("n", "<S-j>", function()
+  harpoon_ui.nav_next()
+end)
+--
+--
+-- -- Quickly jump to harpooned files
+-- vim.keymap.set("n", "<leader>1", function()
+--   harpoon_ui.nav_file(1)
+-- end)
+--
+-- vim.keymap.set("n", "<leader>2", function()
+--   harpoon_ui.nav_file(2)
+-- end)
+--
+-- vim.keymap.set("n", "<leader>3", function()
+--   harpoon_ui.nav_file(3)
+-- end)
+--
+-- vim.keymap.set("n", "<leader>4", function()
+--   harpoon_ui.nav_file(4)
+-- end)
+--
+-- vim.keymap.set("n", "<leader>5", function()
+--   harpoon_ui.nav_file(5)
+-- end)

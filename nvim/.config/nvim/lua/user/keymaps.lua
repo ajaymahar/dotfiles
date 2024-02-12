@@ -8,6 +8,7 @@ vim.api.nvim_set_keymap('i', 'kj', '<ESC>', opts)
 vim.api.nvim_set_keymap('i', 'jj', '<ESC>', opts)
 vim.api.nvim_set_keymap('i', 'kk', '<ESC>', opts)
 vim.api.nvim_set_keymap('i', '<C-c>', '<ESC>', opts)
+vim.api.nvim_set_keymap('n', '<C-c>', '<ESC>', opts)
 --
 -- Move selected line / block of text in visual mode
 vim.api.nvim_set_keymap('x', 'K', ':move \'<-2<CR>gv-gv', opts)

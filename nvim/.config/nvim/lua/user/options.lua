@@ -65,6 +65,9 @@ vim.opt.scrolloff = 8
 
 -- Place a column line
 vim.opt.colorcolumn = "80"
+--
+-- swapfile
+vim.opt.swapfile = false
 
 vim.opt.guicursor = {
   "n-v-c:block",                                  -- Normal, visual, command-line: block cursor

@@ -19,7 +19,7 @@ return {
           current_mark = tostring(mark_idx)
         end
 
-        return string.format("󱡅 %s/%d", current_mark, total_marks)
+        return string.format("  %s/%d", current_mark, total_marks)
       end
       require('lualine').setup {
         options = {
@@ -51,12 +51,12 @@ return {
             },
           },
           -- lualine_a = {'mode'},
-          lualine_a = {},
+          lualine_a = { harpoon_component },
           lualine_b = {
+            -- harpoon_component,
             'branch',
             'diff',
             'diagnostics',
-            'harpoon_component',
           },
           -- lualine_c = {'filename'},
           -- lualine_x = {'encoding', 'fileformat', 'filetype'},
@@ -76,26 +76,29 @@ return {
               shorting_target = 40, -- Shortens path to leave 40 spaces in the window
               -- for other components. (terrible name, any suggestions?)
               symbols = {
-                modified = '[+]',      -- Text to show when the file is modified.
-                readonly = '[-]',      -- Text to show when the file is non-modifiable or readonly.
+                modified = ' ', -- Text to show when the file is modified.
+                readonly = '', -- Text to show when the file is non-modifiable or readonly.
                 unnamed = '[No Name]', -- Text to show for unnamed buffers.
-                newfile = '[New]',     -- Text to show for newly created file before first write
+                newfile = '', -- Text to show for newly created file before first write
               }
             }
           }
         },
         inactive_sections = {
-          lualine_a = {},
-          lualine_b = {},
+          lualine_a = { harpoon_component },
+          -- lualine_b = { harpoon_component },
+          lualine_b = {
+            -- harpoon_component,
+            'branch',
+            'diff',
+            'diagnostics',
+          },
           lualine_c = { 'filename' },
           lualine_x = { 'location' },
           lualine_y = {},
           lualine_z = {}
         },
-        tabline = {},
-        winbar = {},
-        inactive_winbar = {},
-        extensions = {}
+        extensions = { 'quickfix', 'fzf', 'lazy', 'man', 'mason', 'nvim-dap-ui', 'oil', 'symbols-outline', 'trouble' }
       }
     end,
   },

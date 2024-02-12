@@ -12,6 +12,9 @@ return {
 
     config = function()
       vim.keymap.set("n", "<leader>ee", "<cmd>GoIfErr<cr>", { silent = true, noremap = true })
+      -- See `:help K` for why this keymap
+      vim.keymap.set("n", "K", ":GoDoc<CR>", { silent = true, noremap = true })
+      -- nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
       require('go').setup({
         disable_defaults = false, -- true|false when true set false to all boolean settings and replace all table
@@ -36,7 +39,7 @@ return {
         lsp_on_attach = true, -- nil: use on_attach function defined in go/lsp.lua,
         --      when lsp_cfg is true
         -- if lsp_on_attach is a function: use this function as on_attach function for gopls
-        lsp_keymaps = true,  -- set to false to disable gopls/lsp keymap
+        lsp_keymaps = false, -- set to false to disable gopls/lsp keymap
         lsp_codelens = true, -- set to false to disable codelens, true by default, you can use a function
         -- function(bufnr)
         --    vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>F", "<cmd>lua vim.lsp.buf.formatting()<CR>", {noremap=true, silent=true})

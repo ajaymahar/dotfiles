@@ -59,14 +59,15 @@ vim.api.nvim_set_keymap("n", "tw", ":Twilight<enter>", { noremap = false })
 --
 --
 vim.api.nvim_set_keymap("n", "TT", ":TransparentToggle<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "st", ":TodoTelescope<CR>", { noremap = true })
+-- vim.api.nvim_set_keymap("n", "st", ":TodoTelescope<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "tt", ":TodoTrouble<CR>", { noremap = true })
 --
 -- Undotree
 vim.api.nvim_set_keymap('n', '<space>u', ':UndotreeToggle<CR>', opts)
 
 -- comment
 vim.api.nvim_set_keymap("n", ",", ":CommentToggle<CR>", opts)
-vim.api.nvim_set_keymap("v", "/", ":CommentToggle<CR>", opts)
+vim.api.nvim_set_keymap("v", ",", ":CommentToggle<CR>", opts)
 
 -- Debugger
 vim.api.nvim_set_keymap("n", "<leader>dt", ":DapUiToggle<CR>", { noremap = true })
@@ -87,33 +88,41 @@ vim.keymap.set('n', '<leader>/', function()
 end, { desc = '[/] Fuzzily search in current buffer]' })
 
 -- vim.keymap.set('n', '<leader>sf', tele.find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<C-p>', tele.find_files, { desc = '[S]earch [F]iles' })
+-- vim.keymap.set('n', '<C-p>', tele.find_files, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<C-f>', tele.oldfiles, { desc = '[?] Find recently opened files' })
 -- vim.keymap.set('n', '<leader>sg', tele.live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<C-g>', tele.live_grep, { desc = '[S]earch by [G]rep' })
+-- vim.keymap.set('n', '<C-g>', tele.live_grep, { desc = '[S]earch by [G]rep' })
 --
-vim.keymap.set('n', '?', tele.help_tags, { desc = '[S]earch [H]elp' })
+-- vim.keymap.set('n', '?', tele.help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', tele.grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sb', tele.buffers, { desc = '[ ] Find existing buffers' })
+-- vim.keymap.set('n', '<leader>sb', tele.buffers, { desc = '[ ] Find existing buffers' })
 
-vim.keymap.set('n', '<leader>sm', ":Telescope harpoon marks<CR>", { desc = 'Harpoon [M]arks' })
+-- vim.keymap.set('n', '<leader>sm', ":Telescope harpoon marks<CR>", { desc = 'Harpoon [M]arks' })
 
-vim.keymap.set('n', '<leader>sS', tele.git_status, { desc = '' })
+-- vim.keymap.set('n', '<leader>sS', tele.git_status, { desc = '' })
 
-vim.keymap.set("n", "<Leader>sn", "<CMD>lua require('telescope').extensions.notify.notify()<CR>", silent)
+-- vim.keymap.set("n", "<Leader>sn", "<CMD>lua require('telescope').extensions.notify.notify()<CR>", silent)
 vim.keymap.set('n', '<leader>sd', tele.diagnostics, { desc = '[S]earch [D]iagnostics' })
 -- Options through Telescope
-vim.api.nvim_set_keymap("n", "<Leader><tab>", "<Cmd>lua tele.commands()<CR>", { noremap = false })
+-- vim.api.nvim_set_keymap("n", "<Leader><tab>", "<Cmd>lua tele.commands()<CR>", { noremap = false })
+
+-- MiniPick keybindings
+--
+vim.keymap.set('n', '<C-p>', "<CMD>Pick files<CR>", { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<C-g>', "<CMD>Pick grep_live<CR>", { desc = '[S]earch by [G]rep' })
+vim.keymap.set('n', '?', "<CMD>Pick help<CR>", { desc = '[S]earch [H]elp' })
+vim.keymap.set('n', '<leader>sb', "<CMD>Pick buffers<CR>", { desc = '[ ] Find existing buffers' })
+--
 
 --oil
--- Map Oil to <leader>e
-vim.keymap.set("n", "<C-m>", function()
+-- Map Oil to <leader>m
+vim.keymap.set("n", "<leader>m", function()
   require("oil").toggle_float()
 end)
-
+--
 -- find and replace
--- Press 'S' for quick find/replace for the word under the cursor
-vim.keymap.set("n", "<C-r>", function()
+-- Press ' ' + r  for quick find/replace for the word under the cursor
+vim.keymap.set("n", "<Leader>r", function()
   local cmd = ":%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>"
   local keys = vim.api.nvim_replace_termcodes(cmd, true, false, true)
   vim.api.nvim_feedkeys(keys, "n", false)
@@ -131,25 +140,10 @@ vim.api.nvim_set_keymap("n", "<leader>gf", ":DiffviewToggleFiles <CR>", { norema
 -- swap split
 vim.api.nvim_set_keymap('n', '<Leader>s', '<C-W>x', { noremap = true, silent = true })
 
-function SplitSelectedText()
-  -- Get the selected text
-  local selected_text = vim.fn.getreg('"')
-
-  -- Split the text at commas and insert newlines
-  local split_text = vim.fn.split(selected_text, ',')
-
-  -- Join the split parts with newline character
-  local new_text = table.concat(split_text, ',\n')
-
-  -- Replace the selected text with the new one
-  vim.fn.setreg('', new_text)
-end
-
-vim.api.nvim_set_keymap('v', '<Leader>s', ':lua SplitSelectedText()<CR>', { noremap = true, silent = true })
-
 -- harpoon
 local harpoon_ui = require("harpoon.ui")
 local harpoon_mark = require("harpoon.mark")
+--
 -- Harpoon keybinds --
 -- Open harpoon ui
 vim.keymap.set("n", "<S-e>", function()

@@ -6,6 +6,9 @@ return {
     ft = "markdown",
     dependencies = {
       "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+      "nvim-telescope/telescope.nvim",
+      "nvim-treesitter/nvim-treesitter",
     },
     opts = {},
 
@@ -31,20 +34,12 @@ return {
           -- },
         },
 
-        -- Alternatively - and for backwards compatibility - you can set 'dir' to a single path instead of
-        -- 'workspaces'. For example:
-        -- dir = "~/vaults/work",
-
-        -- Optional, set to true to use the current directory as a vault; otherwise
-        -- the first workspace is opened by default.
-        detect_cwd = false,
-
         -- Optional, if you keep notes in a specific subdirectory of your vault.
-        -- notes_subdir = "notes",
+        notes_subdir = "notes",
 
         -- Optional, set the log level for obsidian.nvim. This is an integer corresponding to one of the log
         -- levels defined by "vim.log.levels.*".
-        log_level = vim.log.levels.INFO,
+        log_level = vim.log.levels.WARN,
 
         daily_notes = {
           -- Optional, if you keep daily notes in a separate directory.
@@ -59,6 +54,9 @@ return {
 
         -- Optional, completion of wiki links, local markdown links, and tags using nvim-cmp.
         completion = {
+          -- -- Either 'wiki' or 'markdown'.
+          -- preferred_link_style = "markdown",
+          perferred_link_style = "wiki",
           -- Set to false to disable completion.
           nvim_cmp = true,
 
@@ -68,8 +66,10 @@ return {
           -- Where to put new notes created from completion. Valid options are
           --  * "current_dir" - put new notes in same directory as the current buffer.
           --  * "notes_subdir" - put new notes in the default notes subdirectory.
-          new_notes_location = "current_dir",
+          -- new_notes_location = "current_dir",
+          new_notes_location = "notes_subdir",
 
+          --
           -- Control how wiki links are completed with these (mutually exclusive) options:
           --
           -- 1. Whether to add the note ID during completion.
@@ -123,12 +123,23 @@ return {
           return tostring(os.time()) .. "-" .. suffix
         end,
 
+        -- Optional, customize the default name or prefix when pasting images via `:ObsidianPasteImg`.
+        image_name_func = function()
+          -- Prefix image names with timestamp.
+          return string.format("%s-", os.time())
+        end,
+        --
         -- Optional, boolean or a function that takes a filename and returns a boolean.
         -- `true` indicates that you don't want obsidian.nvim to manage frontmatter.
         disable_frontmatter = false,
 
         -- Optional, alternatively you can customize the frontmatter data.
         note_frontmatter_func = function(note)
+          -- Add the title of the note as an alias.
+          if note.title then
+            note:add_alias(note.title)
+          end
+
           -- This is equivalent to the default frontmatter function.
           local out = { id = note.id, aliases = note.aliases, tags = note.tags }
           -- `note.metadata` contains any manually added fields in the frontmatter.
@@ -158,6 +169,14 @@ return {
           wrap = true,
         },
 
+        -- Optional, customize the tags interface.
+        tags = {
+          -- The default height of the tags location list.
+          height = 10,
+          -- Whether or not to wrap lines.
+          wrap = true,
+        },
+
         -- Optional, by default when you use `:ObsidianFollowLink` on a link to an external
         -- URL it will be ignored but you can customize this behavior here.
         follow_url_func = function(url)
@@ -171,22 +190,21 @@ return {
         use_advanced_uri = false,
 
         -- Optional, set to true to force ':ObsidianOpen' to bring the app to the foreground.
-        open_app_foreground = false,
+        open_app_foreground = true,
 
-        -- Optional, by default commands like `:ObsidianSearch` will attempt to use
-        -- telescope.nvim, fzf-lua, fzf.vim, or mini.pick (in that order), and use the
-        -- first one they find. You can set this option to tell obsidian.nvim to always use this
-        -- finder.
-        finder = "telescope.nvim",
-
-        -- Optional, configure key mappings for the finder. These are the defaults.
-        -- If you don't want to set any mappings this way then set
-        finder_mappings = {
-          -- Create a new note from your query with `:ObsidianSearch` and `:ObsidianQuickSwitch`.
-          -- Currently only telescope supports this.
-          new = "<C-x>",
+        picker = {
+          -- Set your preferred picker. Can be one of 'telescope.nvim', 'fzf-lua', or 'mini.pick'.
+          name = "telescope.nvim",
+          -- name = "mini.pick",
+          -- Optional, configure key mappings for the picker. These are the defaults.
+          -- Not all pickers support all mappings.
+          mappings = {
+            -- Create a new note from your query.
+            new = "<C-x>",
+            -- Insert a link to the selected note.
+            insert_link = "<C-l>",
+          },
         },
-
         -- Optional, sort search results by "path", "modified", "accessed", or "created".
         -- The recommend value is "modified" and `true` for `sort_reversed`, which means, for example,
         -- that `:ObsidianQuickSwitch` will show the notes sorted by latest modified time
@@ -197,11 +215,13 @@ return {
         -- 1. "current" (the default) - to always open in the current window
         -- 2. "vsplit" - to open in a vertical split if there's not already a vertical split
         -- 3. "hsplit" - to open in a horizontal split if there's not already a horizontal split
-        open_notes_in = "current",
+        -- open_notes_in = "current",
+        open_notes_in = "vsplit",
 
         -- Optional, configure additional syntax highlighting / extmarks.
         -- This requires you have `conceallevel` set to 1 or 2. See `:help conceallevel` for more details.
         ui = {
+          tick = 1,
           enable = true,         -- set to false to disable all additional syntax features
           update_debounce = 200, -- update delay after a text change (in milliseconds)
           -- Define how various check-boxes are displayed
@@ -238,6 +258,7 @@ return {
             ObsidianHighlightText = { bg = "#75662e" },
           },
         },
+
 
         -- Specify how to handle attachments.
         attachments = {

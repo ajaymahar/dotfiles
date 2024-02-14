@@ -20,6 +20,9 @@ return {
         --   'bash', 'markdown', 'markdown_inline', 'kdl', 'sql', 'org',
         --   'vim', 'vimdoc'
         -- },
+        modules = {},
+        ensure_installed = { 'markdown_inline', 'regex' },
+        ignore_install = {},
         sync_install = true,
         auto_install = true, -- automatically install parser when it find new file type
 

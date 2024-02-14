@@ -21,7 +21,7 @@ vim.opt.breakindent = true
 vim.opt.incsearch = true
 vim.opt.hlsearch = true
 
--- Disable text wrap
+-- Enable incremental searching
 vim.opt.wrap = false
 
 -- Set leader key to space
@@ -68,6 +68,10 @@ vim.opt.colorcolumn = "80"
 --
 -- swapfile
 vim.opt.swapfile = false
+--
+-- Define the mapping in Lua
+-- vim.api.nvim_set_keymap('x', '<leader>p', '"_dP', { noremap = true })
+vim.api.nvim_set_keymap('x', 'p', '"_dP', { noremap = true })
 
 vim.opt.guicursor = {
   "n-v-c:block",                                  -- Normal, visual, command-line: block cursor
@@ -83,7 +87,7 @@ vim.opt.pumheight = 10                 -- Makes popup menu smaller
 vim.opt.fileencoding = "utf-8"         -- The encoding written to file
 vim.opt.cmdheight = 2                  -- More space for displaying messages
 vim.opt.mouse = "a"                    -- Enable your mouse
-vim.opt.conceallevel = 0               -- So that I can see `` in markdown files
+vim.opt.conceallevel = 2               -- So that I can see `` in markdown files
 vim.opt.number = true                  -- set numbered lines
 -- vim.opt.showtabline = 2                -- Always show tabs
 vim.opt.showmode = false               -- We don't need to see things like -- INSERT -- anymore

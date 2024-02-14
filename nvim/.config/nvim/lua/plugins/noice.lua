@@ -8,6 +8,13 @@ return {
 
     config = function()
       require("noice").setup({
+        lsp = {
+          override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["cmp.entry.get_documentation"] = true,
+          },
+        },
         cmdline = {
           enabled = true,         -- enables the Noice cmdline UI
           view = "cmdline_popup", -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
@@ -41,11 +48,14 @@ return {
           -- noice tries to move out of the way of existing floating windows.
           enabled = true, -- you can disable this behaviour here
           -- add any filetypes here, that shouldn't trigger smart move.
-          -- excluded_filetypes = { "cmp_menu", "cmp_docs", "notify", "oil" },
+          excluded_filetypes = { "cmp_menu", "cmp_docs", "notify", "oil", "pick" },
         },
       })
-      -- Noice
+      -- Noice keymaps
       vim.api.nvim_set_keymap("n", "<leader>l", ":NoiceDismiss<CR>", { noremap = true })
+      vim.api.nvim_set_keymap("n", "<leader>H", ":NoiceHistory<CR>", { noremap = true })
+      vim.api.nvim_set_keymap("n", "<leader>L", ":NoiceLast<CR>", { noremap = true })
+      vim.api.nvim_set_keymap("n", "<leader>E", ":NoiceErrors<CR>", { noremap = true })
     end,
   },
 }

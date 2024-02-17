@@ -14,27 +14,15 @@ return {
             ["vim.lsp.util.stylize_markdown"] = true,
             ["cmp.entry.get_documentation"] = true,
           },
-        },
-        cmdline = {
-          enabled = true,         -- enables the Noice cmdline UI
-          view = "cmdline_popup", -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
-          opts = {},              -- global options for the cmdline. See section on views
-          -- @type table<string, CmdlineFormat>
-          format = {
-            -- conceal: (default=true) This will hide the text in the cmdline that matches the pattern.
-            -- view: (default is cmdline view)
-            -- opts: any options passed to the view
-            -- icon_hl_group: optional hl_group for the icon
-            -- title: set to anything or empty string to hide
-            cmdline = { pattern = "^:", icon = "", lang = "vim" },
-            search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
-            search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex" },
-            filter = { pattern = "^:%s*!", icon = "$", lang = "bash" },
-            lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = "", lang = "lua" },
-            help = { pattern = "^:%s*he?l?p?%s+", icon = "" },
-            input = {}, -- Used by input()
-            -- lua = false, -- to disable a format, set to `false`
+          signature = {
+            auto_open = {
+              enabled = false,
+            },
           },
+        },
+        status = {
+          -- Statusline component for LSP progress notifications.
+          lsp_progress = { event = 'lsp', kind = 'progress' },
         },
         -- you can enable a preset for easier configuration
         presets = {
@@ -48,9 +36,34 @@ return {
           -- noice tries to move out of the way of existing floating windows.
           enabled = true, -- you can disable this behaviour here
           -- add any filetypes here, that shouldn't trigger smart move.
-          excluded_filetypes = { "cmp_menu", "cmp_docs", "notify", "oil", "pick" },
+          excluded_filetypes = { "cmp_menu", "cmp_docs", "notify", "oil" },
+        },
+        routes = {
+          -- Ignore the typical vim change messages.
+          {
+            filter = {
+              event = 'msg_show',
+              any = {
+                { find = '%d+L, %d+B' },
+                { find = '; after #%d+' },
+                { find = '; before #%d+' },
+                { find = '%d fewer lines' },
+                { find = '%d more lines' },
+              },
+            },
+            opts = { skip = true },
+          },
+          -- Don't show these in the default view.
+          {
+            filter = {
+              event = 'lsp',
+              kind = 'progress',
+            },
+            opts = { skip = true },
+          },
         },
       })
+
       -- Noice keymaps
       vim.api.nvim_set_keymap("n", "<leader>l", ":NoiceDismiss<CR>", { noremap = true })
       vim.api.nvim_set_keymap("n", "<leader>H", ":NoiceHistory<CR>", { noremap = true })

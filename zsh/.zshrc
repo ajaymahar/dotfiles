@@ -95,6 +95,9 @@ export PATH="/usr/local/opt/libpq/bin:$PATH"
 export TMUX_CONF=$HOME/.config/tmux/tmux.conf
 
 # lazygit config chage directory
+# lazygit config change directory
 export XDG_CONFIG_HOME="$HOME/.config"
 
+# for ls colors using vivid
+export LS_COLORS="$(vivid generate ~/.config/vivid/themes/catppuciin-mocha.yml)"
 eval "$(zoxide init zsh)"

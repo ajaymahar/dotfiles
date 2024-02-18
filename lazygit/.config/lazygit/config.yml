@@ -1,7 +1,27 @@
 os:
-  edit: 'floaterm'
+  edit: 'nvim'
 
-# gui:
+git:
+  # branchLogCmd: "git log --graph --all --color=always --decorate --date=relative --oneline"
+  branchLogCmd: "git log --graph --abbrev-commit --decorate --format=format:'%C(bold cyan)%h%C(reset) ->%C(bold yellow)%d%C(reset) %C(white)%s%C(reset) %C(green)(%ar)%C(reset) %C(dim white)- %an%C(reset)'"
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never
+  overrideGpg: true
+  commitPrefixes:
+    dotfiles: # This is repository folder name
+      pattern: "^\\w+\\/(\\w+-\\w+).*"
+      replace: '[$1] '
+
+# How to define custom command for lazygit
+# customCommands:
+#   - key: "W"
+#     description: "wip in progess"
+#     command: 'git commit -m "wip: $(date +"%Y.%m.%d %H:%M:%S")"'
+#     context: "files"
+
+# theme-1
+# gui: 
 #   theme:
 #     activeBorderColor:
 #       - '#cba6f7'
@@ -22,34 +42,62 @@ os:
 #       - '#cdd6f4'
 #     searchingActiveBorderColor:
 #       - '#f9e2af'
+
+# theme-2
+# fall back theme in case terminal app not configured
 gui:
+  showFileTree: true
   theme:
+    lightTheme: false
+    selectedLineBgColor:
+    - reverse
+    selectedRangeBgColor:
+    - reverse
     activeBorderColor:
-      - '#f2cdcd'
+      - "#a6e3a1" # Green
+      # - '#91788E'
       - bold
     inactiveBorderColor:
-      - '#a6adc8'
+      - "#cdd6f4" # Text
     optionsTextColor:
-      - '#89b4fa'
+      - "#89b4fa" # Blue
     selectedLineBgColor:
-      - '#313244'
+      - "#313244" # Surface0
+      # - reverse
+    selectedRangeBgColor:
+      - "#313244" # Surface0
+      - reverse
     cherryPickedCommitBgColor:
-      - '#45475a'
+      - "#94e2d5" # Teal
     cherryPickedCommitFgColor:
-      - '#f2cdcd'
+      - "#89b4fa" # Blue
     unstagedChangesColor:
-      - '#f38ba8'
-    defaultFgColor:
-      - '#cdd6f4'
-    searchingActiveBorderColor:
-      - '#f9e2af'
+      - red # Red
 
-git:
-  paging:
-    colorArg: never
-    pager: delta --dark --paging=never
+# theme-3
+# gui:
+#   theme:
+#     activeBorderColor:
+#       - '#f2cdcd'
+#       - bold
+#     inactiveBorderColor:
+#       - '#a6adc8'
+#     optionsTextColor:
+#       - '#89b4fa'
+#     selectedLineBgColor:
+#       - '#313244'
+#     cherryPickedCommitBgColor:
+#       - '#45475a'
+#     cherryPickedCommitFgColor:
+#       - '#f2cdcd'
+#     unstagedChangesColor:
+#       - '#f38ba8'
+#     defaultFgColor:
+#       - '#cdd6f4'
+#     searchingActiveBorderColor:
+#       - '#f9e2af'
 
-#
+
 # os:
 #   editCommand: 'nvim --server $NVIM_SERVER'
 #   editCommandTemplate: "{{editor}} --remote-send '<C-\\><C-n>:5ToggleTerm<CR>:lua Edit({{filename}}, {{line}})<CR>'"
@@ -89,3 +137,6 @@ git:
 #   parseEmoji: false
 #   diffContextSize: 3 # how many lines of context are shown around a change in diffs
 #
+
+
+

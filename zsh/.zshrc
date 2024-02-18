@@ -68,7 +68,8 @@ export FZF_CTRL_R_OPTS=$FZF_CTRL_R_OPTS"--border-label=' history ' \
 --prompt='  '"
 
 export FZF_CTRL_T_OPTS=$FZF_CTRL_T_OPTS"--border-label=' find files' \
---prompt='  '"
+--prompt='  ' \
+--preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$PATH:$HOME/.config/bin
@@ -94,10 +95,16 @@ export PATH="/usr/local/opt/libpq/bin:$PATH"
 # Export tmux config file
 export TMUX_CONF=$HOME/.config/tmux/tmux.conf
 
-# lazygit config chage directory
+# obsidian vault location
+export SECOND_BRAIN=~/'Library/Mobile Documents/iCloud~md~obsidian/Documents/Notes Workspace/'
+
 # lazygit config change directory
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # for ls colors using vivid
-export LS_COLORS="$(vivid generate ~/.config/vivid/themes/catppuciin-mocha.yml)"
+export LS_COLORS="$(vivid generate $HOME/.config/vivid/themes/catppuciin-mocha.yml)"
+
+# bat color theme
+export BAT_THEME="Catppuccin-mocha"
+
 eval "$(zoxide init zsh)"

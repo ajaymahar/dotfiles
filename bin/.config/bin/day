@@ -1,0 +1,87 @@
+#!/bin/bash
+
+# working with date
+#https://stackoverflow.com/questions/34122471/how-to-use-the-date-command-on-mac-os-to-get-the-current-day-of-the-week
+
+today=$(date +"%Y-%m-%d" )
+tomorrow=$(date -r $((`date +%s` + 86400)) +'%Y-%m-%d')
+yesterday=$(date -r $((`date +%s` - 86400)) +'%Y-%m-%d')
+
+year=$(date +"%Y")
+month=$(date +"%B")
+day=$(date +"%d")
+
+get_week(){
+  # Get the week number
+  WEEK=$(date +%V)
+
+  # Remove leading zero if week number is less than 10
+  if [ "$WEEK" -lt 10 ]; then
+      WEEK="${WEEK#0}"
+  fi
+
+  echo "$WEEK"
+}
+# Call the function and assign its output to a variable
+week=$(get_week)
+
+week_link="$year-W$week"
+week_goal="$week_link#Goals:"
+
+echo $week_link
+echo $week_goal
+
+day_dir="$SECOND_BRAIN"'review/daily/'
+
+file="$day_dir"$(date +"%Y-%m-%d").md
+
+cd "$day_dir" || exit
+
+new_note() {
+	touch "$file"
+
+	# Format the file with the daily template
+	cat <<EOF >"$file"
+---
+created: $(date +"%Y-%m-%d %H:%M" )
+updated: $(date +"%Y-%m-%d %H:%M" ) 
+folder: daily
+aliases: ['dialy notes',  'daily logs']
+tags: ['daily']
+type: journal
+fc-date:
+   year: "$year"
+   month: "$month"
+   day: "$day"
+fc-category: personal
+---
+# Daily Notes [[$today]]
+
+[[$yesterday|<<<Yesterday]] | [[$tomorrow|Tomorrow>>>]]
+
+## Week - [[$week_link]] 
+![[$week_goal]]
+
+## Intention
+
+What do I want to achieve today?
+
+## Tasks
+
+- [ ] 
+
+## Log
+EOF
+
+}
+
+# If the daily note does not exist, create a new one.
+# this uses the test command with the -f flag.
+if [ ! -f "$file" ]; then
+	echo "File does not exist, creating new daily note."
+	new_note
+fi
+
+# Open the daily note at the bottom of the file in insert mode and run NoNeckPain to make it center
+# nvim '+ normal Gzzo' "$file" -c :NoNeckPain
+nvim '+ normal Gzzo' "$file" -c :ZenMode

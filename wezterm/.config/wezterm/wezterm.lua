@@ -44,7 +44,6 @@
 
 local wezterm = require("wezterm")
 local catppuccin = require("colors/catppuccin").setup({})
-local keys = require("keys")
 
 local padding = 10
 local config = {}
@@ -76,12 +75,11 @@ config.colors = catppuccin
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
---config.disable_default_key_bindings = true
 config.bold_brightens_ansi_colors = true
 config.default_gui_startup_args = { "start", "--always-new-process" }
--- config.keys = keys.keys
-config.scrollback_lines = 10000
+config.scrollback_lines = 20000
 config.default_workspace = "main"
 config.enable_tab_bar = false
+config.audible_bell = "Disabled"
 
 return config

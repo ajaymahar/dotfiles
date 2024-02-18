@@ -21,6 +21,9 @@ vim.opt.breakindent = true
 vim.opt.incsearch = true
 vim.opt.hlsearch = true
 
+-- Enable spell check is this wrong
+vim.opt.spell = true
+--
 -- Enable incremental searching
 vim.opt.wrap = false
 

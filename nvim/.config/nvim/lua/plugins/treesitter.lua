@@ -21,13 +21,17 @@ return {
         --   'vim', 'vimdoc'
         -- },
         modules = {},
-        ensure_installed = { 'markdown_inline', 'regex' },
+        ensure_installed = { 'markdown', 'markdown_inline', 'regex' },
         ignore_install = {},
         sync_install = true,
         auto_install = true, -- automatically install parser when it find new file type
 
-        highlight = { enable = true },
-        indent = { enable = true },
+        highlight = {
+          enable = true,
+        },
+        indent = {
+          enable = true,
+        },
         incremental_selection = {
           enable = true,
           keymaps = {

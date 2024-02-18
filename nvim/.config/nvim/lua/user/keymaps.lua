@@ -3,9 +3,9 @@ local opts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap('n', 'gp', "`[v`]", { noremap = true })
 --
 -- I hate escape
--- vim.api.nvim_set_keymap('i', 'jk', '<ESC>', opts)
--- vim.api.nvim_set_keymap('i', 'kj', '<ESC>', opts)
-vim.api.nvim_set_keymap('i', 'jj', '<ESC>', opts)
+vim.api.nvim_set_keymap('i', 'jk', '<ESC>', opts)
+vim.api.nvim_set_keymap('i', 'kj', '<ESC>', opts)
+-- vim.api.nvim_set_keymap('i', 'jj', '<ESC>', opts)
 -- vim.api.nvim_set_keymap('i', 'kk', '<ESC>', opts)
 vim.api.nvim_set_keymap('i', '<C-c>', '<ESC>', opts)
 --
@@ -90,7 +90,7 @@ end, { desc = '[/] Fuzzily search in current buffer]' })
 -- vim.keymap.set('n', '<C-p>', tele.find_files, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<C-f>', tele.oldfiles, { desc = '[?] Find recently opened files' })
 -- vim.keymap.set('n', '<leader>sg', tele.live_grep, { desc = '[S]earch by [G]rep' })
--- vim.keymap.set('n', '<C-g>', tele.live_grep, { desc = '[S]earch by [G]rep' })
+vim.keymap.set('n', '<C-g>', tele.live_grep, { desc = '[S]earch by [G]rep' })
 --
 -- vim.keymap.set('n', '?', tele.help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', tele.grep_string, { desc = '[S]earch current [W]ord' })
@@ -108,7 +108,7 @@ vim.keymap.set('n', '<leader>sd', tele.diagnostics, { desc = '[S]earch [D]iagnos
 -- MiniPick keybindings
 --
 vim.keymap.set('n', '<C-p>', "<CMD>Pick files<CR>", { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<C-g>', "<CMD>Pick grep_live<CR>", { desc = '[S]earch by [G]rep' })
+-- vim.keymap.set('n', '<C-g>', "<CMD>Pick grep_live<CR>", { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '?', "<CMD>Pick help<CR>", { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sb', "<CMD>Pick buffers<CR>", { desc = '[ ] Find existing buffers' })
 --

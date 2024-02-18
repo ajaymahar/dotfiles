@@ -94,4 +94,7 @@ export PATH="/usr/local/opt/libpq/bin:$PATH"
 # Export tmux config file
 export TMUX_CONF=$HOME/.config/tmux/tmux.conf
 
+# lazygit config chage directory
+export XDG_CONFIG_HOME="$HOME/.config"
+
 eval "$(zoxide init zsh)"

@@ -1,0 +1,20 @@
+#!/bin/bash -eu
+
+# Path to your daily notes Markdown file
+day_dir="$SECOND_BRAIN"'review/daily/'
+NOTES_FILE="$day_dir"$(date +"%Y-%m-%d").md
+
+# Get input from the user for the new task
+read -p "Enter new task: " TASK
+
+# Find the line number of the # Tasks heading
+# TASKS_LINE=$(grep -n "^# Tasks$" "$NOTES_FILE" | cut -d ":" -f 1)
+
+# Now adding new taks below `What are my golas for today?`
+TASKS_LINE=$(grep -n "What are my goals for today?" "$NOTES_FILE" | cut -d ":" -f 1)
+
+# Insert the new task below the # Tasks heading
+awk -v line="$TASKS_LINE" -v task="$TASK" 'NR == line + 1 { print "- [ ] " task } 1' "$NOTES_FILE" > "$NOTES_FILE.tmp" && mv "$NOTES_FILE.tmp" "$NOTES_FILE"
+
+# Send a notification to tmux
+tmux display-message "New task added: $TASK"

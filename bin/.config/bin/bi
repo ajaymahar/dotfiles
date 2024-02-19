@@ -1,0 +1,130 @@
+#!/usr/bin/env bash
+
+# Install Homebrew if not installed
+if ! command -v brew &> /dev/null; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    printf "\n"
+else
+    echo "brew is already installed"
+fi
+
+# Install gum if not installed
+if ! command -v gum &> /dev/null; then
+    gum spin --show-output --spinner minidot --title "Installing gum..." --  brew install gum
+else
+    echo "gum is already installed."
+fi
+
+gum style \
+  --foreground 12 --border-foreground 12 --border double \
+  --align center --width 50 --margin "1 0" --padding "1 2" \
+  '██████╗ ██████╗ ███████╗██╗    ██╗
+██╔══██╗██╔══██╗██╔════╝██║    ██║
+██████╔╝██████╔╝█████╗  ██║ █╗ ██║
+██╔══██╗██╔══██╗██╔══╝  ██║███╗██║
+██████╔╝██║  ██║███████╗╚███╔███╔╝
+╚═════╝ ╚═╝  ╚═╝╚══════╝ ╚══╝╚══╝'
+
+# List of Homebrew packages
+brew_packages=(
+    bash
+    bat
+    btop
+    direnv
+    docker
+    docker-completion
+    dos2unix
+    fd
+    figlet
+    fish
+    fzf
+    gh
+    git
+    git-delta
+    go
+    golang-migrate
+    golangci-lint
+    ical-buddy
+    jq
+    k9s
+    kubernetes-cli
+    lazydocker
+    lazygit
+    lf
+    libpq
+    lsd
+    neovim
+    nvimpager
+    pngpaste
+    protobuf
+    python
+    ranger
+    ripgrep
+    sesh
+    skhd
+    sqlc
+    starship
+    stow
+    telnet
+    tmux
+    tree
+    tree-sitter
+    universal-ctags
+    vivid
+    watch
+    wget
+    yabai
+    zoxide
+    zsh
+    zsh-syntax-highlighting
+    # Add more packages as needed
+)
+
+# List of Homebrew casks
+brew_casks=(
+    1password-cli
+    devtoys
+    font-sf-mono-nerd-font
+    keycastr
+    ngrok
+    spacelauncher
+    wezterm
+    alfred
+    postman
+    obsidian
+    # Add more casks as needed
+)
+
+# List of fonts
+if [[ -z "expression" ]]; then
+    command ...
+fi
+brew_fonts=(
+if [[ -z "expression" ]]; then
+    command ...
+fi
+    font-victor-mono-nerd-font
+)
+
+# Install Homebrew packages
+for package in "${brew_packages[@]}"; do
+    gum spin --show-output --spinner minidot --title "Installing $package..." -- brew install "$package"
+    if [ "$package" == "fzf" ]; then
+        # post fzf installation
+        $(brew --prefix)/opt/fzf/install --all
+    fi
+done
+
+# Install Homebrew casks
+for cask in "${brew_casks[@]}"; do
+    gum spin --show-output --spinner minidot --title "Installing $cask..." -- brew install --cask "$cask"
+done
+
+# Install Homebrew fonts
+for font in "${brew_fonts[@]}"; do
+    brew tap homebrew/cask-fonts
+    gum spin --show-output --spinner minidot --title "Installing font $font..." -- brew install --cask "$font"
+done
+
+# Display a completion message
+echo "Homebrew packages and casks installation complete."

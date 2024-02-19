@@ -84,4 +84,5 @@ fi
 
 # Open the daily note at the bottom of the file in insert mode and run NoNeckPain to make it center
 # nvim '+ normal Gzzo' "$file" -c :NoNeckPain
-nvim '+ normal Gzzo' "$file" -c :ZenMode
+# nvim '+ normal Gzzo' "$file" -c :ZenMode
+nvim +/'## Goals:' "$file" -c :NoNeckPain #put cursor position in ## Goals:

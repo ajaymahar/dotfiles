@@ -3,11 +3,11 @@ local opts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap('n', 'gp', "`[v`]", { noremap = true })
 --
 -- I hate escape
-vim.api.nvim_set_keymap('i', 'jk', '<ESC>', opts)
-vim.api.nvim_set_keymap('i', 'kj', '<ESC>', opts)
--- vim.api.nvim_set_keymap('i', 'jj', '<ESC>', opts)
--- vim.api.nvim_set_keymap('i', 'kk', '<ESC>', opts)
-vim.api.nvim_set_keymap('i', '<C-c>', '<ESC>', opts)
+-- vim.api.nvim_set_keymap('i', 'jk', '<ESC>', opts)
+-- vim.api.nvim_set_keymap('i', 'kj', '<ESC>', opts)
+vim.api.nvim_set_keymap('i', 'jj', '<ESC>', opts)
+vim.api.nvim_set_keymap('i', 'kk', '<ESC>', opts)
+-- vim.api.nvim_set_keymap('i', '<C-c>', '<ESC>', opts) // no longer using
 --
 -- Move selected line / block of text in visual mode
 vim.api.nvim_set_keymap('x', 'K', ':move \'<-2<CR>gv-gv', opts)
@@ -42,9 +42,11 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 vim.api.nvim_set_keymap("n", "<C-s>", "<cmd>w<cr>", { silent = false })
 -- Quit with CTRL + c key
 -- vim.api.nvim_set_keymap("n", "<C-c>", "<cmd>q<cr>", { silent = false })
+--
 -- Save and Quit with CTRL + q key
-vim.api.nvim_set_keymap("n", "<C-q>", "<cmd>wq<cr>", { silent = false })
+-- vim.api.nvim_set_keymap("n", "<C-q>", "<cmd>wq<cr>", { silent = false })
 -- Keymaps for better default experience
+--
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- Press gx to open the link under the cursor

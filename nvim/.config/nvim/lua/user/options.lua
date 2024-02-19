@@ -23,6 +23,7 @@ vim.opt.hlsearch = true
 
 -- Enable spell check is this wrong
 vim.opt.spell = true
+vim.opt.syntax = "on"
 --
 -- Enable incremental searching
 vim.opt.wrap = false

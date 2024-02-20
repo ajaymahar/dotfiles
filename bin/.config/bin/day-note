@@ -57,20 +57,46 @@ fc-category: personal
 ---
 # Daily Notes [[$today]]
 
-[[$yesterday|<<<Yesterday]] | [[$tomorrow|Tomorrow>>>]]
 
-## Week - [[$week_link]] 
+#### [[$yesterday|<<<Yesterday]] |  [[$tomorrow|Tomorrow>>>]]
+
+#### WEEK - [[$week_link]]
+
 ![[$week_goal]]
 
-## Intention
 
-What do I want to achieve today?
+## Direction
+---
+**This is what you're working towards! First thing first, checklist MUST be done each day before you working on something**
+- [ ] Check Monthly, Weekly and Daily CALENDAR (google  calendar)
+- [ ] See if you have something to add to the calendar mostly Monthly/Weekly one
+- [ ] Prepare the Task list for the day, add them to daily note.
+- [ ] Prioritise most important choose 3-5 tasks for the day.
+- [ ] Add checklist to utilise stack Overflow for videos ref/topic or an idea
 
-## Tasks
 
-- [ ] 
+## Goals: 
+---
+**What are my goals for today?**
+ 
 
-## Log
+## Notes: 
+---
+ >[!NOTE] Any other notes or thoughts for the day.
+
+## End-of-day checklist
+---
+>[!check] Checklist?
+- [ ] Consumed enough WATER for the day?
+- [ ] Did I completed today's tasks?
+- [ ] Spend time with Ved, take him for ride?
+- [ ] Leaned something new today?
+- [ ] Cleaned up desk?
+- [ ] Did you completed Moving steps for the day(Check fitness app on iphone)? 
+- [ ] Check Email And Clean up unwanted emails?
+- [ ] Move pending tasks to next day daily note, and make them `High` priority. 
+- [ ] Used Stack Overflow for videos ref/topic or an idea?
+- [ ] Backup obsidian changes to 'GIT' this **must be your LAST task of the day**. 
 EOF
 
 }

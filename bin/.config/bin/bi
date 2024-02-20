@@ -126,5 +126,9 @@ for font in "${brew_fonts[@]}"; do
     gum spin --show-output --spinner minidot --title "Installing font $font..." -- brew install --cask "$font"
 done
 
+# install gitmux binaries
+brew tap arl/arl
+brew install gitmux
+
 # Display a completion message
 echo "Homebrew packages and casks installation complete."

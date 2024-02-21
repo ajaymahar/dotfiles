@@ -74,6 +74,13 @@ return {
               }
             }
           },
+          lualine_y = {
+            {
+              "rest",
+              icon = "",
+              fg = "#428890"
+            }
+          },
           -- lualine_y = {
           --   {
           --     function()
@@ -126,6 +133,13 @@ return {
                 unnamed = '[No Name]', -- Text to show for unnamed buffers.
                 newfile = '', -- Text to show for newly created file before first write
               }
+            }
+          },
+          lualine_y = {
+            {
+              "rest",
+              icon = "",
+              fg = "#428890"
             }
           },
           -- lualine_y = {

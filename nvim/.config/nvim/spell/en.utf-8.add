@@ -4,3 +4,5 @@ config
 catppuciin
 yml
 lazygit
+local
+json

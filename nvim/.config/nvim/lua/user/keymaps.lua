@@ -39,7 +39,7 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 --
 -- Save with CTRL + s key
-vim.api.nvim_set_keymap("n", "<C-s>", "<cmd>w<cr>", { silent = false })
+-- vim.api.nvim_set_keymap("n", "<C-s>", "<cmd>w<cr>", { silent = false })
 -- Quit with CTRL + c key
 -- vim.api.nvim_set_keymap("n", "<C-c>", "<cmd>q<cr>", { silent = false })
 --
@@ -89,12 +89,12 @@ vim.keymap.set('n', '<leader>/', function()
 end, { desc = '[/] Fuzzily search in current buffer]' })
 
 -- vim.keymap.set('n', '<leader>sf', tele.find_files, { desc = '[S]earch [F]iles' })
--- vim.keymap.set('n', '<C-p>', tele.find_files, { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<C-p>', tele.find_files, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<C-f>', tele.oldfiles, { desc = '[?] Find recently opened files' })
 -- vim.keymap.set('n', '<leader>sg', tele.live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<C-g>', tele.live_grep, { desc = '[S]earch by [G]rep' })
 --
--- vim.keymap.set('n', '?', tele.help_tags, { desc = '[S]earch [H]elp' })
+vim.keymap.set('n', '?', tele.help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', tele.grep_string, { desc = '[S]earch current [W]ord' })
 -- vim.keymap.set('n', '<leader>sb', tele.buffers, { desc = '[ ] Find existing buffers' })
 
@@ -106,14 +106,6 @@ vim.keymap.set('n', '<leader>sw', tele.grep_string, { desc = '[S]earch current [
 vim.keymap.set('n', '<leader>sd', tele.diagnostics, { desc = '[S]earch [D]iagnostics' })
 -- Options through Telescope
 -- vim.api.nvim_set_keymap("n", "<Leader><tab>", "<Cmd>lua tele.commands()<CR>", { noremap = false })
-
--- MiniPick keybindings
---
-vim.keymap.set('n', '<C-p>', "<CMD>Pick files<CR>", { desc = '[S]earch [F]iles' })
--- vim.keymap.set('n', '<C-g>', "<CMD>Pick grep_live<CR>", { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '?', "<CMD>Pick help<CR>", { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sb', "<CMD>Pick buffers<CR>", { desc = '[ ] Find existing buffers' })
---
 
 --oil
 -- Map Oil to <leader>m

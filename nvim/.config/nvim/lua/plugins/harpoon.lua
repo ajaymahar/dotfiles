@@ -64,6 +64,7 @@ return {
       local harpoon = require("harpoon")
 
       harpoon.setup({
+        -- dynamic window size
         menu = {
           width = vim.api.nvim_win_get_width(0) - 4
         },

@@ -48,5 +48,8 @@ yabai -m rule --add app="^Alfred Preferences$" manage=off
 yabai -m rule --add app="Raycast" manage=off
 yabai -m rule --add app="^Music$" manage=off
 yabai -m rule --add app="^ClearVPN$" manage=off
+yabai -m rule --add app="^1Password$" manage=off
+yabai -m rule --add app="^Finder$" manage=off
+yabai -m rule --add app="^ChatGPT$" manage=off
 
 echo "yabai configuration loaded.."

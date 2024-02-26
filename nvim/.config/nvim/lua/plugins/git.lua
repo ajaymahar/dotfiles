@@ -1,12 +1,4 @@
 return {
-  -- Git worktree
-  {
-    'ThePrimeagen/git-worktree.nvim',
-    config = function()
-      -- worktree settings
-      require('git-worktree').setup()
-    end
-  },
   -- Git related plugins
   { 'tpope/vim-fugitive' },
 

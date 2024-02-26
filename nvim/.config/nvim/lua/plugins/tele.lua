@@ -10,25 +10,50 @@ return {
     },
 
     config = function()
-      require('telescope').load_extension('harpoon')
-      require('telescope').load_extension('git_worktree')
-
-      vim.keymap.set("n", "<Leader>sr", "<CMD>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>",
-        silent)
-      vim.keymap.set("n", "<Leader>sR", "<CMD>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>",
-        silent)
-
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
       require('telescope').setup {
         defaults = {
+          layout_strategy = "bottom_pane",
+          layout_config = {
+            bottom_pane = {
+              height = 25,
+              preview_cutoff = 120,
+              prompt_position = "bottom",
+            },
+            center = {
+              height = 0.4,
+              preview_cutoff = 40,
+              prompt_position = "top",
+              width = 0.5
+            },
+            cursor = {
+              height = 0.9,
+              preview_cutoff = 40,
+              width = 0.8
+            },
+            horizontal = {
+              height = 0.9,
+              preview_cutoff = 120,
+              prompt_position = "top",
+              width = 0.8
+            },
+            vertical = {
+              height = 0.9,
+              preview_cutoff = 40,
+              prompt_position = "top",
+              width = 0.8
+            }
+          },
+          dynamic_preview_title = true,
           mappings = {
             i = {
-              ['<C-u>'] = false,
-              ['<C-d>'] = false,
+              ['<C-u>'] = require("telescope.actions").preview_scrolling_up,
+              ['<C-d>'] = require("telescope.actions").preview_scrolling_down,
               ["<C-j>"] = require('telescope.actions').move_selection_next,
               ["<C-k>"] = require('telescope.actions').move_selection_previous,
               ["<C-x>"] = require('telescope.actions').select_horizontal,
+              ["<C-v>"] = require('telescope.actions').select_vertical,
             },
           },
         },

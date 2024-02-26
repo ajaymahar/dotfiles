@@ -1,0 +1,14 @@
+#!/bin/bash
+
+		# --header '   all[^a] |  tmux[^t] |  zoxide[^x] |  find[^f] 󰆳 delete[^d]' \
+CHOISE=$(
+	sesh list -tziH | fzf-tmux -p 55%,60% \
+		--no-sort --border-label ' Sessions ' --prompt '   ' \
+		--header '   all[^a] |  tmux[^t] |  zoxide[^x] |  find[^f] ' \
+		--bind 'tab:down,btab:up' \
+		--bind 'ctrl-a:change-prompt(  )+reload(sesh list -iH)' \
+		--bind 'ctrl-t:change-prompt(   )+reload(sesh list -tiH)' \
+		--bind 'ctrl-x:change-prompt(   )+reload(sesh list -ziH)' \
+		--bind 'ctrl-f:change-prompt(   )+reload(fd -H -d 2 -t d -E .Trash -E .cache . ~)' \
+)
+sesh connect "$CHOISE"

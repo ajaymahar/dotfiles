@@ -33,7 +33,8 @@ set -U hydro_ignored_git_paths " "
 set -g direnv_fish_mode eval_on_arrow                           # trigger direnv at prompt, and on every arrow-based directory change (default)
 
 set -U fish_greeting                                            # disable fish greeting
-set -U fish_key_bindings fish_vi_key_bindings
+# set -U fish_key_bindings fish_vi_key_bindings
+set -U fish_key_bindings fish_default_key_bindings 
 
 set -Ux EDITOR nvim                                             # 'neovim/neovim' text editor
 set -Ux VISUAL nvim

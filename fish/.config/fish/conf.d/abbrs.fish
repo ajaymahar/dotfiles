@@ -36,5 +36,11 @@ abbr ll 'lsd -lhAS --date relative --git'
 abbr ls 'lsd'
 abbr lt 'lsd -lhAt --tree --date relative --git --permission octal'
 
+abbr s sesh_start
+abbr s. "sesh connect ."
+abbr sc "sesh connect"
+
+abbr sf "source ~/.config/fish/config.fish"
+abbr st "tmux source ~/.config/tmux/tmux.conf"
 # Make executable chmod +x 
 abbr x "chmod +x (ls | gum filter --limit 1 --header 'chmod +x')"

@@ -12,6 +12,10 @@ git:
     dotfiles: # This is repository folder name
       pattern: "^\\w+\\/(\\w+-\\w+).*"
       replace: '[$1] '
+  log:
+    order: 'topo-order'
+    showGraph: 'always'
+    showWholeGraph: false
 
 # How to define custom command for lazygit
 # customCommands:
@@ -46,7 +50,12 @@ git:
 # theme-2
 # fall back theme in case terminal app not configured
 gui:
+  nerdFontsVersion: "3"
+  splitDiff: 'auto'
+  showFileIcons: true
   showFileTree: true
+  border: 'rounded'
+  animateExplosion: true
   theme:
     lightTheme: false
     selectedLineBgColor:

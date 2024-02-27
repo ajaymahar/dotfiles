@@ -62,7 +62,6 @@ set -Ux TMUX_CONF $HOME/.config/tmux/tmux.conf                                  
 set -Ux SECOND_BRAIN ~/'Library/Mobile Documents/iCloud~md~obsidian/Documents/Notes Workspace/'     # obsidian vault location
 set -Ux XDG_CONFIG_HOME "$HOME/.config"                                                             # lazygit config change directory
 set -Ux LS_COLORS "$(vivid generate $HOME/.config/vivid/themes/catppuciin-mocha.yml)"               # for ls colors using vivid
-set -Ux BAT_THEME "Catppuccin-mocha"                                                                # bat color theme
 
 # golang - https://golang.google.cn/
 set -Ux GOPATH (go env GOPATH)

@@ -16,6 +16,11 @@
 eval (/usr/local/bin/brew shellenv)
 zoxide init fish | source # 'ajeetdsouza/zoxide'
 direnv hook fish | source # https://direnv.net/
+
+##########FISH  THEME#######################
+
+set -U fish_config theme save "Catppuccin Mocha"
+
 ##########PROMPT SETTING#######################
 # set -U hydro_symbol_prompt "❱"
 set -U hydro_symbol_prompt ""

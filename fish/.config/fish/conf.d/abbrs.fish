@@ -15,6 +15,8 @@ abbr bt "btop"
 # exit
 abbr e "exit"
 
+# fisher
+abbr fi "fisher install"
 # lazygit
 abbr lg "lazygit"
 

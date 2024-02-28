@@ -22,8 +22,8 @@ direnv hook fish | source # https://direnv.net/
 set -U fish_config theme save "Catppuccin Mocha"
 
 ##########PROMPT SETTING#######################
-# set -U hydro_symbol_prompt "❱"
-set -U hydro_symbol_prompt ""
+set -U hydro_symbol_prompt "❱"
+# set -U hydro_symbol_prompt ""
 # set -U hydro_symbol_git_dirty " ✗"
 set -U hydro_symbol_git_ahead "↑"
 set -U hydro_symbol_git_behind "↓"

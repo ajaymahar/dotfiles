@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# If an argument is provided, use it as the directory, otherwise default to the current directory
+DIR="${1:-.}"
+
+# Change to the specified directory
+cd "$DIR" || exit
+
+# Find all directories and add them to zoxide
+find . -type d -exec zoxide add {} \;

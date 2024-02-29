@@ -11,9 +11,6 @@ add_task() {
 
     # Insert the new task below the goals section
     awk -v line="$goals_line" -v task="$task" 'NR == line + 1 { print "- [ ] " task } 1' "$NOTES_FILE" > "$NOTES_FILE.tmp" && mv "$NOTES_FILE.tmp" "$NOTES_FILE"
-
-    # Send a notification to tmux asynchronously
-    tmux display-message "New task added: $task" &
 }
 
 # Prompt the user for tasks and add them
@@ -23,3 +20,6 @@ while true; do
     [[ -z "$TASK" ]] && break
     add_task "$TASK"
 done
+
+# Send a notification to tmux asynchronously
+tmux display-message "New tasks added"

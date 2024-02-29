@@ -4,17 +4,22 @@
 day_dir="$SECOND_BRAIN"'review/daily/'
 NOTES_FILE="$day_dir"$(date +"%Y-%m-%d").md
 
-# Get input from the user for the new task
-read -p "Enter new task: " TASK
+# Function to add a task
+add_task() {
+    local task="$1"
+    local goals_line=$(grep -n "What are my goals for today?" "$NOTES_FILE" | cut -d ":" -f 1)
 
-# Find the line number of the # Tasks heading
-# TASKS_LINE=$(grep -n "^# Tasks$" "$NOTES_FILE" | cut -d ":" -f 1)
+    # Insert the new task below the goals section
+    awk -v line="$goals_line" -v task="$task" 'NR == line + 1 { print "- [ ] " task } 1' "$NOTES_FILE" > "$NOTES_FILE.tmp" && mv "$NOTES_FILE.tmp" "$NOTES_FILE"
 
-# Now adding new taks below `What are my golas for today?`
-TASKS_LINE=$(grep -n "What are my goals for today?" "$NOTES_FILE" | cut -d ":" -f 1)
+    # Send a notification to tmux asynchronously
+    tmux display-message "New task added: $task" &
+}
 
-# Insert the new task below the # Tasks heading
-awk -v line="$TASKS_LINE" -v task="$TASK" 'NR == line + 1 { print "- [ ] " task } 1' "$NOTES_FILE" > "$NOTES_FILE.tmp" && mv "$NOTES_FILE.tmp" "$NOTES_FILE"
-
-# Send a notification to tmux
-tmux display-message "New task added: $TASK"
+# Prompt the user for tasks and add them
+echo "Enter new tasks (leave empty to finish):"
+while true; do
+    read -p "> " TASK
+    [[ -z "$TASK" ]] && break
+    add_task "$TASK"
+done

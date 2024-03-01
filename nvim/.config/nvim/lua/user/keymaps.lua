@@ -107,6 +107,12 @@ vim.keymap.set('n', '<leader>sd', tele.diagnostics, { desc = '[S]earch [D]iagnos
 -- Options through Telescope
 -- vim.api.nvim_set_keymap("n", "<Leader><tab>", "<Cmd>lua tele.commands()<CR>", { noremap = false })
 
+-- git-worktree
+vim.keymap.set('n', '<leader>sr', "<CMD>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>",
+  { silent = true })
+vim.keymap.set('n', '<leader>sR', "<CMD>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>",
+  { silent = true })
+--
 --oil
 -- Map Oil to <leader>m
 vim.keymap.set("n", "<leader>m", function()

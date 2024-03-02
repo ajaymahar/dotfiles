@@ -44,6 +44,7 @@ set -U fish_key_bindings fish_default_key_bindings
 set -Ux EDITOR nvim                                             # 'neovim/neovim' text editor
 set -Ux VISUAL nvim
 set -Ux MANPAGER "sh -c 'col -bx | bat -l man'"
+set -Ux GIT_CONFIG  "~/.config/git/.gitconfig"
 
 ############################  TMUX ###############################################################
 # fzf default option

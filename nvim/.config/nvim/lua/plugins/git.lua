@@ -1,14 +1,6 @@
 return {
   -- Git related plugins
   {
-    "rbong/vim-flog",
-    lazy = true,
-    cmd = { "Flog", "Flogsplit", "Floggit" },
-    dependencies = {
-      "tpope/vim-fugitive",
-    },
-  },
-  {
     'ThePrimeagen/git-worktree.nvim',
     config = function()
       require("git-worktree").setup()
@@ -20,6 +12,9 @@ return {
   },
   {
     'lewis6991/gitsigns.nvim',
+    dependencies = {
+      "tpope/vim-fugitive",
+    },
 
     config = function()
       require('gitsigns').setup {

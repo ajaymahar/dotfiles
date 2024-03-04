@@ -61,10 +61,10 @@ config.window_padding = {
 }
 
 config.font = wezterm.font_with_fallback({
-  { family = "JetbrainsMono Nerd Font", scale = 1.7, weight = "Medium" },
+  { family = "JetbrainsMono Nerd Font", scale = 1.7, weight = "Light" },
   { family = "VictorMono Nerd Font",    scale = 1.7, weight = "Medium" },
-  { family = "Iosevka Nerd Font",       scale = 1.7, weight = "Medium", },
-  { family = "CaskaydiaCove Nerd Font", scale = 1.7 },
+  { family = "Iosevka Nerd Font",       scale = 1.7, weight = "Medium" },
+  { family = "CaskaydiaCove Nerd Font", scale = 1.7, weight = "Medium" },
 })
 config.window_background_opacity = 0.9
 config.window_decorations = "RESIZE"

@@ -1,7 +1,7 @@
 return {
   {
     -- Smooth scroll
-    'psliwka/vim-smoothie',
+    -- 'psliwka/vim-smoothie',
     -- -- Tagbar to show overall info
     -- 'preservim/tagbar',
     -- UndoTree

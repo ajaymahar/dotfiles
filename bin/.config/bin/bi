@@ -69,6 +69,7 @@ brew_packages=(
     tmux
     tree
     tree-sitter
+    tldr
     universal-ctags
     vivid
     watch

@@ -66,7 +66,8 @@ config.font = wezterm.font_with_fallback({
   { family = "Iosevka Nerd Font",       scale = 1.7, weight = "Medium" },
   { family = "CaskaydiaCove Nerd Font", scale = 1.7, weight = "Medium" },
 })
-config.window_background_opacity = 0.9
+config.window_background_opacity = 0.8
+config.macos_window_background_blur = 20
 config.window_decorations = "RESIZE"
 config.window_close_confirmation = "AlwaysPrompt"
 config.hide_mouse_cursor_when_typing = false

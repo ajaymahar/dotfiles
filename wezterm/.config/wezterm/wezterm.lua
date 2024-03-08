@@ -43,7 +43,7 @@
 --
 
 local wezterm = require("wezterm")
-local catppuccin = require("colors/catppuccin").setup({})
+-- local catppuccin = require("colors/catppuccin").setup({})
 
 local padding = 10
 local config = {}
@@ -66,8 +66,26 @@ config.font = wezterm.font_with_fallback({
   { family = "Iosevka Nerd Font",       scale = 1.7, weight = "Medium" },
   { family = "CaskaydiaCove Nerd Font", scale = 1.7, weight = "Medium" },
 })
-config.window_background_opacity = 0.8
-config.macos_window_background_blur = 20
+function scheme_for_appearance(appearance)
+  if appearance:find("Dark") then
+    return "Builtin Catppuccin Mocha"
+  else
+    return "Builtin Catppuccin Latte"
+  end
+end
+
+wezterm.on("window-config-reloaded", function(window, pane)
+  local overrides = window:get_config_overrides() or {}
+  local appearance = window:get_appearance()
+  local scheme = scheme_for_appearance(appearance)
+  if overrides.color_scheme ~= scheme then
+    overrides.color_scheme = scheme
+    window:set_config_overrides(overrides)
+  end
+end)
+-- config.color_scheme = "Tokyo Night"
+config.window_background_opacity = 0.4
+config.macos_window_background_blur = 15
 config.window_decorations = "RESIZE"
 config.window_close_confirmation = "AlwaysPrompt"
 config.hide_mouse_cursor_when_typing = false

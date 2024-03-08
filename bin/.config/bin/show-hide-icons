@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# Function to check the current status of desktop icons
+check_desktop_icons_status() {
+    defaults read com.apple.finder CreateDesktop
+}
+
+# Function to show desktop icons
+show_desktop_icons() {
+    defaults write com.apple.finder CreateDesktop -bool true
+    killall Finder
+}
+
+# Function to hide desktop icons
+hide_desktop_icons() {
+    defaults write com.apple.finder CreateDesktop -bool false
+    killall Finder
+}
+
+# Main script logic
+desktop_icons_status=$(check_desktop_icons_status)
+
+if [[ $desktop_icons_status == "0" ]]; then
+    echo "Desktop icons are currently hidden."
+    read -p "Do you want to show desktop icons? (y/n): " choice
+    case $choice in
+        [Yy]* ) show_desktop_icons;;
+        [Nn]* ) echo "No changes made.";;
+        * ) echo "Invalid choice. No changes made.";;
+    esac
+elif [[ $desktop_icons_status == "1" ]]; then
+    echo "Desktop icons are currently shown."
+    read -p "Do you want to hide desktop icons? (y/n): " choice
+    case $choice in
+        [Yy]* ) hide_desktop_icons;;
+        [Nn]* ) echo "No changes made.";;
+        * ) echo "Invalid choice. No changes made.";;
+    esac
+else
+    echo "Error: Unable to determine the current status of desktop icons."
+    echo "No changes made."
+fi

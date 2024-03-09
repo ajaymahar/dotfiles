@@ -59,6 +59,16 @@ config.window_padding = {
   top = padding,
   bottom = padding,
 }
+config.window_frame = {
+  border_left_width = '0.1cell',
+  border_right_width = '0.1cell',
+  border_bottom_height = '0.1cell',
+  border_top_height = '0.1cell',
+  border_left_color = '#3c3b47',
+  border_right_color = '#3c3b47',
+  border_bottom_color = '#3c3b47',
+  border_top_color = '#3c3b47',
+}
 
 config.font = wezterm.font_with_fallback({
   { family = "JetbrainsMono Nerd Font", scale = 1.7, weight = "Light" },
@@ -81,6 +91,7 @@ config.tab_bar_at_bottom = true
 config.bold_brightens_ansi_colors = true
 config.default_gui_startup_args = { "start", "--always-new-process" }
 config.scrollback_lines = 20000
+config.enable_scroll_bar = true
 config.default_workspace = "main"
 config.enable_tab_bar = false
 config.audible_bell = "Disabled"

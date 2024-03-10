@@ -1,6 +1,13 @@
 local opts = { noremap = true, silent = true }
 -- don't store deleted single char
 vim.api.nvim_set_keymap("n", "x", '"_x', { noremap = true })
+vim.api.nvim_set_keymap("n", "d", '"_d', { noremap = true })
+vim.api.nvim_set_keymap("n", "c", '"_c', { noremap = true })
+-- k
+-- Mimic shell movement
+vim.api.nvim_set_keymap("i", "<C-e>", "<ESC>A", opts)
+vim.api.nvim_set_keymap("i", "<C-a>", "<ESC>I", opts)
+--
 -- reselect the copied text
 vim.api.nvim_set_keymap('n', 'gp', "`[v`]", { noremap = true })
 --

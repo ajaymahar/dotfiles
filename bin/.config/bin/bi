@@ -95,16 +95,16 @@ brew_casks=(
     # Add more casks as needed
 )
 
-# List of fonts
-if [[ -z "expression" ]]; then
-    command ...
-fi
-brew_fonts=(
-if [[ -z "expression" ]]; then
-    command ...
-fi
-    font-victor-mono-nerd-font
-)
+# # List of fonts
+# if [[ -z "expression" ]]; then
+#     command ...
+# fi
+# brew_fonts=(
+# if [[ -z "expression" ]]; then
+#     command ...
+# fi
+#     font-victor-mono-nerd-font
+# )
 
 # Install Homebrew packages
 for package in "${brew_packages[@]}"; do
@@ -129,6 +129,7 @@ done
 # install gitmux binaries
 brew tap arl/arl
 brew install gitmux
+brew install --cask nikitabobko/tap/aerospace
 
 # Display a completion message
 echo "Homebrew packages and casks installation complete."

@@ -1,0 +1,45 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[include]
+  path = ~/.config/delta/themes/mocha.gitconfig
+
+[core]
+    pager = delta
+    editor = nvim
+    ; pager = nvimpager
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    side-by-side = true
+    features = catppuccin-mocha
+    ; navigate = true    # use n and N to move between diff sections
+    ; light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+
+[merge]
+    tool = nvimdiff4
+    prompt = false
+    conflictstyle = diff3
+
+[mergetool "nvimdiff4"]
+    cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+
+[diff]
+    colorMoved = default
+
+[gpg]
+	format = ssh
+
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+
+[commit]
+  template = ~/.config/git/commit_template
+  verbose = true
+	gpgsign = true
+

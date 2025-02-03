@@ -19,11 +19,11 @@ return {
       require('go').setup({
         disable_defaults = false, -- true|false when true set false to all boolean settings and replace all table
         -- settings with {}
-        go = 'go', -- go command, can be go[default] or go1.18beta1
-        goimport = 'gopls', -- goimport command, can be gopls[default] or either goimport or golines if need to split long lines
-        fillstruct = 'gopls', -- default, can also use fillstruct
+        go = 'go',                -- go command, can be go[default] or go1.18beta1
+        goimports = 'gopls',      -- goimport command, can be gopls[default] or either goimport or golines if need to split long lines
+        fillstruct = 'gopls',     -- default, can also use fillstruct
         -- gofmt = 'gofumpt', --gofmt cmd,
-        max_line_len = 128, -- max line length in golines format, Target maximum line length for golines tag_transform = 'camelcase', -- can be transform option("snakecase", "camelcase", etc) check gomodifytags for details and more options
+        -- max_line_len = 128, -- max line length in golines format, Target maximum line length for golines tag_transform = 'camelcase', -- can be transform option("snakecase", "camelcase", etc) check gomodifytags for details and more options
         tag_options = 'json=omitempty', -- sets options sent to gomodifytags, i.e., json=omitempty
         tag_transform = "camelcase",
         gotests_template = "", -- sets gotests -template parameter (check gotests for details)
@@ -39,7 +39,7 @@ return {
         lsp_on_attach = true, -- nil: use on_attach function defined in go/lsp.lua,
         --      when lsp_cfg is true
         -- if lsp_on_attach is a function: use this function as on_attach function for gopls
-        lsp_keymaps = false, -- set to false to disable gopls/lsp keymap
+        lsp_keymaps = true,  -- set to false to disable gopls/lsp keymap
         lsp_codelens = true, -- set to false to disable codelens, true by default, you can use a function
         -- function(bufnr)
         --    vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>F", "<cmd>lua vim.lsp.buf.formatting()<CR>", {noremap=true, silent=true})

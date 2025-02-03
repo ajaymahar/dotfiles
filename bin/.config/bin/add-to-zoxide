@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 # If an argument is provided, use it as the directory, otherwise default to the current directory

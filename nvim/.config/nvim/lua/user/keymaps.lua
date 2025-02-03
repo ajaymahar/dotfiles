@@ -1,6 +1,24 @@
 local opts = { noremap = true, silent = true }
+-- don't store deleted single char
+vim.api.nvim_set_keymap("n", "x", '"_x', { noremap = true })
+vim.api.nvim_set_keymap("n", "d", '"_d', { noremap = true })
+vim.api.nvim_set_keymap("n", "c", '"_c', { noremap = true })
+-- k
+-- Mimic shell movement
+vim.api.nvim_set_keymap("i", "<C-e>", "<ESC>A", opts)
+vim.api.nvim_set_keymap("i", "<C-a>", "<ESC>I", opts)
+--
 -- reselect the copied text
 vim.api.nvim_set_keymap('n', 'gp', "`[v`]", { noremap = true })
+--
+-- Increment/Decrement
+vim.api.nvim_set_keymap("n", "=", "<C-a>", { noremap = true })
+vim.api.nvim_set_keymap("n", "-", "<C-x>", { noremap = true })
+-- Moving around
+vim.api.nvim_set_keymap("n", "L", "$", { noremap = false })
+vim.api.nvim_set_keymap("n", "H", "^", { noremap = false })
+vim.api.nvim_set_keymap("v", "L", "$", { noremap = false })
+vim.api.nvim_set_keymap("v", "H", "^", { noremap = false })
 --
 -- I hate escape
 -- vim.api.nvim_set_keymap('i', 'jk', '<ESC>', opts)
@@ -16,8 +34,6 @@ vim.api.nvim_set_keymap('x', 'J', ':move \'>+1<CR>gv-gv', opts)
 -- files
 vim.api.nvim_set_keymap("n", "QQ", ":q!<enter>", { noremap = false })
 vim.api.nvim_set_keymap("n", "WW", ":w!<enter>", { noremap = false })
-vim.api.nvim_set_keymap("n", "L", "$", { noremap = false })
-vim.api.nvim_set_keymap("n", "H", "^", { noremap = false })
 -- map 'U' to redo the changes
 vim.api.nvim_set_keymap("n", "U", ":redo<CR>", { noremap = false })
 --
@@ -96,17 +112,23 @@ vim.keymap.set('n', '<C-g>', tele.live_grep, { desc = '[S]earch by [G]rep' })
 --
 vim.keymap.set('n', '?', tele.help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', tele.grep_string, { desc = '[S]earch current [W]ord' })
--- vim.keymap.set('n', '<leader>sb', tele.buffers, { desc = '[ ] Find existing buffers' })
+vim.keymap.set('n', '<leader>sb', tele.buffers, { desc = '[ ] Find existing buffers' })
 
 -- vim.keymap.set('n', '<leader>sm', ":Telescope harpoon marks<CR>", { desc = 'Harpoon [M]arks' })
 
 -- vim.keymap.set('n', '<leader>sS', tele.git_status, { desc = '' })
 
--- vim.keymap.set("n", "<Leader>sn", "<CMD>lua require('telescope').extensions.notify.notify()<CR>", silent)
+vim.keymap.set("n", "<Leader>sn", "<CMD>lua require('telescope').extensions.notify.notify()<CR>", { silent = true })
 vim.keymap.set('n', '<leader>sd', tele.diagnostics, { desc = '[S]earch [D]iagnostics' })
 -- Options through Telescope
 -- vim.api.nvim_set_keymap("n", "<Leader><tab>", "<Cmd>lua tele.commands()<CR>", { noremap = false })
 
+-- git-worktree
+vim.keymap.set('n', '<leader>sr', "<CMD>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>",
+  { silent = true })
+vim.keymap.set('n', '<leader>sR', "<CMD>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>",
+  { silent = true })
+--
 --oil
 -- Map Oil to <leader>m
 vim.keymap.set("n", "<leader>m", function()

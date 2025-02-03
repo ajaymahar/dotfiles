@@ -9,7 +9,7 @@ return {
 
     config = function()
       require("catppuccin").setup({
-        -- transparent_background = true,
+        transparent_background = false,
         term_colors = true,
         dim_inactive = {
           enabled = false,   -- dims the background color of inactive window

@@ -1,15 +1,34 @@
 return {
   -- Git related plugins
   {
-    "rbong/vim-flog",
-    lazy = true,
-    cmd = { "Flog", "Flogsplit", "Floggit" },
-    dependencies = {
-      "tpope/vim-fugitive",
-    },
+    'ThePrimeagen/git-worktree.nvim',
+    config = function()
+      require("git-worktree").setup()
+      require("telescope").load_extension("git_worktree")
+      -- <Enter> - switches to that worktree
+      -- <c-d> - deletes that worktree
+      -- <c-f> - toggles forcing of the next deletion
+    end
+  },
+  {
+    'rhysd/git-messenger.vim',
+    config = function()
+      -- Set g:git_messenger_floating_win_opts
+      vim.g.git_messenger_floating_win_opts = { border = 'single' }
+      --
+      -- When this value is set to |v:true|, the cursor goes into a popup window when
+      -- running |:GitMessenger| or |<Plug>(git-messenger)|.
+      vim.g.git_messenger_always_into_popup = true
+
+      -- keymapping for git-messenger
+      vim.api.nvim_set_keymap("n", "gb", ":GitMessenger<CR>", { noremap = false })
+    end
   },
   {
     'lewis6991/gitsigns.nvim',
+    dependencies = {
+      "tpope/vim-fugitive",
+    },
 
     config = function()
       require('gitsigns').setup {

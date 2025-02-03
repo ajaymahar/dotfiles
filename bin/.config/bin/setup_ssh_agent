@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Start the SSH agent and capture the output
+SSH_AGENT_OUTPUT=$(ssh-agent -s)
+
+# Extract SSH_AUTH_SOCK and SSH_AGENT_PID from the output
+eval $SSH_AGENT_OUTPUT
+
+# Set the environment variables in Fish syntax and append to the config file
+echo "set -x SSH_AUTH_SOCK $SSH_AUTH_SOCK" >> ~/.config/fish/config.fish
+echo "set -x SSH_AGENT_PID $SSH_AGENT_PID" >> ~/.config/fish/config.fish
+
+# Display information about the started SSH agent
+echo "SSH agent started with PID $SSH_AGENT_PID"
+echo "SSH_AUTH_SOCK set to $SSH_AUTH_SOCK"
+
+# Restart Fish shell for changes to take effect
+exec $SHELL

@@ -13,6 +13,5 @@ CHOISE=$(
 		--bind 'ctrl-t:change-prompt(   )+reload(sesh list -tiH)' \
 		--bind 'ctrl-x:change-prompt(   )+reload(sesh list -ziH)' \
 		--bind 'ctrl-f:change-prompt(   )+reload(fd -H -d 2 -t d -E .Trash -E .cache . ~)' \
-    | sed 's/ /_/g'
 )
 sesh connect "$CHOISE"

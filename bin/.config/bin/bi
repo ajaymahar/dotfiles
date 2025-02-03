@@ -61,7 +61,7 @@ brew_packages=(
     ranger
     ripgrep
     sesh
-    skhd
+    # skhd
     sqlc
     starship
     stow
@@ -71,10 +71,11 @@ brew_packages=(
     tree-sitter
     tldr
     universal-ctags
+    uv
     vivid
     watch
     wget
-    yabai
+    # yabai
     zoxide
     zsh
     zsh-syntax-highlighting
@@ -93,19 +94,20 @@ brew_casks=(
     alfred
     postman
     obsidian
+    nikitabobko/tap/aerospace
     # Add more casks as needed
 )
 
 # List of fonts
-if [[ -z "expression" ]]; then
-    command ...
-fi
-brew_fonts=(
-if [[ -z "expression" ]]; then
-    command ...
-fi
-    font-victor-mono-nerd-font
-)
+# if [[ -z "expression" ]]; then
+    # command ...
+# fi
+# brew_fonts=(
+# if [[ -z "expression" ]]; then
+#     # command ...
+# fi
+#     font-victor-mono-nerd-font
+# )
 
 # Install Homebrew packages
 for package in "${brew_packages[@]}"; do

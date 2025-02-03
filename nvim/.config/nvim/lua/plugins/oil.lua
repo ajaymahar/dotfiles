@@ -39,7 +39,7 @@ return {
         --
         -- Set to true to autosave buffers that are updated with LSP willRenameFiles
         -- Set to "unmodified" to only save unmodified buffers
-        lsp_rename_autosave = true,
+        -- lsp_rename_autosave = true,
         --
         keymaps = {
           ["?"] = "actions.show_help",

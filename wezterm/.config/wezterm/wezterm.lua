@@ -78,7 +78,7 @@ config.font = wezterm.font_with_fallback({
 })
 -- config.color_scheme = "Tokyo Night"
 config.colors = catppuccin
-config.window_background_opacity = 0.4
+config.window_background_opacity = 0.9
 config.macos_window_background_blur = 15
 config.window_decorations = "RESIZE"
 config.window_close_confirmation = "AlwaysPrompt"

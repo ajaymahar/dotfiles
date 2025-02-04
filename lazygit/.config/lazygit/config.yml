@@ -4,7 +4,8 @@ os:
 git:
   # branchLogCmd: "git log --graph --all --color=always --decorate --date=relative --oneline"
   # branchLogCmd: "git log --graph --abbrev-commit --decorate --format=format:'%C(bold cyan)%h%C(reset) ->%C(bold yellow)%d%C(reset) %C(white)%s%C(reset) %C(green)(%ar)%C(reset) %C(dim white)- %an%C(reset)'"
-  branchLogCmd: "git log --abbrev-commit --decorate --format=format:'%C(bold cyan)[󰜘 %h]%C(reset) ->  %C(bold yellow)%d%C(reset) %C(white)%s%C(reset) %C(green)(%ar)%C(reset) %C(dim white) %C(blue)[  %an]%C(reset)'"
+  # branchLogCmd: "git log --abbrev-commit --decorate --format=format:'%C(bold cyan)[󰜘 %h]%C(reset) ->  %C(bold yellow)%d%C(reset) %C(white)%s%C(reset) %C(green)(%ar)%C(reset) %C(dim white) %C(blue)[  %an]%C(reset)'"
+  branchLogCmd: "git log --abbrev-commit --decorate --color=always --format=format:'%C(bold cyan)[󰜘 %h]%C(reset) ->  %C(bold yellow)%d%C(reset) %C(white)%s%C(reset) %C(green)(%ar)%C(reset) %C(dim white) %C(blue)[  %an]%C(reset)'"
   paging:
     colorArg: always
     pager: delta --dark --paging=never
@@ -146,6 +147,3 @@ gui:
 #   parseEmoji: false
 #   diffContextSize: 3 # how many lines of context are shown around a change in diffs
 #
-
-
-

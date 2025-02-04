@@ -1,0 +1,139 @@
+colors:
+  # Your custom theme colors
+  black:        '0D1116'
+  red:          'f16c75'
+  green:        '37f499'
+  yellow:       '19dfcf'
+  blue:         '987afb'
+  purple:       '949ae5'
+  aqua:         '04d1f9'
+  white:        'ebfafa'
+
+  bright_black: '5fa9f4'
+  bright_red:   'f16c75'
+  bright_green: '37f499'
+  bright_yellow: '19dfcf'
+  bright_blue:  '987afb'
+  bright_purple: '949ae5'
+  bright_aqua:  '04d1f9'
+  bright_white: 'ebfafa'
+
+  # Text and background colors
+  text:         'ebfafa'
+  subtext1:     'bac2de'
+  subtext0:     'a6adc8'
+  overlay2:     '9399b2'
+  overlay1:     '7f849c'
+  overlay0:     '6c7086'
+  surface2:     '585b70'
+  surface1:     '45475a'
+  surface0:     '313244'
+  
+  base:         '0D1116'
+  mantle:       '181825'
+  crust:        '11111b'
+
+core:
+  normal_text: {}
+  regular_file: {}
+  reset_to_normal: {}
+
+  directory:
+    foreground: blue
+
+  symlink:
+    foreground: purple
+
+  multi_hard_link: {}
+
+  fifo:
+    foreground: crust
+    background: blue
+
+  socket:
+    foreground: crust
+    background: purple
+
+  door:
+    foreground: crust
+    background: purple
+
+  block_device:
+    foreground: bright_blue
+    background: surface0
+
+  character_device:
+    foreground: purple
+    background: surface0
+
+  broken_symlink:
+    foreground: crust
+    background: red
+
+  missing_symlink_target:
+    foreground: crust
+    background: red
+
+  setuid: {}
+
+  setgid: {}
+
+  file_with_capability: {}
+
+  sticky_other_writable: {}
+
+  other_writable: {}
+
+  sticky: {}
+
+  executable_file:
+    foreground: red
+    font-style: bold
+
+text:
+  special:
+    foreground: base
+    background: yellow
+
+  todo:
+    font-style: bold
+
+  licenses:
+    foreground: overlay2
+
+  configuration:
+    foreground: yellow
+
+  other:
+    foreground: yellow
+
+markup:
+  foreground: yellow
+
+programming:
+  source:
+    foreground: green
+
+  tooling:
+    foreground: aqua
+
+    continuous-integration:
+      foreground: green
+
+media:
+  foreground: aqua  # Replaced flamingo with aqua
+
+office:
+  foreground: red
+
+archives:
+  foreground: bright_blue
+  font-style: underline
+
+executable:
+  foreground: red
+  font-style: bold
+
+unimportant:
+  foreground: surface2
+

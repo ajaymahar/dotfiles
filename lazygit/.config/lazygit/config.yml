@@ -72,8 +72,7 @@ gui:
     optionsTextColor:
       - "#89b4fa" # Blue
     selectedLineBgColor:
-      - "#313244" # Surface0
-      # - reverse
+      - "#013e4a"   # - reverse
     selectedRangeBgColor:
       - "#313244" # Surface0
       - reverse

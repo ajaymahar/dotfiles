@@ -140,17 +140,6 @@ if [ -f '/Users/ajay/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ajay
 #source /usr/share/fzf/key-bindings.zsh
 
 # catppuccin color theme macchiato
-# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS" \
-# --reverse \
-# --border rounded \
-# --no-info \
-# --pointer=' ' \
-# --marker=' ' \
-# --ansi \
-# --color=border:#9991ab,bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
-# --color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
-# --color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796"
-
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS" \
 --reverse \
 --border rounded \
@@ -158,10 +147,22 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS" \
 --pointer=' ' \
 --marker=' ' \
 --ansi \
---color=border:#9991ab,bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
---color=fg:#cdd6f4,header:#9991ab,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+--color=border:#1e1e2e,bg+:#181c24,bg:#0D1116,spinner:#F712FF,hl:#987afb \
+--color=fg:#ebfafa,header:#987afb,info:#0D1116,pointer:#f16c75 \
+--color=marker:#19dfcf,fg+:#37f499,prompt:#f16c75,hl+:#04d1f9"
 
+#
+# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS" \
+# --reverse \
+# --border rounded \
+# --no-info \
+# --pointer=' ' \
+# --marker=' ' \
+# --ansi \
+# --color=border:#9991ab,bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+# --color=fg:#cdd6f4,header:#9991ab,info:#cba6f7,pointer:#f5e0dc \
+# --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+#
 export FZF_CTRL_R_OPTS=$FZF_CTRL_R_OPTS"--border-label=' history ' \
 --prompt='  '"
 
@@ -171,20 +172,6 @@ export FZF_CTRL_T_OPTS=$FZF_CTRL_T_OPTS"--border-label=' find files' \
 
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$PATH:$HOME/.config/bin
-
-# # codi for shell wrapper
-# codi() {
-#    local syntax="${1:-python}"
-#    shift
-#    nvim -c \
-#      "let g:startify_disable_at_vimenter = 1 |\
-#      set bt=nofile ls=0 noru nonu nornu |\
-#      hi CodiVirtualText guifg=red
-#      hi ColorColumn ctermbg=NONE |\
-#      hi VertSplit ctermbg=NONE |\
-#      hi NonText ctermfg=0 |\
-#      Codi $syntax" "$@"
-# }
 
 # Set vi mode for bash/zsh shell
 # set -o vi
@@ -221,7 +208,7 @@ export SECOND_BRAIN=~/'Library/Mobile Documents/iCloud~md~obsidian/Documents/Not
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # for ls colors using vivid
-export LS_COLORS="$(vivid generate $HOME/.config/vivid/themes/catppuciin-mocha.yml)"
+export LS_COLORS="$(vivid generate $HOME/.config/vivid/themes/custom-theme.yml)"
 
 # bat color theme
 export BAT_THEME="Catppuccin-mocha"

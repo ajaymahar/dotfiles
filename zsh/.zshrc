@@ -214,3 +214,12 @@ export LS_COLORS="$(vivid generate $HOME/.config/vivid/themes/custom-theme.yml)"
 export BAT_THEME="Catppuccin-mocha"
 
 eval "$(zoxide init zsh)"
+
+# # aerospace Check if borders service is running
+# if ! brew services list | grep -q 'borders.*started'; then
+#   echo "Starting borders service..."
+#   brew services restart borders
+# fi
+# #
+# aerospace set borders for windows
+# borders active_color=0x80b6ff00 inactive_color=0x40000000 width=7.0

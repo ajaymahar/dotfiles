@@ -87,14 +87,17 @@ brew_casks=(
     1password-cli
     devtoys
     font-sf-mono-nerd-font
-    keycastr
+    # keycastr
     ngrok
     spacelauncher
-    wezterm
+    ghostty
+    # wezterm
     alfred
     postman
     obsidian
     nikitabobko/tap/aerospace
+    sf-symbols
+    spotify
     # Add more casks as needed
 )
 
@@ -133,5 +136,19 @@ done
 brew tap arl/arl
 brew install gitmux
 
+# To uninstall and remove tap
+#  brew uninstall sketchybar
+# brew untap FelixKratz/formulae
+#
+#   install JankyBorders
+brew tap FelixKratz/formulae
+brew install borders
+brew install sketchybar
+
+#start JankyBorders service
+brew services start borders
+# start sketchybar service
+brew services start sketchybar
+#
 # Display a completion message
 echo "Homebrew packages and casks installation complete."

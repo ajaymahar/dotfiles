@@ -6,7 +6,7 @@ export WHITE=0xffffffff
 # export BAR_COLOR=0xff001f30
 # export ITEM_BG_COLOR=0xff003547
 export ACCENT_COLOR=0xff2cf9ed
-# export ACCENT_COLOR=0xffa6da95 
+# export ACCENT_COLOR=0xffed8796 
 
 ### Sonokai
 # export BLACK=0xff181819

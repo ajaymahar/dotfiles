@@ -71,13 +71,11 @@ vim.api.nvim_set_keymap("n", "gx", ":sil !open <cWORD><cr>", { silent = true })
 
 vim.api.nvim_set_keymap('n', '<Leader>s', ':lua SwapSplits()<CR>', { noremap = true, silent = true })
 --
--- twilight
-vim.api.nvim_set_keymap("n", "tw", ":Twilight<enter>", { noremap = false })
---
 --
 vim.api.nvim_set_keymap("n", "TT", ":TransparentToggle<CR>", { noremap = true })
--- vim.api.nvim_set_keymap("n", "st", ":TodoTelescope<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "tt", ":TodoTrouble<CR>", { noremap = true })
+--
+vim.api.nvim_set_keymap("n", "tt", ":TodoTelescope<CR>", { noremap = true })
+-- vim.api.nvim_set_keymap("n", "tt", ":TodoQuickFix<CR>", { noremap = true })
 --
 -- Undotree
 vim.api.nvim_set_keymap('n', '<space>u', ':UndotreeToggle<CR>', opts)

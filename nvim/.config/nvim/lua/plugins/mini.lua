@@ -2,6 +2,7 @@ return {
   {
 
     'echasnovski/mini.animate',
+    enabled = false, -- enable this plugin (the default)
     version = '*',
     config = function()
       require("mini.cursorword").setup({
@@ -23,6 +24,7 @@ return {
   },
   {
     'echasnovski/mini.cursorword',
+    enabled = false, -- enable this plugin (the default)
     version = '*',
     config = function()
       require("mini.cursorword").setup({
@@ -32,6 +34,7 @@ return {
   },
   {
     'echasnovski/mini.indentscope',
+    enabled = false, -- enable this plugin (the default)
     version = '*',
     config = function()
       require("mini.indentscope").setup()
@@ -58,6 +61,7 @@ return {
     -- Window in current tab	[W [w ]w ]W	MiniBracketed.window()
     -- Yank selection replacing latest put region	[Y [y ]y ]Y	MiniBracketed.yank()
     'echasnovski/mini.bracketed',
+    enabled = false, -- enable this plugin (the default)
     version = '*',
     config = function()
       require("mini.bracketed").setup()

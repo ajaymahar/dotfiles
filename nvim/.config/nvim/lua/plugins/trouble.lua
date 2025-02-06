@@ -1,6 +1,7 @@
 return {
   {
     "folke/trouble.nvim",
+    enabled = false, -- enable this plugin (the default)
     dependencies = { "nvim-tree/nvim-web-devicons" },
 
     config = function()

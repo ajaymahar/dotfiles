@@ -56,6 +56,7 @@
 return {
   {
     "ThePrimeagen/harpoon",
+    enabled = true, -- enable this plugin (the default)
     lazy = true,
     dependencies = {
       'nvim-lua/plenary.nvim',

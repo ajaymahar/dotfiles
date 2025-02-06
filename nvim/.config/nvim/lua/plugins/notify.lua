@@ -2,6 +2,7 @@ return {
   {
     "rcarriga/nvim-notify",
     event = "VeryLazy",
+    enabled = false, -- enable this plugin (the default)
     config = function()
       local notify = require("notify")
 

@@ -2,6 +2,7 @@ return {
   {
     -- floating terminal
     'numToStr/FTerm.nvim',
+    enabled = true, -- enable this plugin (the default)
 
     config = function()
       -- or create a vim command

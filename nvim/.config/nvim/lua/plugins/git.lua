@@ -2,6 +2,7 @@ return {
   -- Git related plugins
   {
     'ThePrimeagen/git-worktree.nvim',
+    enabled = false, -- enable this plugin (the default)
     config = function()
       require("git-worktree").setup()
       require("telescope").load_extension("git_worktree")
@@ -12,6 +13,7 @@ return {
   },
   {
     'rhysd/git-messenger.vim',
+    enabled = false, -- enable this plugin (the default)
     config = function()
       -- Set g:git_messenger_floating_win_opts
       vim.g.git_messenger_floating_win_opts = { border = 'single' }

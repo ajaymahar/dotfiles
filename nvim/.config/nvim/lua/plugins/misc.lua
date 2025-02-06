@@ -13,9 +13,9 @@ return {
     -- make transparent
     'xiyaowong/nvim-transparent',
     -- zen mode
-    'folke/zen-mode.nvim',
+    -- 'folke/zen-mode.nvim',
     -- twilight
-    "folke/twilight.nvim",
+    -- "folke/twilight.nvim",
   },
   {
     -- autopairs

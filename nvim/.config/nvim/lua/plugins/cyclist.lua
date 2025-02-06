@@ -1,29 +1,29 @@
 return {
   "tjdevries/cyclist.vim",
+  enabled = false, -- enable this plugin (the default)
   config = function()
-    vim.api.nvim_exec([[
-      call cyclist#add_listchar_option_set('limited', {
-          \ 'eol': '↲',
-          \ 'tab': '» ',
-          \ 'trail': '░',
-          \ 'extends': '<',
-          \ 'precedes': '>',
-          \ 'conceal': '┊',
-          \ 'nbsp': '␣',
-          \ })
-      ]], false)
+    -- Set up 'limited' listchars
+    vim.g.cyclist_listchar_sets = vim.g.cyclist_listchar_sets or {}
+    vim.g.cyclist_listchar_sets.limited = {
+      eol = "↲",
+      tab = "» ",
+      trail = "░",
+      extends = "<",
+      precedes = ">",
+      conceal = "┊",
+      nbsp = "␣",
+    }
 
-    vim.api.nvim_exec([[
-      call cyclist#add_listchar_option_set('busy', {
-         \ 'eol': '↲',
-         \ 'tab': '»·',
-         \ 'space': '␣',
-         \ 'trail': '-',
-         \ 'extends': '☛',
-         \ 'precedes': '☚',
-         \ 'conceal': '┊',
-         \ 'nbsp': '☠',
-         \ })
-      ]], false)
-  end
+    -- Set up 'busy' listchars
+    vim.g.cyclist_listchar_sets.busy = {
+      eol = "↲",
+      tab = "»·",
+      space = "␣",
+      trail = "-",
+      extends = "☛",
+      precedes = "☚",
+      conceal = "┊",
+      nbsp = "☠",
+    }
+  end,
 }

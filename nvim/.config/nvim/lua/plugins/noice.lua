@@ -1,6 +1,7 @@
 return {
   {
     "folke/noice.nvim",
+    enabled = true, -- enable this plugin (the default)
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",

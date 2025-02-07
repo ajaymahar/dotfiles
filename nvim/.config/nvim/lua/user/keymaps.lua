@@ -110,8 +110,16 @@ vim.keymap.set('n', '<C-g>', tele.live_grep, { desc = '[S]earch by [G]rep' })
 --
 vim.keymap.set('n', '?', tele.help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', tele.grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sb', tele.buffers, { desc = '[ ] Find existing buffers' })
 
+-- buffer configs
+vim.keymap.set('n', '<leader>sb', tele.buffers, { desc = '[ ] Find existing buffers' })
+-- buffer management using snacks
+vim.api.nvim_set_keymap('n', '<leader>d', ':lua require("snacks").bufdelete.delete()<CR>',
+  { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>a', ':lua require("snacks").bufdelete.all()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>o', ':lua require("snacks").bufdelete.other()<CR>',
+  { noremap = true, silent = true })
+--
 -- vim.keymap.set('n', '<leader>sm', ":Telescope harpoon marks<CR>", { desc = 'Harpoon [M]arks' })
 
 -- vim.keymap.set('n', '<leader>sS', tele.git_status, { desc = '' })

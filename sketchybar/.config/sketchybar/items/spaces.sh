@@ -14,7 +14,7 @@ for m in $(aerospace list-monitors | awk '{print $1}'); do
     space=(
       space="$sid"
       icon="$sid"
-      icon.highlight_color=$RED
+      icon.highlight_color=$GREEN
       icon.padding_left=10
       icon.padding_right=10
       display=$m
@@ -25,8 +25,8 @@ for m in $(aerospace list-monitors | awk '{print $1}'); do
       label.highlight_color=$WHITE
       label.font="sketchybar-app-font:Regular:16.0"
       label.y_offset=-1
-      background.color=$BACKGROUND_1
-      background.border_color=$BACKGROUND_2
+      background.color=$BG1
+      background.border_color=$BG2
       script="$PLUGIN_DIR/space.sh"
     )
 
@@ -66,7 +66,7 @@ space_creator=(
   #click_script='yabai -m space --create'
   script="$PLUGIN_DIR/space_windows.sh"
   #script="$PLUGIN_DIR/aerospace.sh"
-  icon.color=$WHITE
+  icon.color=$GREEN
 )
 
 # sketchybar --add item space_creator left               \

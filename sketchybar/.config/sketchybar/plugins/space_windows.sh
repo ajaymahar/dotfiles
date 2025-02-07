@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
  
-echo AEROSPACE_PREV_WORKSPACE: $AEROSPACE_PREV_WORKSPACE, \
- AEROSPACE_FOCUSED_WORKSPACE: $AEROSPACE_FOCUSED_WORKSPACE \
- SELECTED: $SELECTED \
- BG2: $BG2 \
- INFO: $INFO \
- SENDER: $SENDER \
- NAME: $NAME \
-  >> ~/aaaa
+# # debuging logs
+# echo AEROSPACE_PREV_WORKSPACE: $AEROSPACE_PREV_WORKSPACE, \
+#  AEROSPACE_FOCUSED_WORKSPACE: $AEROSPACE_FOCUSED_WORKSPACE \
+#  SELECTED: $SELECTED \
+#  BG2: $BG2 \
+#  INFO: $INFO \
+#  SENDER: $SENDER \
+#  NAME: $NAME \
+#   >> ~/aaaa
 
 source "$CONFIG_DIR/colors.sh"
 
@@ -63,12 +64,12 @@ if [ "$SENDER" = "aerospace_workspace_change" ]; then
   # current workspace space border color
   sketchybar --set space.$AEROSPACE_FOCUSED_WORKSPACE icon.highlight=true \
                          label.highlight=true \
-                         background.border_color=$GREY
+                         background.border_color=$BG1
 
   # prev workspace space border color
   sketchybar --set space.$AEROSPACE_PREV_WORKSPACE icon.highlight=false \
                          label.highlight=false \
-                         background.border_color=$BACKGROUND_2
+                         background.border_color=$BG2
 
   # if [ "$AEROSPACE_FOCUSED_WORKSPACE" -gt 3 ]; then
   #   sketchybar --animate sin 10 --set space.$AEROSPACE_FOCUSED_WORKSPACE display=1

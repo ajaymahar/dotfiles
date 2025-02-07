@@ -13,12 +13,19 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = [] 
+after-startup-command = [
+'exec-and-forget  /usr/local/bin/sketchybar',
+] 
 
-# Notify Sketchybar about workspace change
-# exec-on-workspace-change = []
+exec-on-workspace-change = [
+    '/bin/bash',
+    '-c',
+    '/usr/local/bin/sketchybar --trigger aerospace_workspace_change AEROSPACE_FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE AEROSPACE_PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE',
+]
+# # Start AeroSpace a# See https://nikitabobko.github.io/AeroSpace/guide#exec-env-vars
+# [exec] # Again, you don't need to copy all config sections to your config.
+# inherit-env-vars = true # If you don't touch "exec" section,t login
 
-# Start AeroSpace at login
 start-at-login = false
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization

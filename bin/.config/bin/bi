@@ -98,6 +98,7 @@ brew_casks=(
     nikitabobko/tap/aerospace
     sf-symbols
     spotify
+    time-out
     # Add more casks as needed
 )
 

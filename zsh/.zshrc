@@ -217,3 +217,16 @@ eval "$(zoxide init zsh)"
 
 # git config
 export GIT_CONFIG="$HOME/.gitconfig"
+#
+# Sketchybar interactivity overloads
+function brew() {
+  command brew "$@" 
+
+  if [[ $* =~ "upgrade" ]] || [[ $* =~ "update" ]] || [[ $* =~ "outdated" ]]; then
+    sketchybar --trigger brew_update
+  fi
+}
+
+function zen () {
+  "$HOME/.config/sketchybar/plugins/zen.sh $1"
+}

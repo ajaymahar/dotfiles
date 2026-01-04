@@ -53,23 +53,14 @@ if [ -f '/Users/ajay/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ajay
 # --color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796"
 
 # catppuccin mocha color theme
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS" \
---reverse \
---border rounded \
---no-info \
---pointer=' ' \
---marker=' ' \
---ansi \
---color=border:#9991ab,bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
---color=fg:#cdd6f4,header:#9991ab,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+export FZF_DEFAULT_OPTS='--color=fg:#ebfafa,bg:#09090d,hl:#37f499 --color=fg+:#ebfafa,bg+:#0D1116,hl+:#37f499 --color=info:#04d1f9,prompt:#04d1f9,pointer:#7081d0 --color=marker:#7081d0,spinner:#f7c67f,header:#323449'
 
 export FZF_CTRL_R_OPTS=$FZF_CTRL_R_OPTS"--border-label=' history ' \
 --prompt='  '"
 
-export FZF_CTRL_T_OPTS=$FZF_CTRL_T_OPTS"--border-label=' find files' \
---prompt='  ' \
---preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+# Preview file content using bat
+export FZF_CTRL_T_OPTS=" --preview 'bat -n --color=always {}' \
+ --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$PATH:$HOME/.config/bin

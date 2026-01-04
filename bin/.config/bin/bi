@@ -8,6 +8,7 @@ else
     echo "brew is already installed"
 fi
 
+brew install gum
 # Install gum if not installed
 if ! command -v gum &> /dev/null; then
     gum spin --show-output --spinner minidot --title "Installing gum..." --  brew install gum
@@ -77,6 +78,8 @@ brew_packages=(
     zoxide
     zsh
     zsh-syntax-highlighting
+    node
+    luarocks
     # Add more packages as needed
 )
 
@@ -136,5 +139,6 @@ brew tap arl/arl
 brew install gitmux
 brew install --cask nikitabobko/tap/aerospace
 
+npm install -g tree-sitter-cli
 # Display a completion message
 echo "Homebrew packages and casks installation complete."

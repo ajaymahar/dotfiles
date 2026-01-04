@@ -4,77 +4,98 @@ return {
     dependencies = {
       'rcarriga/nvim-dap-ui',
       'leoluz/nvim-dap-go',
+      'nvim-neotest/nvim-nio',  -- Required for dap-ui
     },
     config = function()
-      local dap, dapui = require("dap"), require("dapui")
-      require('dap-go').setup()
-      dapui.setup()
+      local dap = require("dap")
+      local dapui = require("dapui")
 
-      -- dap.listeners.before.attach.dapui_config = function()
-      --   dapui.open()
-      -- end
-      -- dap.listeners.before.launch.dapui_config = function()
-      --   dapui.open()
-      -- end
-      -- dap.listeners.before.event_terminated.dapui_config = function()
-      --   dapui.close()
-      -- end
-      -- dap.listeners.before.event_exited.dapui_config = function()
-      --   dapui.close()
-      -- end
-      -- -- Debugger
-      -- vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, {})
-      -- -- vim.keymap.set("n", "<leader>dt", dapui.toggle, {})
-      -- vim.keymap.set("n", "<leader>dc", dap.continue, {})
-      -- vim.keymap.set("n", "<leader>dc", dap.continue, {})
-      -- vim.keymap.set("n", "<leader>dc", dap.continue, {})
-      -- -- vim.keymap.set("n", "<leader>db", ":DapToggleBreakpoint<CR>", { noremap = true })
-      -- -- vim.keymap.set("n", "<leader>dc", ":DapContinue<CR>", { noremap = true })
-      -- -- vim.keymap.set("n", "<leader>dr", ":lua require('dapui').open({reset = true})<CR>", { noremap = true })
-    end
+      -- Setup dap-go
+      require('dap-go').setup()
+
+      -- Modern dap-ui setup (Neovim 0.10+)
+      dapui.setup({
+        layouts = {
+          {
+            elements = {
+              { id = "scopes", size = 0.25 },
+              { id = "breakpoints", size = 0.25 },
+              { id = "stacks", size = 0.25 },
+            },
+            size = 40,
+            position = "left",
+          },
+          {
+            elements = {
+              { id = "repl", size = 0.5 },
+              { id = "console", size = 0.5 },
+            },
+            size = 0.25,
+            position = "bottom",
+          },
+        },
+      })
+
+      -- Auto-open/close dap-ui (modern event system)
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_terminated["dapui_config"] = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited["dapui_config"] = function()
+        dapui.close()
+      end
+
+      -- Clean keymaps with descriptions
+      vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, { desc = "Toggle Breakpoint" })
+      vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "Continue" })
+      vim.keymap.set("n", "<leader>dr", dap.repl.open, { desc = "Open REPL" })
+      vim.keymap.set("n", "<leader>dl", dap.run_last, { desc = "Run Last" })
+      vim.keymap.set("n", "<leader>du", dapui.toggle, { desc = "Toggle DAP UI" })
+      
+      -- Step debugging
+      vim.keymap.set("n", "<leader>ds", dap.session, { desc = "Get Session" })
+      vim.keymap.set("n", "<leader>dt", dap.terminate, { desc = "Terminate" })
+      vim.keymap.set("n", "<F5>", dap.continue, { desc = "Continue" })
+      vim.keymap.set("n", "<F10>", dap.step_over, { desc = "Step Over" })
+      vim.keymap.set("n", "<F11>", dap.step_into, { desc = "Step Into" })
+      vim.keymap.set("n", "<F12>", dap.step_out, { desc = "Step Out" })
+    end,
   },
   {
     'theHamsta/nvim-dap-virtual-text',
     config = function()
-      require("nvim-dap-virtual-text").setup {
-        enabled = true,                     -- enable this plugin (the default)
-        enabled_commands = true,            -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
-        highlight_changed_variables = true, -- highlight changed values with NvimDapVirtualTextChanged, else always NvimDapVirtualText
-        highlight_new_as_changed = false,   -- highlight new variables in the same way as changed variables (if highlight_changed_variables)
-        show_stop_reason = true,            -- show stop reason when stopped for exceptions
-        commented = false,                  -- prefix virtual text with comment string
-        only_first_definition = true,       -- only show virtual text at first definition (if there are multiple)
-        all_references = false,             -- show virtual text on all all references of the variable (not only definitions)
-        clear_on_continue = false,          -- clear virtual text on "continue" (might cause flickering when stepping)
-        -- A callback that determines how a variable is displayed or whether it should be omitted
-        -- @param variable Variable https://microsoft.github.io/debug-adapter-protocol/specification#Types_Variable
-        -- @param buf number
-        -- @param stackframe dap.StackFrame https://microsoft.github.io/debug-adapter-protocol/specification#Types_StackFrame
-        -- @param node userdata tree-sitter node identified as variable definition of reference (see `:h tsnode`)
-        -- @param options nvim_dap_virtual_text_options Current options for nvim-dap-virtual-text
-        -- @return string|nil A text how the virtual text should be displayed or nil, if this variable shouldn't be displayed
-        display_callback = function(variable, buf, stackframe, node, options)
+      require("nvim-dap-virtual-text").setup({
+        enabled = true,
+        enabled_commands = true,
+        highlight_changed_variables = true,
+        highlight_new_as_changed = false,
+        show_stop_reason = true,
+        commented = false,
+        only_first_definition = true,
+        all_references = false,
+        clear_on_continue = true,  -- Modern default
+        display_callback = function(variable, _, _, _, options)
           if options.virt_text_pos == 'inline' then
             return ' = ' .. variable.value
           else
             return variable.name .. ' = ' .. variable.value
           end
         end,
-        -- position of virtual text, see `:h nvim_buf_set_extmark()`, default tries to inline the virtual text. Use 'eol' to set to end of line
-        virt_text_pos = vim.fn.has 'nvim-0.10' == 1 and 'inline' or 'eol',
+        virt_text_pos = 'inline',  -- Modern default (Neovim 0.10+)
+        all_frames = false,
+        virt_lines = false,
+        virt_text_win_col = nil,
+      })
 
-        -- experimental features:
-        all_frames = false,     -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
-        virt_lines = false,     -- show virtual lines instead of virtual text (will flicker!)
-        virt_text_win_col = nil -- position the virtual text at a fixed window column (starting from the first text column) ,
-        -- e.g. 80 to position at column 80, see `:h nvim_buf_set_extmark()`
-      }
-      -- vim.fn.sign_define('DapBreakpoint', { text='🔴', texthl='DapBreakpoint', linehl='DapBreakpoint', numhl='DapBreakpoint' })
+      -- Modern sign definitions (Neovim 0.11+)
       local sign = vim.fn.sign_define
-
-      sign("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
-      sign("DapBreakpointCondition", { text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
-      sign("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" })
+      sign("DapBreakpoint", { text = "🔴", texthl = "DiagnosticError", linehl = nil, numhl = nil })
+      sign("DapBreakpointCondition", { text = "🟡", texthl = "DiagnosticWarn", linehl = nil, numhl = nil })
+      sign("DapLogPoint", { text = "🔵", texthl = "DiagnosticInfo", linehl = nil, numhl = nil })
+      sign("DapStopped", { text = "➡️", texthl = "DiagnosticOk", linehl = nil, numhl = nil })
     end,
   },
 }
+

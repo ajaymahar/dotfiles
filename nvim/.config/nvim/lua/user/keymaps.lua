@@ -80,13 +80,13 @@ vim.api.nvim_set_keymap("n", "<leader>dr", ":lua require('dapui').open({reset = 
 local tele = require('telescope.builtin')
 
 -- See `:help telescope.builtin`
-vim.keymap.set('n', '<leader>/', function()
-  -- You can pass additional configuration to telescope to change theme, layout, etc.
-  tele.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    winblend = 0,
-    previewer = false,
-  })
-end, { desc = '[/] Fuzzily search in current buffer]' })
+-- vim.keymap.set('n', '<leader>/', function()
+--   -- You can pass additional configuration to telescope to change theme, layout, etc.
+--   tele.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+--     winblend = 0,
+--     previewer = false,
+--   })
+-- end, { desc = '[/] Fuzzily search in current buffer]' })
 
 -- vim.keymap.set('n', '<leader>sf', tele.find_files, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<C-p>', tele.find_files, { desc = '[S]earch [F]iles' })

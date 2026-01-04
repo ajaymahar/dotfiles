@@ -36,7 +36,7 @@ brew_packages=(
     dos2unix
     fd
     figlet
-    fish
+    # fish
     fzf
     gh
     git
@@ -63,7 +63,7 @@ brew_packages=(
     sesh
     skhd
     sqlc
-    starship
+    # starship
     stow
     telnet
     tmux
@@ -85,13 +85,18 @@ brew_casks=(
     1password-cli
     devtoys
     font-sf-mono-nerd-font
-    keycastr
-    ngrok
-    spacelauncher
-    wezterm
-    alfred
+    # keycastr
+    # ngrok
+    # spacelauncher
+    ghostty
+    # wezterm
+    # alfred
     postman
     obsidian
+    nikitabobko/tap/aerospace
+    sf-symbols
+    spotify
+    # time-out
     # Add more casks as needed
 )
 

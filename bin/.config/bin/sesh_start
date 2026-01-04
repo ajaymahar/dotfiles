@@ -1,4 +1,4 @@
-#!/usr/bin/env fish
+#!/usr/bin/env bash
 sesh connect --command 'nvim -c "Telescope find_files"' $(
 	sesh list | gum filter --limit 1 --placeholder "Choose a session" --height 15 --prompt="⚡"
 )

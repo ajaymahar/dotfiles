@@ -1,6 +1,6 @@
 return {
-  {
-    "shortcuts/no-neck-pain.nvim",
-    version = "*",
-  }
+  -- {
+  --   "shortcuts/no-neck-pain.nvim",
+  --   version = "*",
+  -- }
 }

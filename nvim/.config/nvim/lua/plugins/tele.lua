@@ -1,7 +1,6 @@
 return {
   {
   'nvim-telescope/telescope.nvim',
-  tag = '0.1.8',
   dependencies = {
     'nvim-lua/plenary.nvim',
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = vim.fn.executable('make') == 1 },
@@ -20,7 +19,7 @@ return {
         layout_strategy = 'horizontal',
         layout_config = {
           horizontal = {
-            prompt_position = 'top',
+            prompt_position = 'bottom',
             width = 0.9,
             height = 0.9,
             preview_width = 0.6,

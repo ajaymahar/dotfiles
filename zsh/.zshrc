@@ -99,3 +99,5 @@ export LS_COLORS="$(vivid generate $HOME/.config/vivid/themes/catppuciin-mocha.y
 export BAT_THEME="Catppuccin-mocha"
 
 eval "$(zoxide init zsh)"
+fpath=(~/.zsh/completions $fpath)
+autoload -U compinit && compinit

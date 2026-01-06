@@ -2,19 +2,18 @@ return {
   {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',  -- ✅ FIXED: build at TOP LEVEL
+    build = ':TSUpdate', -- ✅ FIXED: build at TOP LEVEL
     event = { 'BufReadPre', 'BufNewFile' },
-    
+
     -- ✅ NO config function - use opts instead
     opts = {
       -- YOUR EXACT SETTINGS PRESERVED:
       ensure_installed = { 'go', 'gowork', 'gomod', 'gosum', 'lua', 'vim', 'markdown', 'markdown_inline', 'regex', 'bash', 'json', 'sql' },
-      sync_install = false,  -- ✅ Changed from true (async = faster)
+      sync_install = false, -- ✅ Changed from true (async = faster)
       auto_install = true,
-      
-      highlight = { enable = true },
+
       indent = { enable = true },
-      
+
       incremental_selection = {
         enable = true,
         keymaps = {
@@ -24,7 +23,7 @@ return {
           node_decremental = '<c-backspace>',
         },
       },
-      
+
       -- YOUR EXACT TEXTOBJECT SETTINGS PRESERVED:
       textobjects = {
         select = {
@@ -70,7 +69,7 @@ return {
           swap_previous = { ['<leader>A'] = '@parameter.inner' },
         },
       },
-      
+
       -- ✅ ADDED: Telescope error fix
       highlight = {
         enable = true,
@@ -81,4 +80,3 @@ return {
     },
   },
 }
-

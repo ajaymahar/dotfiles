@@ -26,7 +26,7 @@ return {
       -- go.nvim setup
       -- =========================
       require("go").setup({
-       disable_defaults = false,
+        disable_defaults = false,
 
         go = "go",
         goimport = "gopls",
@@ -62,18 +62,13 @@ return {
 
         lsp_inlay_hints = {
           enable = true,
-          style = "inlay",
-          only_current_line = false,
-          only_current_line_autocmd = "CursorHold",
-          show_variable_name = true,
-          parameter_hints_prefix = "󰊕 ",
-          show_parameter_hints = true,
-          other_hints_prefix = "=> ",
-          max_len_align = false,
-          max_len_align_padding = 1,
-          right_align = false,
-          right_align_padding = 6,
-          highlight = "Comment",
+        },
+        diagnostic = {
+          hdlr = true,
+          underline = true,
+          virtual_text = { spacing = 0, prefix = '■' },
+          signs = true,
+          update_in_insert = true,
         },
 
         gopls_cmd = nil,
@@ -107,7 +102,7 @@ return {
 
         test_runner = "go",
         verbose_tests = true,
-        run_in_floaterm = false,
+        run_in_floaterm = true,
 
         floaterm = {
           posititon = "auto",
@@ -123,4 +118,3 @@ return {
     end,
   },
 }
-

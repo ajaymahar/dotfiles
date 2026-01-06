@@ -14,10 +14,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = vim.api.nvim_create_augroup("format_on_save", { clear = true }),
   pattern = "*",
-  desc = "Run LSP formatting on a file on save",
+  desc = "Format on save via LSP",
   callback = function()
-    if vim.fn.exists(":Format") > 0 then
-      vim.cmd.Format()
+    local clients = vim.lsp.get_clients({ bufnr = 0 })
+    if #clients > 0 then
+      vim.lsp.buf.format({ async = false })
     end
   end,
 })

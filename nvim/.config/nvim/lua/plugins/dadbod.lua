@@ -57,9 +57,6 @@ return {
         postgresql = {
           Count = 'select count(*) from {optional_schema}{table}',
           Explain = 'EXPLAIN ANALYZE {last_query}',
-        },
-        postgresql = {
-          List1 = 'select * from {table} order by id asc',
         }
       }
     end,

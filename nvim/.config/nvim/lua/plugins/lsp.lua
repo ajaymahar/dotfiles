@@ -18,7 +18,6 @@ return {
     },
 
     config = function()
-
       ------------------------------------------------------------------
       -- Diagnostics (modern, non-deprecated)
       ------------------------------------------------------------------
@@ -37,9 +36,26 @@ return {
         float = { border = "rounded" },
       })
 
+      -- ------------------------------------------------------------------
+      -- Global :Format command (safe fallback)
+      -- ------------------------------------------------------------------
+      vim.api.nvim_create_user_command("Format", function()
+        local clients = vim.lsp.get_clients({ bufnr = 0 })
+        if #clients == 0 then
+          vim.notify("No LSP attached to format", vim.log.levels.WARN)
+          return
+        end
+        vim.lsp.buf.format({ async = false })
+      end, { desc = "Format current buffer via LSP" })
+
       -- Global diagnostic keymaps
-      vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Prev Diagnostic" })
-      vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next Diagnostic" })
+      vim.keymap.set("n", "[d", function()
+        vim.diagnostic.jump({ count = -1 })
+      end, { desc = "Prev Diagnostic" })
+
+      vim.keymap.set("n", "]d", function()
+        vim.diagnostic.jump({ count = 1 })
+      end, { desc = "Next Diagnostic" })
       vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
       vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostics List" })
 
@@ -112,4 +128,3 @@ return {
     end,
   },
 }
-

@@ -44,7 +44,8 @@ map("i", "kk", "<ESC>", opts)
 -- Move selected block
 map("x", "K", ":move '<-2<CR>gv-gv", opts)
 map("x", "J", ":move '>+1<CR>gv-gv", opts)
-
+map("v", "H", "^", n_opts)
+map("v", "L", "$", n_opts)
 -- ============================================================================
 -- Files
 -- ============================================================================
@@ -95,7 +96,7 @@ map("n", "<space>u", "<cmd>UndotreeToggle<CR>", opts)
 -- ============================================================================
 
 map("n", ",", "<cmd>CommentToggle<CR>", opts)
-map("v", ",", "<cmd>CommentToggle<CR>", opts)
+map("v", ",", ":CommentToggle<CR>", opts)
 
 -- ============================================================================
 -- Debug (DAP)
@@ -178,5 +179,3 @@ map("n", "<S-m>", harpoon_mark.add_file)
 map("n", "<leader>hr", harpoon_mark.rm_file)
 map("n", "<leader>hc", harpoon_mark.clear_all)
 map("n", "<S-j>", harpoon_ui.nav_next)
-
-

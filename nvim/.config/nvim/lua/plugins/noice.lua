@@ -62,6 +62,10 @@ return {
             opts = { skip = true },
           },
         },
+        notify = {
+          enabled = true,
+          view = "notify",
+        }
       })
 
       -- Noice keymaps

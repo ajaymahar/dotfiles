@@ -1,4 +1,4 @@
-# To get the default values
+ # To get the default values
 # ghostty +show-config --default --docs > ~/github/dotfiles-latest/ghostty/config-default
 
 # To get syntax highlighting in neovim, see
@@ -137,10 +137,10 @@ window-padding-x = 4,2
 # top padding to 2 and the bottom padding to 4. If you want to set both
 # paddings to the same value, you can use a single value. For example,
 # `window-padding-y = 2` will set both paddings to 2.
-window-padding-y = 6,0
+window-padding-y = 4,0
 
 font-family = "JetbrainsMono Nerd Font"
-font-size = 18
+font-size = 17
 # font-thicken = true
 
 # Valid values:
@@ -196,6 +196,7 @@ confirm-close-surface = false
 # keybind = global:cmd+s=toggle_quick_terminal
 quick-terminal-autohide = false
 quick-terminal-position = bottom 
+macos-non-native-fullscreen = true
 
 # If `true`, the *Option* key will be treated as *Alt*. This makes terminal
 # sequences expecting *Alt* to work properly, but will break Unicode input
@@ -216,8 +217,8 @@ macos-option-as-alt = right
 # Set it to 0 to disable animation completely. This can be changed at
 # runtime.
 # quick-terminal-animation-duration = 0.1
-quick-terminal-animation-duration = 0.08
-background-opacity = 0.9
+quick-terminal-animation-duration = 0.06
+background-opacity = 0.92
 copy-on-select = true
 # quick-terminal-animation-duration = 0
 

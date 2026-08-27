@@ -21,25 +21,29 @@ return {
           },
         },
         status = {
-          -- Statusline component for LSP progress notifications.
           lsp_progress = { event = 'lsp', kind = 'progress' },
         },
-        -- you can enable a preset for easier configuration
         presets = {
-          bottom_search = false,        -- use a classic bottom cmdline for search
-          command_palette = true,       -- position the cmdline and popupmenu together
-          long_message_to_split = true, -- long messages will be sent to a split
-          inc_rename = false,           -- enables an input dialog for inc-rename.nvim
-          lsp_doc_border = true,        -- add a border to hover docs and signature help
+          bottom_search = false,
+          command_palette = true,
+          long_message_to_split = true,
+          inc_rename = false,
+          lsp_doc_border = true,
         },
         smart_move = {
-          -- noice tries to move out of the way of existing floating windows.
-          enabled = true, -- you can disable this behaviour here
-          -- add any filetypes here, that shouldn't trigger smart move.
+          enabled = true,
           excluded_filetypes = { "cmp_menu", "cmp_docs", "notify", "oil" },
         },
         routes = {
-          -- Ignore the typical vim change messages.
+          {
+            filter = {
+              event = "msg_show",
+              any = {
+                { find = "No information available" }, -- Clean native Noice filter!
+              },
+            },
+            opts = { skip = true },
+          },
           {
             filter = {
               event = 'msg_show',
@@ -53,7 +57,6 @@ return {
             },
             opts = { skip = true },
           },
-          -- Don't show these in the default view.
           {
             filter = {
               event = 'lsp',
@@ -68,11 +71,17 @@ return {
         }
       })
 
-      -- Noice keymaps
-      vim.api.nvim_set_keymap("n", "<leader>l", ":NoiceDismiss<CR>", { noremap = true })
-      vim.api.nvim_set_keymap("n", "<leader>H", ":NoiceHistory<CR>", { noremap = true })
-      vim.api.nvim_set_keymap("n", "<leader>L", ":NoiceLast<CR>", { noremap = true })
-      vim.api.nvim_set_keymap("n", "<leader>E", ":NoiceErrors<CR>", { noremap = true })
+      ------------------------------------------------------------------
+      -- Global Keymappings (Modernized using native vim.keymap.set)
+      ------------------------------------------------------------------
+      -- Your original keys untouched:
+      vim.keymap.set("n", "<leader>l", "<cmd>NoiceDismiss<CR>", { silent = true, desc = "Noice: Dismiss notifications" })
+      vim.keymap.set("n", "<leader>H", "<cmd>NoiceHistory<CR>",
+        { silent = true, desc = "Noice: View notification history" })
+      vim.keymap.set("n", "<leader>L", "<cmd>NoiceLast<CR>", { silent = true, desc = "Noice: View last message modal" })
+
+      -- Guarded original key (Capital E for Noice, lowercase e stays native LSP)
+      vim.keymap.set("n", "<leader>E", "<cmd>NoiceErrors<CR>", { silent = true, desc = "Noice: Show error history log" })
     end,
   },
 }

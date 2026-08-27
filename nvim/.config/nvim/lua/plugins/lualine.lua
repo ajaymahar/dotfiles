@@ -1,10 +1,11 @@
 return {
   {
-    'nvim-lualine/lualine.nvim', -- Fancier statusline
+    'nvim-lualine/lualine.nvim',
 
     config = function()
       local harpoon = require("harpoon.mark")
 
+      -- Dynamic component evaluating active Harpoon markers metrics
       local function harpoon_component()
         local total_marks = harpoon.get_length()
 
@@ -21,12 +22,22 @@ return {
 
         return string.format("  %s/%d", current_mark, total_marks)
       end
+
+      -- 🛠️ FIXED: Safe runtime fallback helper for the modern v3 rest-nvim client status check
+      local function rest_status_component()
+        local rest_ok, rest_state = pcall(require, "rest-nvim.state")
+        if not rest_ok or not rest_state.get_last_request then
+          return ""
+        end
+        local last_req = rest_state.get_last_request()
+        if not last_req then return "" end
+        return " HTTP Done"
+      end
+
       require('lualine').setup {
         options = {
           icons_enabled = true,
           theme = 'auto',
-          -- component_separators = { left = '', right = ''},
-          -- section_separators = { left = '', right = ''},
           component_separators = '',
           section_separators = '',
           disabled_filetypes = {
@@ -56,56 +67,30 @@ return {
           lualine_x = {
             {
               'filename',
-              file_status = true,    -- Displays file status (readonly status, modified status)
-              newfile_status = true, -- Display new file status (new file means no write after created)
-              path = 1,              -- 0: Just the filename
-              -- 1: Relative path
-              -- 2: Absolute path
-              -- 3: Absolute path, with tilde as the home directory
-              -- 4: Filename and parent dir, with tilde as the home directory
-
-              shorting_target = 40, -- Shortens path to leave 40 spaces in the window
-              -- for other components. (terrible name, any suggestions?)
+              file_status = true,
+              newfile_status = true,
+              path = 1,
+              shorting_target = 40,
               symbols = {
-                modified = ' ', -- Text to show when the file is modified.
-                readonly = '', -- Text to show when the file is non-modifiable or readonly.
-                unnamed = '[No Name]', -- Text to show for unnamed buffers.
-                newfile = '', -- Text to show for newly created file before first write
+                modified = ' ',
+                readonly = '',
+                unnamed = '[No Name]',
+                newfile = '',
               }
             }
           },
+          -- 🛠️ FIXED: Swapped static old rest component hook string to safe dynamic helper function
           lualine_y = {
             {
-              "rest",
-              icon = "",
-              fg = "#428890"
+              rest_status_component,
+              color = { fg = "#428890" }
             }
           },
-          -- lualine_y = {
-          --   {
-          --     function()
-          --       return require('noice').api.status.lsp_progress.get_hl()
-          --     end,
-          --     cond = function()
-          --       return package.loaded['noice'] and require('noice').api.status.lsp_progress.has()
-          --     end,
-          --   },
-          --   {
-          --     function()
-          --       return require('noice').api.status.mode.get_hl()
-          --     end,
-          --     cond = function()
-          --       return package.loaded['noice'] and require('noice').api.status.mode.has()
-          --     end,
-          --   },
-          -- },
-          -- lualine_y = {},
           lualine_z = {},
         },
         inactive_sections = {
           lualine_a = { harpoon_component },
           lualine_b = {
-            -- harpoon_component,
             'branch',
             'diff',
           },
@@ -117,54 +102,30 @@ return {
           lualine_x = {
             {
               'filename',
-              file_status = true,    -- Displays file status (readonly status, modified status)
-              newfile_status = true, -- Display new file status (new file means no write after created)
-              path = 1,              -- 0: Just the filename
-              -- 1: Relative path
-              -- 2: Absolute path
-              -- 3: Absolute path, with tilde as the home directory
-              -- 4: Filename and parent dir, with tilde as the home directory
-
-              shorting_target = 40, -- Shortens path to leave 40 spaces in the window
-              -- for other components. (terrible name, any suggestions?)
+              file_status = true,
+              newfile_status = true,
+              path = 1,
+              shorting_target = 40,
               symbols = {
-                modified = ' ', -- Text to show when the file is modified.
-                readonly = '', -- Text to show when the file is non-modifiable or readonly.
-                unnamed = '[No Name]', -- Text to show for unnamed buffers.
-                newfile = '', -- Text to show for newly created file before first write
+                modified = ' ',
+                readonly = '',
+                unnamed = '[No Name]',
+                newfile = '',
               }
             }
           },
+          -- 🛠️ FIXED: Matched inactive layout to use clean fallback logic as well
           lualine_y = {
             {
-              "rest",
-              icon = "",
-              fg = "#428890"
+              rest_status_component,
+              color = { fg = "#428890" }
             }
           },
-          -- lualine_y = {
-          --   {
-          --     function()
-          --       return require('noice').api.status.lsp_progress.get_hl()
-          --     end,
-          --     cond = function()
-          --       return package.loaded['noice'] and require('noice').api.status.lsp_progress.has()
-          --     end,
-          --   },
-          --   {
-          --     function()
-          --       return require('noice').api.status.mode.get_hl()
-          --     end,
-          --     cond = function()
-          --       return package.loaded['noice'] and require('noice').api.status.mode.has()
-          --     end,
-          --   },
-          -- },
-          -- lualine_y = {},
           lualine_z = {},
         },
-        extensions = { 'quickfix', 'fzf', 'lazy', 'man', 'mason', 'nvim-dap-ui', 'oil', 'symbols-outline', 'trouble' }
+        extensions = { 'quickfix', 'fzf', 'lazy', 'man', 'mason', 'nvim-dap-ui', 'oil', 'trouble' }
       }
+
       -- Disable this since the mode will be displayed by lualine.
       vim.o.showmode = false
     end,

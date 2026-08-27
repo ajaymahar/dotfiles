@@ -1,42 +1,96 @@
 return {
   {
-    "rcarriga/nvim-notify",
-    event = "VeryLazy",
+    "folke/noice.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+
     config = function()
-      local notify = require("notify")
+      require("noice").setup({
+        lsp = {
+          override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["cmp.entry.get_documentation"] = true,
+          },
+          signature = {
+            auto_open = {
+              enabled = false,
+            },
+          },
+        },
+        status = {
+          lsp_progress = { event = 'lsp', kind = 'progress' },
+        },
+        presets = {
+          bottom_search = false,
+          command_palette = true,
+          long_message_to_split = true,
+          inc_rename = false,
+          lsp_doc_border = true,
+        },
+        smart_move = {
+          enabled = true,
+          excluded_filetypes = { "cmp_menu", "cmp_docs", "notify", "oil" },
+        },
+        routes = {
+          -- 🛠️ FIXED: Added clean native Noice filter for "No information available"
+          {
+            filter = {
+              event = "msg_show",
+              any = {
+                { find = "No information available" },
+              },
+            },
+            opts = { skip = true },
+          },
+          -- Typical vim change messages filter
+          {
+            filter = {
+              event = 'msg_show',
+              any = {
+                { find = '%d+L, %d+B' },
+                { find = '; after #%d+' },
+                { find = '; before #%d+' },
+                { find = '%d fewer lines' },
+                { find = '%d more lines' },
+              },
+            },
+            opts = { skip = true },
+          },
+          {
+            filter = {
+              event = 'lsp',
+              kind = 'progress',
+            },
+            opts = { skip = true },
+          },
+        },
 
-      local filtered_message = { "No information available" }
+        notify = {
+          enabled = true,
+          view = "notify",
+          replace = true, -- Safely merges and updates duplicate alerts rather than spawning new frames
+          merge = true,   -- Structurally merges sequential duplicate logs cleanly
+        }
+      })
 
-      -- Override notify function to filter out messages
-      -- @diagnostic disable-next-line: duplicate-set-field
-      vim.notify = function(message, level, opts)
-        local merged_opts = vim.tbl_extend("force", {
-          on_open = function(win)
-            local buf = vim.api.nvim_win_get_buf(win)
-            vim.api.nvim_buf_set_option(buf, "filetype", "markdown")
-          end,
-        }, opts or {})
+      ------------------------------------------------------------------
+      -- Global Keymappings (Original shortcuts untouched)
+      ------------------------------------------------------------------
+      vim.keymap.set("n", "<leader>l", "<cmd>NoiceDismiss<CR>", { silent = true, desc = "Noice: Dismiss notifications" })
+      vim.keymap.set("n", "<leader>H", "<cmd>NoiceHistory<CR>",
+        { silent = true, desc = "Noice: View notification history" })
+      vim.keymap.set("n", "<leader>L", "<cmd>NoiceLast<CR>", { silent = true, desc = "Noice: View last message modal" })
+      vim.keymap.set("n", "<leader>E", "<cmd>NoiceErrors<CR>", { silent = true, desc = "Noice: Show error history log" })
 
-        for _, msg in ipairs(filtered_message) do
-          if message == msg then
-            return
-          end
+      -- Controlled scrolling inside long float alerts (Original shortcut untouched)
+      vim.keymap.set({ "n", "i", "s" }, "<C-f>", function()
+        if not require("noice.lsp").scroll(4) then
+          return "<C-f>"
         end
-        return notify(message, level, merged_opts)
-      end
-
-      -- Update colors to use catpuccino colors
-      vim.cmd([[
-        highlight NotifyERRORBorder guifg=#ed8796
-        highlight NotifyERRORIcon guifg=#ed8796
-        highlight NotifyERRORTitle  guifg=#ed8796
-        highlight NotifyINFOBorder guifg=#8aadf4
-        highlight NotifyINFOIcon guifg=#8aadf4
-        highlight NotifyINFOTitle guifg=#8aadf4
-        highlight NotifyWARNBorder guifg=#f5a97f
-        highlight NotifyWARNIcon guifg=#f5a97f
-        highlight NotifyWARNTitle guifg=#f5a97f
-      ]])
+      end, { expr = true, silent = true, desc = "Noice: Scroll forward in floating doc popup" })
     end,
   },
 }

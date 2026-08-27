@@ -17,7 +17,7 @@ return {
 
     config = function()
       -- =========================
-      -- Keymaps (UNCHANGED)
+      -- Keymaps
       -- =========================
       vim.keymap.set("n", "<leader>ee", "<cmd>GoIfErr<cr>", { silent = true, noremap = true })
       vim.keymap.set("n", "K", "<cmd>GoDoc<cr>", { silent = true, noremap = true })
@@ -49,30 +49,19 @@ return {
 
         verbose = false,
 
-        -- =========================
-        -- LSP
-        -- =========================
-        lsp_cfg = true,
-        lsp_on_attach = true,
+        -- =============================================================
+        -- LSP Configuration (Handed over completely to nvim-lspconfig)
+        -- =============================================================
+        lsp_cfg = false,       -- Crucial: stops go.nvim from starting a 2nd gopls process
+        lsp_on_attach = false, -- Bypasses the duplicated on_attach handler hook
         lsp_keymaps = false,
         lsp_codelens = true,
-
-        -- Neovim 0.11+ safe formatting
         lsp_document_formatting = true,
 
         lsp_inlay_hints = {
           enable = true,
         },
-        diagnostic = {
-          hdlr = true,
-          underline = true,
-          virtual_text = { spacing = 0, prefix = '■' },
-          signs = true,
-          update_in_insert = true,
-        },
 
-        gopls_cmd = nil,
-        gopls_remote_auto = true,
 
         -- =========================
         -- Coverage / Signs

@@ -19,9 +19,15 @@ return {
 
     config = function()
       ------------------------------------------------------------------
-      -- Diagnostics (modern, non-deprecated)
+      -- Native Neovim Diagnostics Configuration (Unified & Stable)
       ------------------------------------------------------------------
       vim.diagnostic.config({
+        -- Enable native inline virtual text
+        virtual_text = {
+          spacing = 4,
+          prefix = "■",
+        },
+        -- Define native signcolumn markers on the left gutter
         signs = {
           text = {
             [vim.diagnostic.severity.ERROR] = " ",
@@ -31,14 +37,17 @@ return {
           },
         },
         underline = true,
-        update_in_insert = false,
+        update_in_insert = false, -- Re-lints cleanly whenever you drop back to Normal Mode
         severity_sort = true,
-        float = { border = "rounded" },
+        float = {
+          border = "rounded",
+          source = "always", -- Helpful: shows you exactly which server threw the message
+        },
       })
 
-      -- ------------------------------------------------------------------
+      ------------------------------------------------------------------
       -- Global :Format command (safe fallback)
-      -- ------------------------------------------------------------------
+      ------------------------------------------------------------------
       vim.api.nvim_create_user_command("Format", function()
         local clients = vim.lsp.get_clients({ bufnr = 0 })
         if #clients == 0 then
@@ -73,27 +82,27 @@ return {
 
         map("n", "<leader>rn", vim.lsp.buf.rename, "Rename")
         map("n", "<leader>ca", vim.lsp.buf.code_action, "Code Action")
-        map("n", "gd", vim.lsp.buf.definition, "Goto Definition")
         map("n", "gI", vim.lsp.buf.implementation, "Goto Implementation")
         map("n", "<leader>D", vim.lsp.buf.type_definition, "Type Definition")
         map("n", "K", vim.lsp.buf.hover, "Hover Docs")
 
-        -- Telescope (safe)
+        -- Telescope (safe check)
         local ok, tb = pcall(require, "telescope.builtin")
         if ok then
           map("n", "gr", tb.lsp_references, "References")
+          map("n", "gd", tb.lsp_definitions, "Goto Definition")
           map("n", "<leader>ds", tb.lsp_document_symbols, "Document Symbols")
           map("n", "<leader>ws", tb.lsp_workspace_symbols, "Workspace Symbols")
         end
 
-        -- Format
+        -- Buffer-local Format Command
         vim.api.nvim_buf_create_user_command(bufnr, "Format", function()
           vim.lsp.buf.format({ async = true })
         end, { desc = "Format buffer" })
       end
 
       ------------------------------------------------------------------
-      -- Mason
+      -- Mason & Lazydev Initialization
       ------------------------------------------------------------------
       require("mason").setup()
       require("lazydev").setup()
@@ -101,20 +110,28 @@ return {
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       ------------------------------------------------------------------
-      -- 🔥 FIXED mason-lspconfig usage (THIS WAS THE BUG)
+      -- Automated Server Configuration (Guards against duplicate clients)
       ------------------------------------------------------------------
-      require("mason-lspconfig").setup({
-        ensure_installed = {
-          "gopls",
-          "lua_ls",
-        },
+      local servers = {
+        gopls = {},
+        lua_ls = {},
+      }
 
+      require("mason-lspconfig").setup({
+        ensure_installed = vim.tbl_keys(servers),
         handlers = {
-          function(server)
-            require("lspconfig")[server].setup({
-              on_attach = on_attach,
-              capabilities = capabilities,
-            })
+          function(server_name)
+            local server_opts = servers[server_name] or {}
+            server_opts.on_attach = on_attach
+            server_opts.capabilities = vim.tbl_deep_extend(
+              "force",
+              {},
+              capabilities,
+              server_opts.capabilities or {}
+            )
+
+            -- Explicitly registers each required server exactly once
+            require("lspconfig")[server_name].setup(server_opts)
           end,
         },
       })

@@ -1,39 +1,47 @@
 return {
   {
-    -- gpd, gpr previews
     'rmagatti/goto-preview',
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+    },
 
     config = function()
-      require('goto-preview').setup {
-        width = 120, -- Width of the floating window
-        height = 15, -- Height of the floating window
-        border = { "↖", "─", "┐", "│", "┘", "─", "└", "│" }, -- Border characters of the floating window
-        default_mappings = true,
-        debug = false, -- Print debug information
-        opacity = nil, -- 0-100 opacity level of the floating window where 100 is fully transparent.
-        resizing_mappings = false, -- Binds arrow keys to resizing the floating window.
-        post_open_hook = nil, -- A function taking two arguments, a buffer and a window to be ran as a hook.
-        references = { -- Configure the telescope UI for slowing the references cycling window.
-          telescope = require("telescope.themes").get_dropdown({ hide_preview = false })
-        },
-        --
-        -- These two configs can also be passed down to the goto-preview definition and implementation calls for one off "peak" functionality.
-        focus_on_open = true,                                          -- Focus the floating window when opening it.
-        dismiss_on_move = false,                                       -- Dismiss the floating window when moving the cursor.
-        force_close = true,                                            -- passed into vim.api.nvim_win_close's second argument. See :h nvim_win_close
-        bufhidden = "wipe",                                            -- the bufhidden option to set on the floating window. See :h bufhidden
-        stack_floating_preview_windows = true,                         -- Whether to nest floating windows
-        preview_window_title = { enable = true, position = "center" }, -- Whether
+      local ok, telescope_themes = pcall(require, "telescope.themes")
+      local ref_theme = ok and telescope_themes.get_dropdown({ hide_preview = false }) or nil
 
+      require('goto-preview').setup {
+        width = 120,
+        height = 15,
+        border = { "↖", "─", "┐", "│", "┘", "─", "└", "│" },
+
+        -- Automatically registers standard keymaps: gpd, gpi, gpr, gpt
+        default_mappings = true,
+
+        debug = false,
+        opacity = nil,
+        resizing_mappings = false,
+
+        post_open_hook = function(buf, win)
+          local opts = { buffer = buf, silent = true, nowait = true, desc = "Preview: Close window" }
+
+          -- Binds 'q' to close this specific floating window instantly
+          vim.keymap.set("n", "q", function() vim.api.nvim_win_close(win, true) end, opts)
+
+          -- Binds 'Ctrl + c' to close this specific floating window instantly
+          vim.keymap.set("n", "<C-c>", function() vim.api.nvim_win_close(win, true) end, opts)
+        end,
+
+        references = {
+          telescope = ref_theme
+        },
+
+        focus_on_open = true,
+        dismiss_on_move = false,
+        force_close = true,
+        bufhidden = "wipe",
+        stack_floating_preview_windows = true,
+        preview_window_title = { enable = true, position = "center" },
       }
-      -- default command just for ref
-      -- nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>
-      -- nnoremap gpt <cmd>lua require('goto-preview').goto_preview_type_definition()<CR>
-      -- nnoremap gpi <cmd>lua require('goto-preview').goto_preview_implementation()<CR>
-      -- nnoremap gpD <cmd>lua require('goto-preview').goto_preview_declaration()<CR>
-      -- nnoremap gP <cmd>lua require('goto-preview').close_all_win()<CR>
-      -- nnoremap gpr <cmd>lua require('goto-preview').goto_preview_references()<CR>
-      --
     end,
   },
 }

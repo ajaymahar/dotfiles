@@ -188,6 +188,19 @@ map("n", "<leader>xl", "<cmd>Trouble loclist toggle<cr>", opts)
 map("n", "gR", "<cmd>Trouble lsp_references toggle<cr>", opts)
 
 -- ============================================================================
+-- LSP:
+-- ============================================================================
+--
+local cinnamon = require("cinnamon")
+vim.keymap.set("n", "gd", function() cinnamon.scroll(vim.lsp.buf.definition) end)
+vim.keymap.set("n", "gD", function() cinnamon.scroll(vim.lsp.buf.declaration) end)
+
+-- Centered scrolling:
+vim.keymap.set("n", "<C-U>", function() cinnamon.scroll("<C-U>zz") end)
+vim.keymap.set("n", "<C-D>", function() cinnamon.scroll("<C-D>zz") end)
+
+--
+-- ============================================================================
 -- Floating Terminal (🛠️ FIXED: Swapped grid metrics to robust vim.o properties)
 -- ============================================================================
 local term_win = nil

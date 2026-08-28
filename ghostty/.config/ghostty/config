@@ -24,6 +24,17 @@
 # the configuration file will be ignored.
 config-file = ghostty-theme
 
+cursor-style = block
+custom-shader = ./shaders/cursor_sweep.glsl
+custom-shader = ./shaders/ripple_cursor.glsl
+# custom-shader = ./shaders/sonic_boom_cursor.glsl 
+custom-shader-animation = true
+# custom-shader = ./shaders/cursor_warp.glsl
+# custom-shader = ./shaders/cursor_tail.glsl
+# custom-shader = ./shaders/rectangle_boom_cursor.glsl
+# custom-shader = ./shaders/ripple_rectangle_cursor.glsl
+#
+#
 # Some shaders can be found in this repo, they're usually uploaded to discord
 # https://github.com/hackrmomo/ghostty-shaders
 # custom-shader = shaders/animated-gradient-shader.glsl
@@ -33,7 +44,8 @@ config-file = ghostty-theme
 # custom-shader = shaders/bloom075.glsl
 # custom-shader = shaders/bloom060.glsl
 # custom-shader = shaders/bloom050.glsl
-custom-shader = shaders/bloom025.glsl
+# custom-shader = shaders/bloom025.glsl
+# custom-shader = shaders/cursor_sweep.glsl
 # custom-shader = shaders/bloom050.glsl
 # custom-shader = shaders/bloom060.glsl
 # custom-shader = shaders/bloom075.glsl

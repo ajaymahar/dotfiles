@@ -90,7 +90,7 @@ return {
         local ok, tb = pcall(require, "telescope.builtin")
         if ok then
           map("n", "gr", tb.lsp_references, "References")
-          map("n", "gd", tb.lsp_definitions, "Goto Definition")
+          -- map("n", "gd", tb.lsp_definitions, "Goto Definition")
           map("n", "<leader>ds", tb.lsp_document_symbols, "Document Symbols")
           map("n", "<leader>ws", tb.lsp_workspace_symbols, "Workspace Symbols")
         end

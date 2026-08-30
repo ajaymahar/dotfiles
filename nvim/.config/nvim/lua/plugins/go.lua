@@ -52,8 +52,8 @@ return {
         -- =============================================================
         -- LSP Configuration (Handed over completely to nvim-lspconfig)
         -- =============================================================
-        lsp_cfg = false,       -- Crucial: stops go.nvim from starting a 2nd gopls process
-        lsp_on_attach = false, -- Bypasses the duplicated on_attach handler hook
+        lsp_cfg = true,       -- Crucial: stops go.nvim from starting a 2nd gopls process
+        lsp_on_attach = true, -- Bypasses the duplicated on_attach handler hook
         lsp_keymaps = false,
         lsp_codelens = true,
         lsp_document_formatting = true,

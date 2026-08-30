@@ -80,6 +80,7 @@ brew_packages=(
     zsh-syntax-highlighting
     node
     luarocks
+    resterm
     # Add more packages as needed
 )
 
